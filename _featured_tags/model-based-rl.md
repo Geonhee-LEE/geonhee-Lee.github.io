@@ -3,6 +3,6 @@ layout: tag-blog
 title: Model-based
 slug: mbrl
 category: rl
-menu: true
+menu: false
 order: 1
 ---
