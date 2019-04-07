@@ -212,7 +212,7 @@ Hideajack:
 # in _featured_caterfories: you can define the list About, Documentation,...
 collections:
   featured_categories:
-    permalink:         /:name/
+    permalink:       /category/:name/
     output:            true
 
   featured_tags:
