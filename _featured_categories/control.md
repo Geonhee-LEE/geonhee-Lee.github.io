@@ -5,8 +5,8 @@ slug: control
 menu: true
 order: 3
 description: >
-  Hydejack is a pretentious two-column [Jekyll](http://jekyllrb.com/) theme, stolen by
-  [@qwtel](https://twitter.com/qwtel) from [Hyde](http://hyde.getpoole.com).
-  You could say it was.. [hydejacked](http://media3.giphy.com/media/makedRIckZBW8/giphy.gif).
-  Open `_featured_tags/hydejack.md` to edit this text.
+  Open `_featured_categories/control.md` to edit this text.
 ---
+
+
+Hi
