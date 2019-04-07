@@ -42,6 +42,11 @@ logo:                  /assets/icons/geonhee.png
 author:
   name:                <Geonhee> <LEE>
   email:               <gunhee6392@gmail.com>
+  picture:
+    path:   /assets/icons/geonhee.png
+  social:
+    github:  Geonhee-LEE
+    youtube: https://www.youtube.com/channel/UCAJrBKDPKFupEJgHLeAYCzQ?view_as=subscriber
   # Used by `jekyll-seo-tag`:
   # twitter:             <username>
 
@@ -90,6 +95,19 @@ font:                  Noto Sans, Helvetica, Arial, sans-serif
 # To change font-weight, see _sass/variables.scss
 font_heading:          Roboto Slab, Helvetica, Arial, sans-serif
 
+menu:
+  - title: Robotics
+    url:   /robotics/
+  - title: Projects
+    url:   /projects/
+  - title: Reinforcement learning
+    url:   /rl/
+  - title: Control
+    url:   /control/
+  - title: About
+    url:   /about/
+    
+    
 # Collections
 # ========================================================================================
 # in _featured_caterfories: you can define the list About, Documentation,...
@@ -102,9 +120,6 @@ collections:
     permalink:       /tag/:name/
     output:          true
     
-  projects:
-    permalink: /projects/:path/
-    output:    true
 
 
 
