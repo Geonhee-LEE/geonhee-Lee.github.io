@@ -58,6 +58,17 @@ copyright:             >
 #   - title:             Cookies Policy
 #     href:              /cookies-policy/
 
+# file: _config.yml
+menu:
+  - title: Blog
+    url:   /blog/
+  - title: Projects
+    url:   /projects/
+  - title: Resume
+    url:   /resume/
+  - title: About
+    url:   /about/
+    
 # Format of the permalinks
 permalink:             /:categories/:year-:month-:day-:title/
 
@@ -117,14 +128,6 @@ defaults:
       seo:
         type:          WebPage
 
-
----
-# file: resume.md
-layout: resume
-title:  Resume
-description: >
-  A short description of the page for search engines (~150 characters long).
----
 
     
 # 3rd Party Integrations
