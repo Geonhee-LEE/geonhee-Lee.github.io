@@ -3,6 +3,6 @@ layout: tag-blog
 title: Model-free
 slug: mfrl
 category: rl
-menu: false
+menu: true
 order: 3
 ---
