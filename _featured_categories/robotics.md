@@ -1,7 +1,7 @@
 ---
 layout: list
-title: Hyde
-slug: hyde
+title: Robotics
+slug: robotics
 menu: true
 order: 2
 description: >
