@@ -6,5 +6,5 @@ tags: robotics
 comments: true
 ---
 
-# For test rl
+# For test robotics
 testing..
