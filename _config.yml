@@ -215,6 +215,10 @@ collections:
     permalink:         /:name/
     output:            true
 
+  featured_tags:
+    permalink:       /tag/:name/
+    output:          true
+    
   projects:
     permalink: /projects/:path/
     output:    true
