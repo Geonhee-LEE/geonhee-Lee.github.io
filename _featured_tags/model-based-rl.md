@@ -1,8 +1,8 @@
 ---
 layout: tag-blog
-title: Model-based Reinforecement learning
+title: Model-based
 slug: mbrl
-category: reinforcement_learning
-menu: false
+category: rl
+menu: true
 order: 1
 ---
