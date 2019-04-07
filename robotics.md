@@ -1,5 +1,5 @@
 ---
 # file: robotics.md
-layout: robotics
+layout: list
 title:  Robotics
 ---
