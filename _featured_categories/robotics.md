@@ -3,6 +3,7 @@ layout: list
 title: Robotics
 slug: robotics
 menu: true
+submenu: false
 order: 1
 description: >
   Open `_featured_categories/robotics.md` to edit this text.
