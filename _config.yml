@@ -58,16 +58,6 @@ copyright:             >
 #   - title:             Cookies Policy
 #     href:              /cookies-policy/
 
-# file: _config.yml
-menu:
-  - title: Blog
-    url:   /blog/
-  - title: Projects
-    url:   /projects/
-  - title: Resume
-    url:   /resume/
-  - title: About
-    url:   /about/
     
 # Format of the permalinks
 permalink:             /:categories/:year-:month-:day-:title/
@@ -219,14 +209,10 @@ Hideajack:
 
 # Collections
 # ========================================================================================
-
+# in _featured_caterfories: you can define the list About, Documentation,...
 collections:
   featured_categories:
     permalink:         /:name/
-    output:            true
-
-  featured_tags:
-    permalink:         /tag-:name/
     output:            true
 
 
