@@ -113,11 +113,11 @@ menu:
 # in _featured_caterfories: you can define the list About, Documentation,...
 collections:
   featured_categories:
-    permalink:       /category/:name/
+    permalink:       /:name/
     output:            true
 
   featured_tags:
-    permalink:       /tag/:name/
+    permalink:       /tag-:name/
     output:          true
     
 
