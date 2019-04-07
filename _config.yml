@@ -136,7 +136,7 @@ defaults:
 # ----------------------------------------------------------------------------------------
 # These settings are specific to Hydejack.
 
-hydejack:
+What:
   # Configure the order of complementary content on blog posts
   post_addons:         [about, newsletter, related]
 
