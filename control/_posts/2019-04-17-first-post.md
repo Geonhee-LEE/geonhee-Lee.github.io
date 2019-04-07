@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "test1"
-categories: robotics
-tags: robotics
+categories: control
+tags: control
 comments: true
 ---
 
