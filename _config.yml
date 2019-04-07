@@ -117,16 +117,15 @@ defaults:
       seo:
         type:          WebPage
 
-menu:
-  - title: Blog
-    url:   /blog/
-  - title: Projects
-    url:   /projects/
-  - title: Resume
-    url:   /resume/
-  - title: About
-    url:   /about/
-    
+
+---
+# file: resume.md
+layout: resume
+title:  Resume
+description: >
+  A short description of the page for search engines (~150 characters long).
+---
+
     
 # 3rd Party Integrations
 # ----------------------------------------------------------------------------------------
