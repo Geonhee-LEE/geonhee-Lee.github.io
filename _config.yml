@@ -216,7 +216,6 @@ collections:
     output:            true
 
   projects:
-  projects:
     permalink: /projects/:path/
     output:    true
 
