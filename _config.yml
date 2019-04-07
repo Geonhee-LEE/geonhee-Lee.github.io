@@ -117,7 +117,17 @@ defaults:
       seo:
         type:          WebPage
 
-
+menu:
+  - title: Blog
+    url:   /blog/
+  - title: Projects
+    url:   /projects/
+  - title: Resume
+    url:   /resume/
+  - title: About
+    url:   /about/
+    
+    
 # 3rd Party Integrations
 # ----------------------------------------------------------------------------------------
 
@@ -136,7 +146,7 @@ defaults:
 # ----------------------------------------------------------------------------------------
 # These settings are specific to Hydejack.
 
-What:
+Hideajack:
   # Configure the order of complementary content on blog posts
   post_addons:         [about, newsletter, related]
 
