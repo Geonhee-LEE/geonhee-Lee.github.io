@@ -4,5 +4,5 @@ title: Model-based
 slug: mbrl
 category: rl
 menu: false
-order: 1
+order: 4
 ---
