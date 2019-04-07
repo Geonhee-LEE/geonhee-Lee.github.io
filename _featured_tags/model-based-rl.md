@@ -1,8 +1,8 @@
 ---
 layout: tag-blog
 title: Model-based
-slug: mbrl
+slug: model-based
 category: rl
-menu: true
+menu: false
 order: 1
 ---
