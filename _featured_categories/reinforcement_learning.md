@@ -1,6 +1,6 @@
 ---
 layout: list
-title: RL
+title: Reinforcement learning
 slug: RL
 menu: true
 submenu: true
