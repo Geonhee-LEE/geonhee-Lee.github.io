@@ -113,9 +113,11 @@ A caption for an image.
 {:.figure}
 ~~~
 
+```html
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/10.png" class="lead" data-width="80" data-height="60" />
 </figure>
+```
 
 ##### Forward kinematic equations 
 1.  Tool position 
