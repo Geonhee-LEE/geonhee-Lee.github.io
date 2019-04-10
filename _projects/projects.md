@@ -2,7 +2,7 @@
 layout: post
 title:  projects
 categories: projects
-tags: projects
+tags: 
 comments: true
 ---
 

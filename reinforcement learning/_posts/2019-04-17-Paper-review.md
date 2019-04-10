@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "model-based"
-categories: model-reinforcement_learning
+categories: reinforcement_learning
 tags: model-based
 comments: true
 ---
