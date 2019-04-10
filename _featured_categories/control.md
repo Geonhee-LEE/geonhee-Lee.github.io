@@ -1,3 +1,4 @@
+<!--
 ---
 layout: list
 title: Control
@@ -14,3 +15,4 @@ accent_image:
 ---
 
 
+-->
