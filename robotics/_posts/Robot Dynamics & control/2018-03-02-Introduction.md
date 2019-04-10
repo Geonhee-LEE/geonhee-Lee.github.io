@@ -34,11 +34,11 @@ comments: true
 #### Common Kinematic Arrangements
 
 1.  Articulated configuration(RRR)
-      - This configuration provides for relatively large freedom of movement in a compact space
-      - The links and joints are analogous to human joint.
+    - This configuration provides for relatively large freedom of movement in a compact space
+    - The links and joints are analogous to human joint.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/2.png" class="lead" data-width="240" data-height="180" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/2.png" class="lead" data-width="180" data-height="120" />
 </figure>
 
 
@@ -71,8 +71,7 @@ comments: true
    - This is often used in pick and place operations.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/6.png" class="lead" data-width="120" data-height="180" />
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/7.png" class="lead" data-width="120" data-height="180" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/6.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
 6. Parallel manupulator
@@ -92,13 +91,20 @@ comments: true
 - The simplest type of end-effector are grippers.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/9.png" class="lead" data-width="240" data-height="180" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/9.png" class="lead" data-width="180" data-height="120" />
 </figure>
 
 
 -------
 
-#### Pro
+#### Problerm 1: Forward Kinematics
+
+- The first problem is to describe __position and orientation of the tool__.
+- Determination of the position and orientation of the end-effector(or tool) in terms of joint variables(angle or displacement).
+
+
+
+
 
 ## Reference:
 - [SEOULTECH - HRRLAB](http://hrrlab.com)
