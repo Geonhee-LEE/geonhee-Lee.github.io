@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Mathematics"
-categories: Mathematics
-tags: Optimiation
+categories: mathematics
+tags: optimiation
 comments: true
 ---
 
