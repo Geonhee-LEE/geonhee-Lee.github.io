@@ -103,7 +103,7 @@ comments: true
 - Determination of the position and orientation of the end-effector(or tool) in terms of joint variables(angle or displacement).
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/10.png" class="lead" data-width="120" data-height="80" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/10.png" class="lead" data-width="80" data-height="60" />
 </figure>
 
 ##### Forward kinematic equations 
