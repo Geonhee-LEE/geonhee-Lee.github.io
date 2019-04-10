@@ -100,10 +100,12 @@ menu:
     url:   /robotics/
   - title: Projects
     url:   /projects/
-  - title: Reinforcement learning
+  - title: Reinforcement_learning
     url:   /rl/
   - title: Model-based
-    url:   /mbrl/
+    url:   /rl/mbrl/
+  - title: Model-free
+    url:   /rl/mfrl/
   - title: Control
     url:   /control/
   - title: About
