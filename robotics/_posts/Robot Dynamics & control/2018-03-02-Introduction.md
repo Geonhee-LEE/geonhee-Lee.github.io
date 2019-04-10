@@ -146,6 +146,6 @@ $$
  $$
 
 
-## Reference:
+> Reference:
 - [SEOULTECH - HRRLAB](http://hrrlab.com)
 - [SEOULTECH - Robot Dynamics & Control, Lecture slides](http://hrrlab.com/)
