@@ -102,8 +102,17 @@ comments: true
 - The first problem is to describe __position and orientation of the tool__.
 - Determination of the position and orientation of the end-effector(or tool) in terms of joint variables(angle or displacement).
 
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/10.png" class="lead" data-width="120" data-height="80" />
+</figure>
 
+##### Forward kinematic equations 
+1.  Tool position 
 
+$$ x = a_1 cos \theta_1 + a_2 cos( \theta_1 + \theta_2)$$
+$$ y = a_1 sin \theta_1 + a_2 sin( \theta_1 + \theta_2)$$
+
+2.  
 
 
 ## Reference:
