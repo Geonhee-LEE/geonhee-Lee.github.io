@@ -109,7 +109,7 @@ comments: true
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/10.png" class="lead" data-width="80" data-height="60"  width="10%" height="10%"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/10.png" class="lead" data-width="80" data-height="60"  style="width:10px; height=:10px"/>
 </figure>
 
 
