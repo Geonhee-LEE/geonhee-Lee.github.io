@@ -120,7 +120,7 @@ collections:
     permalink:       /:name/
     output:            true
   featured_tags:
-    permalink:       /tag-:name/
+    permalink:       /:name/
     output:          true
     
 
