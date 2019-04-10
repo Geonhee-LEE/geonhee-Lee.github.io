@@ -95,34 +95,22 @@ font:                  Noto Sans, Helvetica, Arial, sans-serif
 # To change font-weight, see _sass/variables.scss
 font_heading:          Roboto Slab, Helvetica, Arial, sans-serif
 
-menu:
-  - title: Robotics
-    url:   /robotics/
-  - title: Projects
-    url:   /projects/
-  - title: Reinforcement_learning
-    url:   /rl/
-  - title: Model-based
-    url:   /rl-mbrl/
-  - title: Model-free
-    url:   /rl-mfrl/
-  - title: Control
-    url:   /control/
-  - title: About
-    url:   /about/
     
     
 # Collections
 # ========================================================================================
 # in _featured_caterfories: you can define the list About, Documentation,...
+
 collections:
   featured_categories:
-    permalink:       /:name/
-    output:            true
-  featured_tags:
-    permalink:       /:name/
+    permalink:       /category/:name/
     output:          true
-    
+  featured_tags:
+    permalink:       /tag/:name/
+    output:          true
+  projects:
+    permalink:       /projects/:path/
+    output:          true
 
 
 
