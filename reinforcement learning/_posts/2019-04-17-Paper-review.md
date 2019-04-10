@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "model-based"
-categories: reinforcement_learning
-tags: model-based
+title:  model-based TESS
+categories: RL
+tags: based
 comments: true
 ---
 
