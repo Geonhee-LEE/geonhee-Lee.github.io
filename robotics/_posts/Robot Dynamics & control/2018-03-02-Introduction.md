@@ -14,9 +14,9 @@ comments: true
 {:toc}
 
 ### Components & Structure of Robots:
--   Robot manipulators are composed of links connected by __joints__ into a __kinematic chain__.
-    -   __Revolute__ joint: allows relative rotation between two links.
-    -   __Prismatic__ joint: allows a linear relative motion between two links.
+- Robot manipulators are composed of links connected by __joints__ into a __kinematic chain__.
+      -   __Revolute__ joint: allows relative rotation between two links.
+      -   __Prismatic__ joint: allows a linear relative motion between two links.
 
 
 <figure>
@@ -32,15 +32,15 @@ comments: true
 
 
 #### Workspace
-  - The total volume swept out by the end-effector as the manipulator executes all possible motions.
-  - __Reachable workspace__ : entire set of points reachable by the manipulator
-  - __Dextrous workspace__: subset of the reachable workspace that the manipulator can reach with an arbitrary orientation of the end-effector. 
+- The total volume swept out by the end-effector as the manipulator executes all possible motions.
+- __Reachable workspace__ : entire set of points reachable by the manipulator
+- __Dextrous workspace__: subset of the reachable workspace that the manipulator can reach with an arbitrary orientation of the end-effector. 
 
 #### Common Kinematic Arrangements
 
 #####  Articulated configuration(RRR)
-    - This configuration provides for relatively large freedom of movement in a compact space
-    - The links and joints are analogous to human joint.
+- This configuration provides for relatively large freedom of movement in a compact space
+- The links and joints are analogous to human joint.
 
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/2.png" class="lead" data-width="180" data-height="120" />
@@ -48,41 +48,41 @@ comments: true
 
 
 #####  Spherical Configuration
-    - The third joint of the articulated robot is replaced by a prismatic joint.
-    - The 'Stanford-arm' is an example of a spherical manupulator.
+- The third joint of the articulated robot is replaced by a prismatic joint.
+- The 'Stanford-arm' is an example of a spherical manupulator.
 
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/3.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
 ##### SCARA Configuration(RRP)
-   - The so-called SCARA(Selective Compliant Articulated Robot for Assembly) has $$z_0, z_1, z_2$$ prallel.
-   - Ideal for table top assembly such as pick and place task. 
+- The so-called SCARA(Selective Compliant Articulated Robot for Assembly) has $$z_0, z_1, z_2$$ prallel.
+- Ideal for table top assembly such as pick and place task. 
 
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/4.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
 ##### Cylindrical Configuration(RPP)
-   - The first joint is revolute, while the second and third joints are prismatic.
-   - This is often used in materials transfer task.
+- The first joint is revolute, while the second and third joints are prismatic.
+- This is often used in materials transfer task.
 
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/5.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
 ##### Cartesian Configuration(PPP)
-   - The configuration is useful for table-top assembly applications.
-   - This is often used in pick and place operations.
+- The configuration is useful for table-top assembly applications.
+- This is often used in pick and place operations.
 
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/6.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
 ##### Parallel manupulator
-   - The configuration forms a closed chain by using several independent kinematic chains connecting the vase to the end-effector.
-   - The closed chain results in greater structural rigidity.
-   - This robot generally have __much structural rigidity__ than serial link robots.
+- The configuration forms a closed chain by using several independent kinematic chains connecting the vase to the end-effector.
+- The closed chain results in greater structural rigidity.
+- This robot generally have __much structural rigidity__ than serial link robots.
 
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/8.png" class="lead" data-width="120" data-height="80" />
