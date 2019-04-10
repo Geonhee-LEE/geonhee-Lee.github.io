@@ -109,14 +109,13 @@ comments: true
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/10.png" class="lead" data-width="80" data-height="60" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/10.png" class="lead" data-width="80" data-height="60"  width="10%" height="10%"/>
 </figure>
 
 
 ### Forward kinematic equations 
 
 ####  Tool position 
-
 $$
 \begin{aligned}
  x = a_1 cos \theta_1 + a_2 cos( \theta_1 + \theta_2) \\
@@ -125,7 +124,6 @@ $$
  $$
 
 ####  Tool Orientation
-
 $$
 \begin{aligned}
 \begin{bmatrix}
@@ -139,6 +137,9 @@ $$
                \end{bmatrix}
 \end{aligned} 
  $$
+
+
+
 
 
 > Reference:
