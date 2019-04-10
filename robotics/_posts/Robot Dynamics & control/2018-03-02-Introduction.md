@@ -71,8 +71,8 @@ comments: true
    - This is often used in pick and place operations.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/6.png" class="lead" data-width="240" data-height="180" />
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/7.png" class="lead" data-width="240" data-height="180" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/6.png" class="lead" data-width="120" data-height="180" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/7.png" class="lead" data-width="120" data-height="180" />
 </figure>
 
 5. Parallel manupulator
