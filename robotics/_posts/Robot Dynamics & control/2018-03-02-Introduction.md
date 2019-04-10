@@ -8,6 +8,10 @@ comments: true
 
 # Robot Dynamics & control: Lecture1-Introduction
 
+## Table of Contents
+{:.no_toc}
+{:toc}
+
 ### 1.3 Components & Structure of Robots:
 -   Robot manipulators are composed of links connected by __joints__ into a __kinematic chain__.
     -   __Revolute__ joint: allows relative rotation between two links.
