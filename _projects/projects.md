@@ -1,7 +1,11 @@
 ---
-# file: projects.md
-layout:          projects
-title:           Projects
-show_collection: projects
-featured:        true
+layout: post
+title:  projects
+categories: projects
+tags: projects
+comments: true
 ---
+
+# projects
+
+projects
