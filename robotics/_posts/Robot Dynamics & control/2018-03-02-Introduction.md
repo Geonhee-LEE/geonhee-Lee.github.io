@@ -47,11 +47,11 @@ comments: true
     - The 'Stanford-arm' is an example of a spherical manupulator.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/13.png" class="lead" data-width="240" data-height="180" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/3.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
 3. SCARA Configuration(RRP)
-   - The so-called SCARA(Selective Compliant Articulated Robot for Assembly) has $$z_0, z_1, z2$$ prallel.
+   - The so-called SCARA(Selective Compliant Articulated Robot for Assembly) has $$z_0, z_1, z_2$$ prallel.
    - Ideal for table top assembly such as pick and place task. 
 
 <figure>
