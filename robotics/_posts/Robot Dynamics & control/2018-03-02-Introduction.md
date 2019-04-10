@@ -23,7 +23,7 @@ Components & Structure of Robots:
 
 
 <figure>
-  <img alt="An image with a caption" src="assets/img/Robot_dynamics/1.png" class="lead" data-width="320" data-height="240" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/1.png" class="lead" data-width="320" data-height="240" />
   <figcaption>A caption to an image.</figcaption>
 </figure>
 
