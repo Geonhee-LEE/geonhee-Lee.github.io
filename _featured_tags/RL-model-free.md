@@ -2,7 +2,7 @@
 layout: tag-blog
 title: Model-free
 slug: model-free
-category: reinforcement_learning
+category: RL
 menu: false
-order: 2
+order: 1
 ---
