@@ -107,11 +107,9 @@ comments: true
 - The first problem is to describe __position and orientation of the tool__.
 - Determination of the position and orientation of the end-effector(or tool) in terms of joint variables(angle or displacement).
 
-~~~md
-![Full-width image](/assets/img/Robot_dynamics/10.png"){:.lead data-width="800" data-height="100"}
+![Full-width image](/assets/img/Robot_dynamics/10.png"){:.lead data-width="50" data-height="50"}
 A caption for an image.
 {:.figure}
-~~~
 
 ```html
 <figure>
