@@ -103,9 +103,9 @@ menu:
   - title: Reinforcement_learning
     url:   /rl/
   - title: Model-based
-    url:   /rl/mbrl/
+    url:   /rl-mbrl/
   - title: Model-free
-    url:   /rl/mfrl/
+    url:   /rl-mfrl/
   - title: Control
     url:   /control/
   - title: About
