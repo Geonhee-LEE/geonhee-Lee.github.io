@@ -2,7 +2,7 @@
 layout: tag-blog
 title: Model-based
 slug: model-based
-category: reinforcement_learning
+category: RL
 menu: false
 order: 1
 ---
