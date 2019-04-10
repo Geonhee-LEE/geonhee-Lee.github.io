@@ -2,7 +2,7 @@
 layout: post
 title:  "underactuated-robotics"
 categories: control
-tags: control
+tags: underactuated-robotics
 comments: true
 ---
 
