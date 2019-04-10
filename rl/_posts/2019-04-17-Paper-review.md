@@ -1,10 +1,11 @@
 ---
 layout: post
-title:  "test1"
-categories: rl
-tags: rl
+title:  "model-based"
+categories: model-based
+tags: rl model-based
 comments: true
 ---
 
-# For test rl
-testing..
+# Model-based paper review
+
+Model based Reinforcement learning
