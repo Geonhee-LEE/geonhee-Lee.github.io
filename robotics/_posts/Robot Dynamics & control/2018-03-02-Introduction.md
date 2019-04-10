@@ -6,16 +6,16 @@ tags: robotics
 comments: true
 ---
 
-# Lecture1: Introduction
+# Robot Dynamics & control, Lecture1: Introduction
 
 Components & Structure of Robots:
 -   Robot manipulators are composed of links connected by __joints__ into a __kinematic chain__.
     -   __Revolute__ joint: allows relative rotation between two links.
     -   __Prismatic__ joint: allows a linear relative motion between two links.
 
-<p align="center"> 
-<img src="./img/1.png" width="480" height="240">
-</p>
+![Full-width image](""./img/1.png"){:.lead data-width="800" data-height="100"}
+{:.figure}
+
 
 
 
