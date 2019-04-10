@@ -109,8 +109,12 @@ comments: true
 ##### Forward kinematic equations 
 1.  Tool position 
 
-$$ x = a_1 cos \theta_1 + a_2 cos( \theta_1 + \theta_2)\\
- y = a_1 sin \theta_1 + a_2 sin( \theta_1 + \theta_2)$$
+$$
+\begin{aligned}
+ x = a_1 cos \theta_1 + a_2 cos( \theta_1 + \theta_2) \\
+ y = a_1 sin \theta_1 + a_2 sin( \theta_1 + \theta_2)
+\end{aligned} 
+ $$
 
 2.  
 
