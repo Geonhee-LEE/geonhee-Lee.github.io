@@ -102,6 +102,8 @@ menu:
     url:   /projects/
   - title: Reinforcement learning
     url:   /rl/
+  - title: Model-based
+    url:   /mbrl/
   - title: Control
     url:   /control/
   - title: About
@@ -115,7 +117,6 @@ collections:
   featured_categories:
     permalink:       /:name/
     output:            true
-
   featured_tags:
     permalink:       /tag-:name/
     output:          true
