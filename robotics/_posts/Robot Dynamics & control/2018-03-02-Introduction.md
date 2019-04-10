@@ -19,6 +19,5 @@ Components & Structure of Robots:
 
 
 ## Reference:
-[SEOULTECH - HRRLAB](http://hrrlab.com/)
-
-[SEOULTECH - Robot Dynamics & Control, Lecture slides](http://hrrlab.com/)
+- [SEOULTECH - HRRLAB](http://hrrlab.com/)
+- [SEOULTECH - Robot Dynamics & Control, Lecture slides](http://hrrlab.com/)
