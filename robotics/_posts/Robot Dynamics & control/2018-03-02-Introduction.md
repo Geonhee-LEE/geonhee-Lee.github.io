@@ -16,9 +16,10 @@ Components & Structure of Robots:
 ![Full-width image](https://placehold.it/800x100){:.lead data-width="800" data-height="100"}
 
 
-![Dark Mode](./img/1.png){:data-width="320" data-height="240"}
+![Dark Mode](/robotics/_posts/Robot Dynamics & control/img/1.png){:data-width="320" data-height="240"}
 {:.figure}
 
 
 ## Reference:
-[SEOULTECH-HRRLAB](http://hrrlab.com/)
+[SEOULTECH - HRRLAB](http://hrrlab.com/)
+[SEOULTECH - Robot Dynamics & Control, Lecture slides](http://hrrlab.com/)
