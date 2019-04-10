@@ -4,7 +4,7 @@ title: Projects
 slug: projects
 menu: true
 submenu: false
-order: 6
+order: 4
 description: >
   Open `_projects/projects.md` to edit this text.
 accent_color: rgb(38,139,210)
