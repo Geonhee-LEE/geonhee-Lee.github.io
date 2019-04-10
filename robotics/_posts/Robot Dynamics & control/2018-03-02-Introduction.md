@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "robotics_and_control"
+image: /robotics/_posts/Robot Dynamics & control/img/1.png
 categories: robotics_and_control
 tags: robotics
 comments: true
@@ -19,4 +20,5 @@ Components & Structure of Robots:
 
 ## Reference:
 [SEOULTECH - HRRLAB](http://hrrlab.com/)
+
 [SEOULTECH - Robot Dynamics & Control, Lecture slides](http://hrrlab.com/)
