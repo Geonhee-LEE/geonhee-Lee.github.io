@@ -8,7 +8,7 @@ comments: true
 
 # Robot Dynamics & control: Lecture1-Introduction
 
-## Table of Contents
+### Table of Contents
 {:.no_toc}
 {:toc}
 
