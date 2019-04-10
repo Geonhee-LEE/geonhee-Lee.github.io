@@ -13,7 +13,7 @@ Components & Structure of Robots:
     -   __Revolute__ joint: allows relative rotation between two links.
     -   __Prismatic__ joint: allows a linear relative motion between two links.
 
-![Full-width image](""./img/1.png"){:.lead data-width="800" data-height="100"}
+![Full-width image]("./img/1.png"){:.lead data-width="800" data-height="100"}
 {:.figure}
 
 
