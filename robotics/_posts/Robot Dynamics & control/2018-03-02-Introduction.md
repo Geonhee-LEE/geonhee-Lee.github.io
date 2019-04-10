@@ -6,14 +6,14 @@ tags: robotics
 comments: true
 ---
 
-# Robot Dynamics & control: Lecture1-Introduction
+# Robot Dynamics & control: Lecture 1 - Introduction
 
 ### Table of Contents
 {:.no_toc}
 0. this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
-### 1.3 Components & Structure of Robots:
+### Components & Structure of Robots:
 -   Robot manipulators are composed of links connected by __joints__ into a __kinematic chain__.
     -   __Revolute__ joint: allows relative rotation between two links.
     -   __Prismatic__ joint: allows a linear relative motion between two links.
@@ -38,7 +38,7 @@ comments: true
 
 #### Common Kinematic Arrangements
 
-1.  Articulated configuration(RRR)
+#####  Articulated configuration(RRR)
     - This configuration provides for relatively large freedom of movement in a compact space
     - The links and joints are analogous to human joint.
 
@@ -47,7 +47,7 @@ comments: true
 </figure>
 
 
-2.  Spherical Configuration
+#####  Spherical Configuration
     - The third joint of the articulated robot is replaced by a prismatic joint.
     - The 'Stanford-arm' is an example of a spherical manupulator.
 
@@ -55,7 +55,7 @@ comments: true
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/3.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
-3. SCARA Configuration(RRP)
+##### SCARA Configuration(RRP)
    - The so-called SCARA(Selective Compliant Articulated Robot for Assembly) has $$z_0, z_1, z_2$$ prallel.
    - Ideal for table top assembly such as pick and place task. 
 
@@ -63,7 +63,7 @@ comments: true
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/4.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
-4. Cylindrical Configuration(RPP)
+##### Cylindrical Configuration(RPP)
    - The first joint is revolute, while the second and third joints are prismatic.
    - This is often used in materials transfer task.
 
@@ -71,7 +71,7 @@ comments: true
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/5.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
-5. Cartesian Configuration(PPP)
+##### Cartesian Configuration(PPP)
    - The configuration is useful for table-top assembly applications.
    - This is often used in pick and place operations.
 
@@ -79,7 +79,7 @@ comments: true
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/6.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
-6. Parallel manupulator
+##### Parallel manupulator
    - The configuration forms a closed chain by using several independent kinematic chains connecting the vase to the end-effector.
    - The closed chain results in greater structural rigidity.
    - This robot generally have __much structural rigidity__ than serial link robots.
