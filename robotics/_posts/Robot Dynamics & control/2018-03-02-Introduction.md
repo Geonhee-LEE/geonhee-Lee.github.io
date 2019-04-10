@@ -6,7 +6,7 @@ tags: robotics
 comments: true
 ---
 
-# Robot Dynamics & control, Lecture1: Introduction
+# Robot Dynamics & control: Lecture1-Introduction
 
 ### 1.3 Components & Structure of Robots:
 -   Robot manipulators are composed of links connected by __joints__ into a __kinematic chain__.
@@ -81,14 +81,24 @@ comments: true
    - This robot generally have __much structural rigidity__ than serial link robots.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/8.png" class="lead" data-width="120" data-height80" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/8.png" class="lead" data-width="120" data-hei80" />
 </figure>
 
 #### Wrists and End-Effectors 
 - The wrist of a manipulator refers to the joints in the kinematic chain berween the arm and hand.
 - It is increasingly common to design manipulators with __spherical wrists__, by which we mean wrists whose three joint axes intersect at common point.
 - 6 DOF = __3 DOF for wrist + 3DOF for arm__
+- The arm and wrist assemblies are used primarily __for positioning the end-effector__(=hand)
+- The simplest type of end-effector are grippers.
 
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/9.png" class="lead" data-width="240" data-height="180" />
+</figure>
+
+
+-------
+
+#### Pro
 
 ## Reference:
 - [SEOULTECH - HRRLAB](http://hrrlab.com)
