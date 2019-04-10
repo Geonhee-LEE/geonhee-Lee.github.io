@@ -102,7 +102,7 @@ comments: true
 
 -------
 
-#### Problerm 1: Forward Kinematics
+## Problerm 1: Forward Kinematics
 
 - The first problem is to describe __position and orientation of the tool__.
 - Determination of the position and orientation of the end-effector(or tool) in terms of joint variables(angle or displacement).
@@ -117,8 +117,10 @@ A caption for an image.
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/10.png" class="lead" data-width="80" data-height="60" />
 </figure>
 
-##### Forward kinematic equations 
-1.  Tool position 
+
+### Forward kinematic equations 
+
+####  Tool position 
 
 $$
 \begin{aligned}
@@ -127,7 +129,21 @@ $$
 \end{aligned} 
  $$
 
-2.  
+####  Tool Orientation
+
+$$
+\begin{aligned}
+\begin{bmatrix}
+                 i_2  \cdot i_0  & j_2  \cdot i_0  \\
+                 i_2  \cdot j_0  & j_2  \cdot j_0          
+               \end{bmatrix}
+&=
+\begin{bmatrix}
+                 cos(\theta_1 + \theta_2)  & -sin(\theta_1 + \theta_2) \\
+                 sin(\theta_1 + \theta_2)   & cos(\theta_1 + \theta_2)          
+               \end{bmatrix}
+\end{aligned} 
+ $$
 
 
 ## Reference:
