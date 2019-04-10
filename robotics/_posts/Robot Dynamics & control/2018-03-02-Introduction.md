@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "robotics_and_control"
-image: /robotics/_posts/Robot Dynamics & control/img/1.png
 categories: robotics_and_control
 tags: robotics
 comments: true
