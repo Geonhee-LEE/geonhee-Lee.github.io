@@ -51,7 +51,7 @@ comments: true
 </figure>
 
 3. SCARA Configuration(RRP)
-   - The so-called SCARA(Selective Compliant Articulated Robot for Assembly) has $z_0, z_1, z2$ prallel.
+   - The so-called SCARA(Selective Compliant Articulated Robot for Assembly) has $$z_0, z_1, z2$$ prallel.
    - Ideal for table top assembly such as pick and place task. 
 
 <figure>
