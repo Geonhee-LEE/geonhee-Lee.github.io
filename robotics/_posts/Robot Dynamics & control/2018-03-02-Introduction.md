@@ -75,13 +75,13 @@ comments: true
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/7.png" class="lead" data-width="120" data-height="180" />
 </figure>
 
-5. Parallel manupulator
+6. Parallel manupulator
    - The configuration forms a closed chain by using several independent kinematic chains connecting the vase to the end-effector.
    - The closed chain results in greater structural rigidity.
    - This robot generally have __much structural rigidity__ than serial link robots.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/8.png" class="lead" data-width="240" data-height="180" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/8.png" class="lead" data-width="120" data-height80" />
 </figure>
 
 #### Wrists and End-Effectors 
