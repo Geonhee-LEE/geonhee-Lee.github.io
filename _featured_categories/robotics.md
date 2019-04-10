@@ -1,7 +1,7 @@
 ---
 layout: list
-title: Robotics
-slug: robotics
+title: Robotics & Control
+slug: robotics control
 menu: true
 submenu: false
 order: 1
