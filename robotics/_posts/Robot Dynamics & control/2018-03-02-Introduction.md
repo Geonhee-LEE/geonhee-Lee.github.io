@@ -124,7 +124,7 @@ A caption for an image.
 
 $$
 \begin{aligned}
- x = a_1 cos \theta_1 + a_2 cos( \theta_1 + \theta_2) \\[2em]
+ x = a_1 cos \theta_1 + a_2 cos( \theta_1 + \theta_2) \\
  y = a_1 sin \theta_1 + a_2 sin( \theta_1 + \theta_2)
 \end{aligned} 
  $$
