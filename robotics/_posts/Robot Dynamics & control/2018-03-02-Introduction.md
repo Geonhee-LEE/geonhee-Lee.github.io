@@ -17,6 +17,11 @@ Components & Structure of Robots:
 ![Dark Mode](/robotics/_posts/Robot Dynamics & control/img/1.png){:data-width="320" data-height="240"}
 {:.figure}
 
+<figure>
+  <img alt="An image with a caption" src="./img/1.png" class="lead" data-width="800" data-height="100" />
+  <figcaption>A caption to an image.</figcaption>
+</figure>
+
 
 ## Reference:
 - [SEOULTECH - HRRLAB](http://hrrlab.com/)
