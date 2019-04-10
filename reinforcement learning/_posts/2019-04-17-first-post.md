@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "reinforcement_learning"
-categories: reinforcement_learning
+title:  "RL"
+categories: RL
 tags: 
 comments: true
 ---
