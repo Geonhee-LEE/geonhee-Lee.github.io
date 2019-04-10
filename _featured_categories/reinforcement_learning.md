@@ -1,7 +1,7 @@
 ---
 layout: list
-title: Reinforcement learning
-slug: reinforcement learning
+title: Reinforcement_learning
+slug: reinforcement_learning
 menu: true
 submenu: true
 order: 2
