@@ -9,6 +9,7 @@ accent_image:
 
 # About
 
+Geonhee
 
 <!-- $$
 \begin{aligned}
