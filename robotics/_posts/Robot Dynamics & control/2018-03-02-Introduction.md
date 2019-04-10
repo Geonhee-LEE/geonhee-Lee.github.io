@@ -86,7 +86,8 @@ comments: true
 
 #### Wrists and End-Effectors 
 - The wrist of a manipulator refers to the joints in the kinematic chain berween the arm and hand.
-- 
+- It is increasingly common to design manipulators with __spherical wrists__, by which we mean wrists whose three joint axes intersect at common point.
+- 6 DOF = __3 DOF for wrist + 3DOF for arm__
 
 
 ## Reference:
