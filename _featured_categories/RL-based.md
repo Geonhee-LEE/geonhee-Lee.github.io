@@ -3,6 +3,6 @@ layout: tag-blog
 title: Model-based
 slug: based
 category: RL
-menu: false
+menu: true
 order: 1
 ---
