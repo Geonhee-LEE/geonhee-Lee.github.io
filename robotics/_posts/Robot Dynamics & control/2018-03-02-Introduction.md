@@ -262,7 +262,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/13.png" class="lead"   style="width:240; height=:180"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/13.png" class="lead"   style="width:480px; height=:640px"/>
 </figure>
 
 
@@ -369,10 +369,10 @@ $$
 ### Example 1: Three link-revolute arm
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/14.png" class="lead"   style="width:240px; height=:180px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/14.png" class="lead"   style="width:480; height=:320"/>
 </figure>
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/15.png" class="lead"   style="width:240px; height=:180px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/15.png" class="lead"   style="width:480; height=:320"/>
 </figure>
 
 -------
@@ -401,10 +401,10 @@ $$
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/16.png" class="lead"   style="width:180px; height=:120px"/>
 </figure>
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/17.png" class="lead"   style="width:240px; height=:100px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/17.png" class="lead"   style="width:480px; height=:240px"/>
 </figure>
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/18.png" class="lead"   style="width:240px; height=:100px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/18.png" class="lead"   style="width:640px; height=:240px"/>
 </figure>
 
 - Each joint has to follow the desired joint angle accurately!
