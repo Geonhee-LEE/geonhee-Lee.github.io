@@ -370,10 +370,10 @@ $$
 ### Example 1: Three link-revolute arm
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/14.png" class="lead"   style="width:240; height=:180"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/14.png" class="lead"   style="width:240px; height=:180px"/>
 </figure>
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/15.png" class="lead"   style="width:240; height=:180"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/15.png" class="lead"   style="width:240px; height=:180px"/>
 </figure>
 
 -------
@@ -399,13 +399,13 @@ $$
     - Pose에 따라 moment가 달라져 disturbance가 달라지지만 높은 기어비 때문에 무시.
   
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/16.png" class="lead"   style="width:180; height=:120"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/16.png" class="lead"   style="width:180px; height=:120px"/>
 </figure>
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/17.png" class="lead"   style="width:240; height=:100"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/17.png" class="lead"   style="width:240px; height=:100px"/>
 </figure>
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/18.png" class="lead"   style="width:240; height=:100"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/18.png" class="lead"   style="width:240px; height=:100px"/>
 </figure>
 
 - Each joint has to follow the desired joint angle accurately!
