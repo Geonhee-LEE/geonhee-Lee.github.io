@@ -254,7 +254,7 @@ $$
 $$
 
 ### Another way - Numerical Solution
-
+-  In contrast to the closed form(geometry solution), it absolutely __needs a forward kinematics__.
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/13.png" class="lead"   style="width:320; height=:240"/>
 </figure>
