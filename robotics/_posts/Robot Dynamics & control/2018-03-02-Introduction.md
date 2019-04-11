@@ -200,15 +200,32 @@ $$
 \begin{aligned} 
   & x = a_1 cos \theta_1 + a_2 cos(\theta _1 + \theta _2)  \\
   & y = a_1 sin \theta_1 + a_2 sin(\theta _1 + \theta _2)  \\
+  & \qquad \qquad \qquad \triangledown  \\
 \end{aligned} 
 $$
 
 $$
-\begin{equation} \label{eu_eqn}
-e^{\pi i} + 1 = 0
-\end{equation}
+\begin{aligned} 
+   x^2 
+  &= a^2 _1 cos ^2 \theta_1 + a^2_2   cos^2 (\theta_1 + \theta_2 ) + 2 a_1 a_2 cos \theta_1 cos(\theta_1 + \theta_2)\\
+  & = a^2 _1 cos ^2 \theta_1 + a^2_2   cos^2 (\theta_1 + \theta_2 ) +  a_1 a_2 (cos (2 \theta_1 + \theta_2) + cos\theta_2)\\
+  y^2 &= a^2 _1 sin ^2 \theta_1 + a^2_2   sin^2 (\theta_1 + \theta_2 ) + 2 a_1 a_2 sin \theta_1 sin(\theta_1 + \theta_2)\\
+  & = a^2 _1 sin ^2 \theta_1 + a^2_2   sin^2 (\theta_1 + \theta_2 ) -  a_1 a_2 (cos (2 \theta_1 + \theta_2) - cos\theta_2)\\
+  & \qquad \qquad \qquad \qquad \qquad \qquad  \triangledown  \\
+\end{aligned} 
 $$
 
+$$
+\begin{aligned} 
+  & x^2 +y^2  = a^2_1 +a^2 _2 + 2a_1 a_2 cos \theta_2 \\
+  & \qquad \qquad \qquad \qquad \triangledown  \\
+  & cos \theta_2 = \frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2} &\cong D \\
+  & sin \theta_2 = \pm \sqrt{1 - D^2} \\
+  & \therefore \theta_2 = tan ^-1 (\frac{\pm \sqrt{1-D^2}}{D})
+\end{aligned} 
+$$
+
+- __Closed form__: $$ \theta_1, \theta_2 $$ is expressed with x, y using forward kinematics.
 
 > Reference:
 - [SEOULTECH - HRRLAB](http://hrrlab.com)
