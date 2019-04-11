@@ -201,16 +201,20 @@ $$
   & x = a_1 cos \theta_1 + a_2 cos(\theta _1 + \theta _2)  \\
   & y = a_1 sin \theta_1 + a_2 sin(\theta _1 + \theta _2)  \\
   & \qquad \qquad \qquad \triangledown  \\
+  \\
    x^2 
   &= a^2 _1 cos ^2 \theta_1 + a^2_2   cos^2 (\theta_1 + \theta_2 ) + 2 a_1 a_2 cos \theta_1 cos(\theta_1 + \theta_2)\\
   & = a^2 _1 cos ^2 \theta_1 + a^2_2   cos^2 (\theta_1 + \theta_2 ) +  a_1 a_2 (cos (2 \theta_1 + \theta_2) + cos\theta_2)\\
   y^2 &= a^2 _1 sin ^2 \theta_1 + a^2_2   sin^2 (\theta_1 + \theta_2 ) + 2 a_1 a_2 sin \theta_1 sin(\theta_1 + \theta_2)\\
   & = a^2 _1 sin ^2 \theta_1 + a^2_2   sin^2 (\theta_1 + \theta_2 ) -  a_1 a_2 (cos (2 \theta_1 + \theta_2) - cos\theta_2)\\
   & \qquad \qquad \qquad   \triangledown  \\
+  \\
   & x^2 +y^2  = a^2_1 +a^2 _2 + 2a_1 a_2 cos \theta_2 \\
   & \qquad \qquad \qquad  \triangledown  \\
+  \\
   & cos \theta_2 = \frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2} \quad \cong D \\
   & sin \theta_2 = \pm \sqrt{1 - D^2} \\
+  \\
   & \therefore \theta_2 = tan ^{-1} (\frac{\pm \sqrt{1-D^2}}{D})
 \end{aligned} 
 $$
