@@ -85,7 +85,7 @@ comments: true
 - This robot generally have __much structural rigidity__ than serial link robots.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/8.png" class="lead" data-width="120" data-height="80" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/8.png" class="lead" style="width:240; height=:180" />
 </figure>
 
 #### Wrists and End-Effectors 
@@ -96,7 +96,7 @@ comments: true
 - The simplest type of end-effector are grippers.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/9.png" class="lead" data-width="120" data-height="80" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/9.png" class="lead" style="width:480; height=:240" />
 </figure>
 
 
@@ -108,7 +108,7 @@ comments: true
 - Determination of the position and orientation of the end-effector(or tool) in terms of joint variables(angle or displacement).
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/10.png" class="lead" data-width="80" data-height="60"  style="width:240px; height=:180px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/10.png" class="lead"   style="width:240px; height=:180px"/>
 </figure>
 
 
