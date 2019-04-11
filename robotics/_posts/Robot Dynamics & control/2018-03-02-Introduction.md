@@ -222,6 +222,7 @@ $$
 
 - 아래의 식(1)에는 각각 $$cos \theta_1, sin\theta_2$$를 곱하고,
 - 아래의 식(2)에는 각각 $$sin \theta_1, cos \theta_1$$를 곱한다.
+
 $$
 \begin{aligned} 
   & x = a_1 cos \theta_1 + a_2 cos(\theta _1 + \theta _2)  \\
