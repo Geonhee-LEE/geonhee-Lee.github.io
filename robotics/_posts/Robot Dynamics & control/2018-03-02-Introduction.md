@@ -194,8 +194,9 @@ $$
 
 - For verification, we can check using the Forward Kinematics(__cross-check__)
 
-### Another way
+### Another way - Closed form
 
+- __Closed form__: $$ \theta_1, \theta_2 $$ is expressed with x, y using forward kinematics.
 $$
 \begin{aligned} 
   & x = a_1 cos \theta_1 + a_2 cos(\theta _1 + \theta _2)  \\
@@ -219,7 +220,43 @@ $$
 \end{aligned} 
 $$
 
-- __Closed form__: $$ \theta_1, \theta_2 $$ is expressed with x, y using forward kinematics.
+- 아래의 식(1)에는 각각 $$cos \theta_1, sin\theta_2$$를 곱하고,
+- 아래의 식(2)에는 각각 $$sin \theta_1, cos \theta_1$$를 곱한다.
+$$
+\begin{aligned} 
+  & x = a_1 cos \theta_1 + a_2 cos(\theta _1 + \theta _2)  \\
+  & y = a_1 sin \theta_1 + a_2 sin(\theta _1 + \theta _2)  \\
+  \\
+  & x cos \theta_1  = a_1 cos ^2 \theta_2 + a_2 cos \theta_1 (cos \theta_1 cos\theta_2 - sin \theta_1 sin \theta_2) \\
+  & y sin \theta_1  = a_1 sin ^2 \theta_2 + a_2 sin \theta_1 (sin \theta_1 cos\theta_2 - cos \theta_1 sin \theta_2) \\
+  & \qquad \qquad \qquad \triangledown  \\
+  & x cos \theta_1 + y sin \theta_1 = a_1 + cos \theta_2 \qquad(1)\\
+  \\
+  \\
+  & x sin \theta_1  = a_1 sin \theta_1 cos  \theta_1 + a_2 sin \theta_1 (cos \theta_1 cos\theta_2 - sin \theta_1 sin \theta_2) \\
+  & y cos \theta_1  = a_1 sin \theta_1 cos \theta_1 + a_2 cos \theta_1 (sin \theta_1 cos\theta_2 - cos \theta_1 sin \theta_2) \\
+  & \qquad \qquad \qquad \triangledown  \\
+  & x sin \theta_1 - y cos \theta_1 = -a_2 sin \theta_2 \qquad(2)\\
+  \\
+  \\
+  & (x^2 + y^2 )cos \theta_1 = x(a_1 + a_2 cos \theta_2) +y a_2 sin \theta_2  \qquad \because x \cdot (1) - y \cdot (2)  \\
+  & \qquad \qquad \qquad \triangledown  \\
+  & cos \theta_1 = \frac{x(a_1 + a_2 cos \theta_2) +y a_2 sin \theta_2 }{(x^2 + y^2 )}  \\
+  \\
+  \\
+  & (x^2 + y^2 )sin \theta_1 = y(a_1 + a_2 cos \theta_2) -x  a_2 sin \theta_2  \qquad \because y \cdot (1) + x \cdot (2)  \\
+  & \qquad \qquad \qquad \triangledown  \\
+  & sin \theta_1 = \frac{y(a_1 + a_2 cos \theta_2) -x a_2 sin \theta_2 }{(x^2 + y^2 )}  \\
+  \\
+  & \therefore \theta_1 = tan ^{-1} (\frac{y(a_1 + a_2 cos \theta_2) - x a_2 sin \theta_2}{x(a_1 + a_2 cos \theta_2) + y a_2 sin \theta_2})
+
+\end{aligned} 
+$$
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/13.png" class="lead"   style="width:320; height=:240"/>
+</figure>
+
+### Another way - Numerical Solution
 
 > Reference:
 - [SEOULTECH - HRRLAB](http://hrrlab.com)
