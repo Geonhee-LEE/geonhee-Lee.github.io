@@ -361,6 +361,7 @@ $$
   M(q) \ddot{q} + C(q, \dot{q}) \dot{q} + G(q) = \tau 
 \end{aligned} 
 $$
+
 - $$M$$: Inertia matrix.
 - $$C$$: Centrigufal and Coriolis matrix.
 - $$G$$: Gravity matrix.
