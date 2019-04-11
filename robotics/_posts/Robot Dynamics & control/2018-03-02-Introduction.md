@@ -162,7 +162,6 @@ $$
 
 $$
 \begin{aligned} 
-
 cos \theta_2 
 &= \frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2} &\cong D  
 \end{aligned} 
@@ -186,6 +185,7 @@ sin ^2 \theta  _2 + cos ^2 \theta_2
 \therefore  \theta _2 = tan ^{-1} (\frac{1 - D^2}{D})
 \end{aligned} 
 $$
+
 - __Signs determine__ the elbow up and down.
 
 ### Inverse kinematic equations.
@@ -207,6 +207,8 @@ $$
 where, D = \frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2}  % cosine law
 \end{aligned} 
 $$
+
+
 
 > Reference:
 - [SEOULTECH - HRRLAB](http://hrrlab.com)
