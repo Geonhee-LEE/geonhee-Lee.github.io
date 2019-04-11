@@ -364,8 +364,9 @@ $$
     - $$G$$: Gravity matrix.
     - $$q$$: Generalized coordinate(angle or position)
     - $$\tau$$ : Generalized force(torque or force)
-  - Inverse dynamics: Computes the __required joint torques or forces__ that lead to the given robot motion.
-  - Forward dynamics: Computes the robot motion __from the joint torques or forces applied__.
+  
+  - __Inverse dynamics__: Computes the __required joint torques or forces__ that lead to the given robot motion.
+  - __Forward dynamics__: Computes the robot motion __from the joint torques or forces applied__.
 
 
 
