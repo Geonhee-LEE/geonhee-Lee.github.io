@@ -369,10 +369,10 @@ $$
 ### Example 1: Three link-revolute arm
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/14.png" class="lead"   style="width:480; height=:320"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/14.png" class="lead"   style="width:480px; height=:320px"/>
 </figure>
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/15.png" class="lead"   style="width:480; height=:320"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/15.png" class="lead"   style="width:480px; height=:320px"/>
 </figure>
 
 -------
@@ -418,7 +418,7 @@ $$
       -  e.g., assembly, grinding, deburring
    - Need to control the force as well (slight deviation of the end effector would caues either to loose contact or to press too strongly).
      - We can use the Hybrid control(Position + Force control)
-   - Aforce control strategy is one that modifies position trajectories based on the sensed forses.
+   - A force control strategy is one that modifies position trajectories based on the sensed forses.
 
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/19.png" class="lead"   style="width:640px; height=:480px"/>
