@@ -209,9 +209,9 @@ $$
   & \qquad \qquad \qquad   \triangledown  \\
   & x^2 +y^2  = a^2_1 +a^2 _2 + 2a_1 a_2 cos \theta_2 \\
   & \qquad \qquad \qquad  \triangledown  \\
-  & cos \theta_2 = \frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2} &\cong D \\
+  & cos \theta_2 = \frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2} \quad \cong D \\
   & sin \theta_2 = \pm \sqrt{1 - D^2} \\
-  & \therefore \theta_2 = tan ^-1 (\frac{\pm \sqrt{1-D^2}}{D})
+  & \therefore \theta_2 = tan ^{-1} (\frac{\pm \sqrt{1-D^2}}{D})
 \end{aligned} 
 $$
 
