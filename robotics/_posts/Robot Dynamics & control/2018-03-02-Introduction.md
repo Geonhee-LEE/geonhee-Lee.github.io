@@ -346,6 +346,7 @@ $$
 -------
 
 ## Problem 5: Dynamics
+
 - Relationship between __motion and forces(Equation of motion)__.
 - How much force is required to achieve the given motion?
   - __Rigid body dynamics__: Dynamics of target object which has __no strain or deformation__ in the body.
@@ -361,8 +362,10 @@ $$
 - $$G$$: Gravity matrix.
 - $$q$$: Generalized coordinate(angle or position)
 - $$\tau$$ : Generalized force(torque or force)
-  - __Inverse dynamics__: Computes the __required joint torques or forces__ that lead to the given robot motion.
-  - __Forward dynamics__: Computes the robot motion __from the joint torques or forces applied__.
+
+
+- __Inverse dynamics__: Computes the __required joint torques or forces__ that lead to the given robot motion.
+- __Forward dynamics__: Computes the robot motion __from the joint torques or forces applied__.
 
 ### Example 1: Three link-revolute arm
 
@@ -372,6 +375,42 @@ $$
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/15.png" class="lead"   style="width:240; height=:180"/>
 </figure>
+
+-------
+
+## Problem 6: Position Control
+
+- The control prolem for robot manipulator is the problem of determining the time history of __joint inputs (joint forces or torques or inputs to the actuators, for example, voltage)__ required to cause the end-effector to execute a desired motion.
+- There are many control techniques and methodologies.
+  - An important thing is that control methods depends on __hardware/software and application__
+    - Cartesian manipulator vs. Elbow type manupulator
+    - DC motor with reduction gear vs. High torgue DC motor without gwar (High tech. for interaction)
+    - Point-to-point path vs. Continous path
+    - More complicated hardward, the more advanced control methods.
+
+
+### Example: Independent Joint Position Control
+
+- Features:
+  - Simplest type of control strategy.
+  - Each axis is controlled as a SISO(Single Input/Single Outpue) system.
+  - Any coupling effects due to the motion of the other links is either ignored or treated as a disturbance.
+  - Objectives: tracking and disturbance rejection.
+    - Pose에 따라 moment가 달라져 disturbance가 달라지지만 높은 기어비 때문에 무시.
+  
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/16.png" class="lead"   style="width:180; height=:120"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/17.png" class="lead"   style="width:240; height=:100"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/18.png" class="lead"   style="width:240; height=:100"/>
+</figure>
+
+- Each joint has to follow the desired joint angle accurately!
+
+
 
 > Reference:
 - [SEOULTECH - HRRLAB](http://hrrlab.com)
