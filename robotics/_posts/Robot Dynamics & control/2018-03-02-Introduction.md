@@ -272,6 +272,7 @@ $$
 
 - In order to __follow a contour__ at constant velocity, or at any prescribed velocity, we must know the __relationship between the velocity of the tool(end-effector) and the joint velocities__.
   - we can __differentiate the equations__ to obtain
+  
 $$
 \begin{aligned} 
   & \dot{x} = - a_1 \dot{\theta_1} sin \theta_1 - a_2 (\dot{\theta_1} + \dot{\theta_2}) sin(\theta _1 + \theta _2)  \\
@@ -279,7 +280,24 @@ $$
 \end{aligned} 
 $$
 
-If, $$ x = \begin{bmatrix} x  \\ y \end{bmatrix} $$ and $$ \theta = \begin{bmatrix} \theta_1  \\ \theta_2 \end{bmatrix} $$
+If $$ x = \begin{bmatrix} x  \\ y \end{bmatrix} $$ and $$ \theta = \begin{bmatrix} \theta_1  \\ \theta_2 \end{bmatrix} $$,
+
+$$
+\begin{aligned}  \dot{x} 
+& = J \dot{\theta} \\
+& =
+\begin{bmatrix} 
+  \frac{\partial x}{\partial \theta_1} &  \frac{\partial x}{\partial \theta_2} \\
+  \frac{\partial y}{\partial \theta_1} & \frac{\partial y}{\partial \theta_2}  \\
+\end{bmatrix} \dot{\theta} \\
+\end{aligned} \\
+& =
+\begin{bmatrix} 
+  -a_1 sin \theta_1 -a_2 sin (\theta_1 + \theta_2) &  \frac{\partial x}{\partial \theta_2} \\
+  \frac{\partial y}{\partial \theta_1} & \frac{\partial y}{\partial \theta_2}  \\
+\end{bmatrix} \begin{bmatrix} \theta_1  \\ \theta_2 \end{bmatrix} \\
+
+$$
 
 
 
