@@ -147,6 +147,16 @@ $$
 
 ## Problem 2: Inverse Kinematics
 
+- In order to command the robot to move to arbitrary position, we need the joint variables __in terms of x and y coordinates__.
+  - we may need the forward kinematic equations in advance.
+
+- Since the forward kinematic equations are nonlinear, a solution may not be easy.
+- There may be __many solutions or infinite number of solution__.
+  - we can impose constraints.
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/11.png" class="lead"   style="width:240px; height=:180px"/>
+</figure>
 
 </br>
 </br>
