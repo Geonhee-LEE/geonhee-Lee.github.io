@@ -164,10 +164,7 @@ $$
 \begin{aligned} 
 
 cos \theta_2 
-&= 
-\frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2}
-&\cong 
-D \\ 
+&= \frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2} &\cong D \\ 
 
 \therefore  \theta _2 = cos ^{-1}(D)  
 \end{aligned} 
@@ -179,10 +176,9 @@ $$
 $$
 \begin{aligned} 
 sin ^2 \theta  _2 + cos ^2 \theta_2 
-&= 
-1
- \rightarrow sin \theta _2 = \pm  \sqrt{1 - D^2} \\
-& \therefore  \theta _2 = tan ^{-1} (\frac{1 - D^2}{D})
+&=  1
+\rightarrow sin \theta _2 = \pm  \sqrt{1 - D^2} \\
+\therefore  \theta _2 = tan ^{-1} (\frac{1 - D^2}{D})
 
 \end{aligned} 
 $$
