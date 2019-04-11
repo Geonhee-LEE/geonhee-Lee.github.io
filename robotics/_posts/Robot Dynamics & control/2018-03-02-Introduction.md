@@ -102,7 +102,7 @@ comments: true
 
 -------
 
-## Problerm 1: Forward Kinematics
+## Problem 1: Forward Kinematics
 
 - The first problem is to describe __position and orientation of the tool__.
 - Determination of the position and orientation of the end-effector(or tool) in terms of joint variables(angle or displacement).
@@ -114,14 +114,15 @@ comments: true
 
 ### Forward kinematic equations 
 
-####  Tool position 
+####  Tool(End-effector) position 
 $$
 \begin{aligned}
 \qquad   x = a_1 cos \theta_1 + a_2 cos( \theta_1 + \theta_2) \\
 \qquad   y = a_1 sin \theta_1 + a_2 sin( \theta_1 + \theta_2)
 \end{aligned} 
  $$
-####  Tool Orientation
+####  Tool(End-effector) Orientation
+Rotation matrix:
 $$
 \begin{aligned}
 \qquad \begin{bmatrix}
@@ -136,8 +137,20 @@ $$
 \end{aligned} 
  $$
 
+ > Note: __Denavit-Hartenberg Convention & Homogeneous transformation__ is needed to express these relationship.
 
 
+</br>
+
+-------
+
+
+## Problem 2: Inverse Kinematics
+
+
+</br>
+</br>
+</br>
 
 
 > Reference:
