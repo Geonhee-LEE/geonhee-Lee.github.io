@@ -192,6 +192,22 @@ $$
 \end{aligned} 
 $$
 
+- For verification, we can check using the Forward Kinematics(__cross-check__)
+
+### Another way
+
+$$
+\begin{aligned} 
+  & x = a_1 cos \theta_1 + a_2 cos(\theta _1 + \theta _2)  \\
+  & y = a_1 sin \theta_1 + a_2 sin(\theta _1 + \theta _2)  \\
+\end{aligned} 
+$$
+
+$$
+\begin{equation} \label{eu_eqn}
+e^{\pi i} + 1 = 0
+\end{equation}
+$$
 
 
 > Reference:
