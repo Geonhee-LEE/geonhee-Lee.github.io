@@ -267,7 +267,6 @@ $$
 
 -------
 
-
 ## Problem 3: Velocity Kinematics
 
 - In order to __follow a contour__ at constant velocity, or at any prescribed velocity, we must know the __relationship between the velocity of the tool(end-effector) and the joint velocities__.
@@ -300,8 +299,73 @@ $$
 \end{aligned} 
 $$
 
+- where, J is Jacobian.
 
 
+- Using inverse Jacobian give
+
+$$
+\begin{aligned} 
+  & \dot{\theta} = J ^{-1} \dot{x}
+\end{aligned} 
+$$
+
+- or, 
+
+
+$$
+\begin{aligned}  
+\begin{bmatrix} \dot{\theta_1}  \\ \dot{\theta_2} \end{bmatrix}
+=
+\frac{1}{a_1 a_2 sin \theta_2}
+\begin{bmatrix} 
+  a_2 cos (\theta_1 + \theta_2) &   a_2 sin(\theta_1 + \theta_2) \\
+  -a_1 cos\theta_1 - a_2 cos (\theta_1 + \theta_2) & -a_1 sin \theta_1 - a_2 sin(\theta_1 + \theta_2)  \\
+\end{bmatrix} 
+\begin{bmatrix} \dot{x}  \\ \dot{y} \end{bmatrix} \\
+\end{aligned} 
+$$
+
+- __Singular Configuration__:
+  - Where there is __no inverse Jacobian__.
+  - At singular configuration, the manipulator cannot move in certain dirctions.
+
+$$ 
+\begin{aligned} 
+  & Det \quad J = a_1 a_2 sin \theta_2 = 0 \\
+  & \theta_2 = 0 \quad or \quad \pi
+\end{aligned} 
+$$
+
+-------
+
+## Problem 4: Path Planning and Trajectory Generation
+
+### Path planning
+- Determines a path in task space to mode  the robot to a goal position while avoiding collision with objects in its workspace, __without time considerations,__, that is, without considering velocities and accelerations.
+
+### Trajectory Generation:
+- Determine the __time history__ of the manipulator along a given path.
+
+-------
+
+## Problem 5: Dynamics
+- Relationship between __motion and forces(Equation of motion)__.
+- How much force is required to achieve the given motion?
+  - __Rigid body dynamics__: Dynamics of target object which has __no strain or deformation__ in the body.
+
+$$ 
+\begin{aligned} 
+  & M(q) \ddot{q} + C(q, \dot{q}) \dot{q} + G(q) = \tau 
+\end{aligned} 
+$$
+- $$M$$: Inertia matrix.
+- $$C$$: Centrigufal and Coriolis matrix.
+- $$G$$: Gravity matrix.
+- $$q$$: Generalized coordinate(angle or position)
+- $$\tau$$ : Generalized force(torque or force)
+  - Inverse dynamics: Computes the __required joint torques or forces__ that lead to the given robot motion.
+  - Forward dynamics: Computes the robot motion __from the joint torques or forces applied__.
 
 
 
