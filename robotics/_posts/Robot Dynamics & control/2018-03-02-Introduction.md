@@ -47,7 +47,7 @@ comments: true
 </figure>
 
 
-#####  Spherical Configuration
+#####  Spherical Configuration(RRP)
 - The third joint of the articulated robot is replaced by a prismatic joint.
 - The 'Stanford-arm' is an example of a spherical manupulator.
 
