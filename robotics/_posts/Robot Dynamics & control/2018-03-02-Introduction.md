@@ -252,11 +252,13 @@ $$
 
 \end{aligned} 
 $$
+
+### Another way - Numerical Solution
+
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/13.png" class="lead"   style="width:320; height=:240"/>
 </figure>
 
-### Another way - Numerical Solution
 
 > Reference:
 - [SEOULTECH - HRRLAB](http://hrrlab.com)
