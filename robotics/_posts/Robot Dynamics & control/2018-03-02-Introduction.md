@@ -197,18 +197,19 @@ $$
 ### Another way - Closed form
 
 - __Closed form__: $$ \theta_1, \theta_2 $$ is expressed with x, y using forward kinematics.
+
 $$
 \begin{aligned} 
   & x = a_1 cos \theta_1 + a_2 cos(\theta _1 + \theta _2)  \\
   & y = a_1 sin \theta_1 + a_2 sin(\theta _1 + \theta _2)  \\
   & \qquad \qquad \qquad \triangledown  \\
   \\
-   x^2 
-  &= a^2 _1 cos ^2 \theta_1 + a^2_2   cos^2 (\theta_1 + \theta_2 ) + 2 a_1 a_2 cos \theta_1 cos(\theta_1 + \theta_2)\\
-  & = a^2 _1 cos ^2 \theta_1 + a^2_2   cos^2 (\theta_1 + \theta_2 ) +  a_1 a_2 (cos (2 \theta_1 + \theta_2) + cos\theta_2)\\
+  x^2 
+    &= a^2 _1 cos ^2 \theta_1 + a^2_2   cos^2 (\theta_1 + \theta_2 ) + 2 a_1 a_2 cos \theta_1 cos(\theta_1 + \theta_2)\\
+    & = a^2 _1 cos ^2 \theta_1 + a^2_2   cos^2 (\theta_1 + \theta_2 ) +  a_1 a_2 (cos (2 \theta_1 + \theta_2) + cos\theta_2)\\
   y^2 &= a^2 _1 sin ^2 \theta_1 + a^2_2   sin^2 (\theta_1 + \theta_2 ) + 2 a_1 a_2 sin \theta_1 sin(\theta_1 + \theta_2)\\
-  & = a^2 _1 sin ^2 \theta_1 + a^2_2   sin^2 (\theta_1 + \theta_2 ) -  a_1 a_2 (cos (2 \theta_1 + \theta_2) - cos\theta_2)\\
-  & \qquad \qquad \qquad   \triangledown  \\
+    & = a^2 _1 sin ^2 \theta_1 + a^2_2   sin^2 (\theta_1 + \theta_2 ) -  a_1 a_2 (cos (2 \theta_1 + \theta_2) - cos\theta_2)\\
+    & \qquad \qquad \qquad   \triangledown  \\
   \\
   & x^2 +y^2  = a^2_1 +a^2 _2 + 2a_1 a_2 cos \theta_2 \\
   & \qquad \qquad \qquad  \triangledown  \\
@@ -220,8 +221,8 @@ $$
 \end{aligned} 
 $$
 
-- 아래의 식(1)에는 각각 $$cos \theta_1, sin\theta_2$$를 곱하고,
-- 아래의 식(2)에는 각각 $$sin \theta_1, cos \theta_1$$를 곱한다.
+- 아래의 식(1)을 얻기 위해 각각 $$cos \theta_1, sin\theta_2$$를 곱하고, 아래의 식(2)을 얻기 위해 각각 $$sin \theta_1, cos \theta_1$$를 곱한다.
+  - 이 후 x, y를 곱하여 더하거나 빼서 $$cos \theta_1, \theta_1$$를 얻어 $$\theta_1$$ 을 구한다.
 
 $$
 \begin{aligned} 
