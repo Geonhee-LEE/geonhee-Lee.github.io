@@ -356,14 +356,14 @@ $$
 
 $$ 
 \begin{aligned} 
-  & M(q) \ddot{q} + C(q, \dot{q}) \dot{q} + G(q) = \tau 
+  M(q) \ddot{q} + C(q, \dot{q}) \dot{q} + G(q) = \tau 
 \end{aligned} 
 $$
-- $$M$$: Inertia matrix.
-- $$C$$: Centrigufal and Coriolis matrix.
-- $$G$$: Gravity matrix.
-- $$q$$: Generalized coordinate(angle or position)
-- $$\tau$$ : Generalized force(torque or force)
+    - $$M$$: Inertia matrix.
+    - $$C$$: Centrigufal and Coriolis matrix.
+    - $$G$$: Gravity matrix.
+    - $$q$$: Generalized coordinate(angle or position)
+    - $$\tau$$ : Generalized force(torque or force)
   - Inverse dynamics: Computes the __required joint torques or forces__ that lead to the given robot motion.
   - Forward dynamics: Computes the robot motion __from the joint torques or forces applied__.
 
