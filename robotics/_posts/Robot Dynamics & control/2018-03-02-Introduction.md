@@ -353,19 +353,17 @@ $$
 - Relationship between __motion and forces(Equation of motion)__.
 - How much force is required to achieve the given motion?
   - __Rigid body dynamics__: Dynamics of target object which has __no strain or deformation__ in the body.
-    - $$M$$: Inertia matrix.
-    - $$C$$: Centrigufal and Coriolis matrix.
-    - $$G$$: Gravity matrix.
-    - $$q$$: Generalized coordinate(angle or position)
-    - $$\tau$$ : Generalized force(torque or force)
   
 $$ 
 \begin{aligned} 
   M(q) \ddot{q} + C(q, \dot{q}) \dot{q} + G(q) = \tau 
 \end{aligned} 
 $$
-
-- $$ $$
+- $$M$$: Inertia matrix.
+- $$C$$: Centrigufal and Coriolis matrix.
+- $$G$$: Gravity matrix.
+- $$q$$: Generalized coordinate(angle or position)
+- $$\tau$$ : Generalized force(torque or force)
   - __Inverse dynamics__: Computes the __required joint torques or forces__ that lead to the given robot motion.
   - __Forward dynamics__: Computes the robot motion __from the joint torques or forces applied__.
 
