@@ -96,7 +96,7 @@ comments: true
 - The simplest type of end-effector are grippers.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/9.png" class="lead" style="width:480; height=:240" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/9.png" class="lead" style="width:480px; height=:240px" />
 </figure>
 
 
