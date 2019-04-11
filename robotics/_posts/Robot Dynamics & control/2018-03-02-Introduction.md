@@ -184,8 +184,19 @@ sin ^2 \theta  _2 + cos ^2 \theta_2
 $$
 - __Signs determine__ the elbow up and down.
 
-#### Inverse kinematic equations.
+### Inverse kinematic equations.
 
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/12.png" class="lead"   style="width:240px; height=:180px"/>
+</figure>
+
+$$
+\begin{aligned} 
+\theta  _2 = tan ^{-1} \frac{\pm \sqrt{1 - D ^2}}{D} \\
+\theta  _1 = tan ^{-1} (\frac{y}{x}) - tan ^{-1}(\frac{a_2 sin \theta _2}{a_1 + a_2 cos \theta_2}) \\
+where, D = \frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2}  % cosine law
+\end{aligned} 
+$$
 
 > Reference:
 - [SEOULTECH - HRRLAB](http://hrrlab.com)
