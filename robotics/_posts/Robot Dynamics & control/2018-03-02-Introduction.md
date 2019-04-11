@@ -188,8 +188,7 @@ $$
 $$
 \begin{aligned} 
   & \theta  _2 = tan ^{-1} \frac{\pm \sqrt{1 - D ^2}}{D} \\
-  & \theta  _1 = tan ^{-1} (\frac{y}{x}) - tan ^{-1}(\frac{a_2 sin \theta _2}{a_1 + a_2 cos \theta_2}) \\
-  &  where, D = \frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2}  % cosine law
+  & \theta  _1 = tan ^{-1} (\frac{y}{x}) - tan ^{-1}(\frac{a_2 sin \theta _2}{a_1 + a_2 cos \theta_2}) 
 \end{aligned} 
 $$
 
