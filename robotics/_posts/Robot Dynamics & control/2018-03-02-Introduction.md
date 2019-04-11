@@ -198,6 +198,7 @@ $$
 
 - __Closed form__: $$ \theta_1, \theta_2 $$ is expressed with x, y using forward kinematics.
 
+  - x, y를 제곱하여 $$cos \theta_2, sin \theta_2$$을 얻은 후, $$\theta_2$$를 구한다.
 $$
 \begin{aligned} 
   & x = a_1 cos \theta_1 + a_2 cos(\theta _1 + \theta _2)  \\
@@ -221,7 +222,7 @@ $$
 \end{aligned} 
 $$
 
-- 아래의 식(1)을 얻기 위해 각각 $$cos \theta_1, sin\theta_2$$를 곱하고, 아래의 식(2)을 얻기 위해 각각 $$sin \theta_1, cos \theta_1$$를 곱한다.
+  - 아래의 식(1)을 얻기 위해 각각 $$cos \theta_1, sin\theta_2$$를 곱하고, 아래의 식(2)을 얻기 위해 각각 $$sin \theta_1, cos \theta_1$$를 곱한다.
   - 이 후 x, y를 곱하여 더하거나 빼서 $$cos \theta_1, \theta_1$$를 얻어 $$\theta_1$$ 을 구한다.
 
 $$
