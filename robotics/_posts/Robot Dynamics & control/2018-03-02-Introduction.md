@@ -164,8 +164,10 @@ $$
 \begin{aligned} 
 
 cos \theta_2 
-&= \frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2} &\cong D \\ 
-
+&= \frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2} &\cong D  
+\end{aligned} 
+\\
+\begin{aligned} 
 \therefore  \theta _2 = cos ^{-1}(D)  
 \end{aligned} 
 $$
@@ -178,8 +180,10 @@ $$
 sin ^2 \theta  _2 + cos ^2 \theta_2 
 &=  1
 \rightarrow sin \theta _2 = \pm  \sqrt{1 - D^2} \\
+\end{aligned} 
+\\
+\begin{aligned} 
 \therefore  \theta _2 = tan ^{-1} (\frac{1 - D^2}{D})
-
 \end{aligned} 
 $$
 - __Signs determine__ the elbow up and down.
@@ -192,8 +196,14 @@ $$
 
 $$
 \begin{aligned} 
-\theta  _2 = tan ^{-1} \frac{\pm \sqrt{1 - D ^2}}{D} \\
-\theta  _1 = tan ^{-1} (\frac{y}{x}) - tan ^{-1}(\frac{a_2 sin \theta _2}{a_1 + a_2 cos \theta_2}) \\
+\theta  _2 = tan ^{-1} \frac{\pm \sqrt{1 - D ^2}}{D}
+\end{aligned} 
+\\
+\begin{aligned} 
+\theta  _1 = tan ^{-1} (\frac{y}{x}) - tan ^{-1}(\frac{a_2 sin \theta _2}{a_1 + a_2 cos \theta_2})
+\end{aligned} 
+\\
+\begin{aligned} 
 where, D = \frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2}  % cosine law
 \end{aligned} 
 $$
