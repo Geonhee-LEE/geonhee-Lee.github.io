@@ -289,14 +289,13 @@ $$
 \begin{bmatrix} 
   \frac{\partial x}{\partial \theta_1} &  \frac{\partial x}{\partial \theta_2} \\
   \frac{\partial y}{\partial \theta_1} & \frac{\partial y}{\partial \theta_2}  \\
-\end{bmatrix} \dot{\theta} \\
+\end{bmatrix} \begin{bmatrix} \theta_1  \\ \theta_2 \end{bmatrix} \\
 \end{aligned} \\
 & =
 \begin{bmatrix} 
-  -a_1 sin \theta_1 -a_2 sin (\theta_1 + \theta_2) &  \frac{\partial x}{\partial \theta_2} \\
-  \frac{\partial y}{\partial \theta_1} & \frac{\partial y}{\partial \theta_2}  \\
-\end{bmatrix} \begin{bmatrix} \theta_1  \\ \theta_2 \end{bmatrix} \\
-
+  -a_1 sin \theta_1 -a_2 sin (\theta_1 + \theta_2) &  -a_2 sin(\theta_1 + \theta_2) \\
+  a_1 cos\theta_1 + a_2 cos (\theta_1 + \theta_2) & a_2 cos(\theta_1 + \theta_2)  \\
+\end{bmatrix} \begin{bmatrix} \theta_1  \\ \theta_2 \end{bmatrix} \dot{\theta}\\
 $$
 
 
