@@ -199,6 +199,7 @@ $$
 - __Closed form__: $$ \theta_1, \theta_2 $$ is expressed with x, y using forward kinematics.
 
   - x, y를 제곱하여 $$cos \theta_2, sin \theta_2$$을 얻은 후, $$\theta_2$$를 구한다.
+
 $$
 \begin{aligned} 
   & x = a_1 cos \theta_1 + a_2 cos(\theta _1 + \theta _2)  \\
