@@ -308,17 +308,10 @@ $$
 
 $$
 \begin{aligned} 
-  & \dot{\theta} = J ^{-1} \dot{x}
-\end{aligned} 
-$$
+\dot{\theta} &= J ^{-1} \dot{x} \\
 
-- or, 
-
-
-$$
-\begin{aligned}  
 \begin{bmatrix} \dot{\theta_1}  \\ \dot{\theta_2} \end{bmatrix}
-=
+&=
 \frac{1}{a_1 a_2 sin \theta_2}
 \begin{bmatrix} 
   a_2 cos (\theta_1 + \theta_2) &   a_2 sin(\theta_1 + \theta_2) \\
@@ -334,7 +327,8 @@ $$
 
 $$ 
 \begin{aligned} 
-  & Det \quad J = a_1 a_2 sin \theta_2 = 0 \\
+   Det \quad J 
+   &= a_1 a_2 sin \theta_2 = 0 \\
   & \theta_2 = 0 \quad or \quad \pi
 \end{aligned} 
 $$
@@ -358,7 +352,7 @@ $$
   
 $$ 
 \begin{aligned} 
-  M(q) \ddot{q} + C(q, \dot{q}) \dot{q} + G(q) = \tau 
+\qquad \qquad \qquad  M(q) \ddot{q} + C(q, \dot{q}) \dot{q} + G(q) = \tau 
 \end{aligned} 
 $$
 
