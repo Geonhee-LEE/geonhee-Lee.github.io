@@ -169,10 +169,10 @@ cos \theta_2
 &\cong 
 D \\ 
 \therefore  \theta _2 = cos ^{-1}(D)  \rightarrow 
-\iffalse 
-Not better way.
- This can not distinguish the elbow up and down
-\fi
+\begin{comment}
+  Not better way.
+  This can not distinguish the elbow up and down
+\end{comment}
 
 \end{aligned} 
 $$
