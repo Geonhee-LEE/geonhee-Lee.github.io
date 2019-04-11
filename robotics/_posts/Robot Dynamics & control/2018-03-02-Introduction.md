@@ -259,6 +259,8 @@ $$
 
 ### Another way - Numerical Solution
 -  In contrast to the closed form(geometry solution), it absolutely __needs a forward kinematics__.
+
+
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/13.png" class="lead"   style="width:240; height=:180"/>
 </figure>
@@ -367,7 +369,14 @@ $$
   - __Inverse dynamics__: Computes the __required joint torques or forces__ that lead to the given robot motion.
   - __Forward dynamics__: Computes the robot motion __from the joint torques or forces applied__.
 
+### Example 1: Three link-revolute arm
 
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/14.png" class="lead"   style="width:240; height=:180"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/15.png" class="lead"   style="width:240; height=:180"/>
+</figure>
 
 > Reference:
 - [SEOULTECH - HRRLAB](http://hrrlab.com)
