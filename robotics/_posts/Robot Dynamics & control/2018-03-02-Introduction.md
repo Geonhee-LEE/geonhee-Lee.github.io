@@ -117,14 +117,14 @@ comments: true
 ####  Tool position 
 $$
 \begin{aligned}
- x = a_1 cos \theta_1 + a_2 cos( \theta_1 + \theta_2) \\
- y = a_1 sin \theta_1 + a_2 sin( \theta_1 + \theta_2)
+\qquad   x = a_1 cos \theta_1 + a_2 cos( \theta_1 + \theta_2) \\
+\qquad   y = a_1 sin \theta_1 + a_2 sin( \theta_1 + \theta_2)
 \end{aligned} 
  $$
 ####  Tool Orientation
 $$
 \begin{aligned}
-\begin{bmatrix}
+\qquad \begin{bmatrix}
                  i_2  \cdot i_0  & j_2  \cdot i_0  \\
                  i_2  \cdot j_0  & j_2  \cdot j_0          
                \end{bmatrix}
