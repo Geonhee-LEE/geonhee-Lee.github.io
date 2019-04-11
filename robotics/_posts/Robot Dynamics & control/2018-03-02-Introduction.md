@@ -140,7 +140,6 @@ $$
  > Note: __Denavit-Hartenberg Convention & Homogeneous transformation__ is needed to express these relationship.
 
 
-</br>
 
 -------
 
@@ -158,9 +157,25 @@ $$
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/11.png" class="lead"   style="width:240px; height=:180px"/>
 </figure>
 
-</br>
-</br>
-</br>
+
+### Law of Cosines:
+
+$$
+\begin{aligned} 
+
+cos \theta_2 
+&= 
+\frac{x^2 + y^2 - a_1 ^2 - a^2 _2}{2 a_1 a_2}
+&\cong 
+D \\ 
+\therefore  \theta _2 = cos ^{-1}(D)  \rightarrow 
+\iffalse 
+Not better way.
+ This can not distinguish the elbow up and down
+\fi
+
+\end{aligned} 
+$$
 
 
 > Reference:
