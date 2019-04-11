@@ -424,6 +424,9 @@ $$
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/19.png" class="lead"   style="width:640px; height=:480px"/>
 </figure>
 
+>  __The end-effector forces are related to the joint torques!!__
+
+
 ------------
 
 > Reference:
