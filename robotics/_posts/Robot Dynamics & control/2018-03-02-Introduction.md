@@ -327,9 +327,8 @@ $$
 
 $$ 
 \begin{aligned} 
-   Det \quad J 
-   &= a_1 a_2 sin \theta_2 = 0 \\
-  & \theta_2 = 0 \quad or \quad \pi
+   Det \quad J = a_1 a_2 sin \theta_2 = 0 \\
+  \therefore \theta_2 = 0 \quad or \quad \pi
 \end{aligned} 
 $$
 
