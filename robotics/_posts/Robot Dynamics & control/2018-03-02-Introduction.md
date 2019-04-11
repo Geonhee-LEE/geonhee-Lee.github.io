@@ -85,7 +85,7 @@ comments: true
 - This robot generally have __much structural rigidity__ than serial link robots.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/8.png" class="lead" style="width:240; height=:180" />
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/8.png" class="lead" style="width:240px; height=:180px" />
 </figure>
 
 #### Wrists and End-Effectors 
@@ -121,7 +121,6 @@ $$
  y = a_1 sin \theta_1 + a_2 sin( \theta_1 + \theta_2)
 \end{aligned} 
  $$
-
 ####  Tool Orientation
 $$
 \begin{aligned}
