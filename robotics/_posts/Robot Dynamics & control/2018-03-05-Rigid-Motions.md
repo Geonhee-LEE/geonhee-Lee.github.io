@@ -563,12 +563,210 @@ p^0 = R^0_1 p^1 + d^0_1
 \end{aligned} 
 $$
 
+- Definition: A transformation of the form given in previous equation is said to define a rigid motion if R is orthogonal.
+  - Consider the two rigid motions
+
+$$
+\begin{aligned} 
+p^0 = R^0_1 p^1 + d^0_1
+p^1 = R^1_2 p^2 + d^1_2
+\end{aligned} 
+$$
+
+- Their composition defines a third rigid motion
+
+$$
+\begin{aligned} 
+p^0 
+&= R^0_1 (R^1_2 p^2 + d^1_2) + d^0_1 \\
+&= R^0_2 p^2 + R^0_1 d^1_2 + d^0_1
+\end{aligned} 
+$$
+
+- Since the relationship between $$p^0$$ and $$p^2$$ is also a rigid motion,
+
+$$
+\begin{aligned} 
+p^0 = R^0_2 p^2 + d^0_2
+\end{aligned} 
+$$
+
+- We have the relationships
 
 
+$$
+\begin{aligned} 
+& R^0_2 &= R^0_1 R^1_2 \\
+& p^0_2 &= d^0_1 + R^0_1 d^1_2
+\end{aligned} 
+$$
+
+- $$p^0_1$$: the vector from $$o_0$$ to $$o_1$$ w.r.t $$o_0 x_0 y_0 z_0$$.
+- $$R^0_1 d^1 d_2$$: the vector from $$o_1$$ to $$o_2$$ expressed in the orientation of the $$o_0 x_0 y_0 z_0$$.
+
+- Matrix calculation (4x4 matrix)
+  - 0 = row vector(0 0 0)
 
 
+$$
+\begin{aligned} 
+\begin{bmatrix} 
+R^0_1 & d^0_1\\
+0 & 1\\
+\end{bmatrix} 
+\begin{bmatrix} 
+R^1_2 & d^1_2\\
+0 & 1\\
+\end{bmatrix} 
+&= 
+\begin{bmatrix} 
+R^0_1 R^1_2 & R^0_1 d^1_2 + d^0 _1\\
+0 & 1\\
+\end{bmatrix} \\ 
+&= 
+\begin{bmatrix} 
+R^0_2 & R^0_1 d^1_2 + d^0 _1\\
+0 & 1\\
+\end{bmatrix} 
+\end{aligned} 
+$$
+
+- Homogeneous tranformation
 
 
+$$ H =
+\begin{aligned} 
+\begin{bmatrix} 
+R & d\\
+0 & 1\\
+\end{bmatrix}; 
+\qquad R \in SO(3), d \in \R^3
+\end{aligned} 
+$$
+
+- Usintg the fact R is orthogonal 
+
+
+$$ H^{-1} =
+\begin{aligned} 
+\begin{bmatrix} 
+R^T & -R^T d\\
+0 & 1\\
+\end{bmatrix}
+\end{aligned} 
+$$
+
+- In order to use __homogeneous transformation__, we need to augment the vectors $$p$$ by the addition of a fourth component of 1.
+  - __Homogeneous representation__:
+
+$$ 
+\begin{aligned} P^0 =
+\begin{bmatrix} 
+p^0\\
+1\\
+\end{bmatrix},
+\qquad
+P^1 = 
+\begin{bmatrix} 
+p^1\\
+1\\
+\end{bmatrix}
+\end{aligned} 
+$$
+
+- By using homogeneous transformation and representation, 
+
+$$ 
+\begin{aligned} 
+p^0 &= R^0_1 p^1  + d^0_1 \\
+\\
+P^0 &= H^0_1 P^1
+\end{aligned} 
+$$
+
+-  A set of basic homogeneous transformations
+
+$$
+\begin{aligned}
+Trans_{x,a} 
+&=
+\begin{bmatrix} 
+1 & 0 & 0 & a\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+\end{bmatrix} ;
+& Rot_{x,\alpha}
+&=
+\begin{bmatrix} 
+1 & 0 & 0 & 0\\
+0 & c_{\alpha} & -s_{\alpha} & 0\\
+0 & s_{\alpha} & c_{\alpha} & 0\\
+0 & 0 & 0 & 1\\
+\end{bmatrix} \\
+
+Trans_{y,b} 
+&=
+\begin{bmatrix} 
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & b\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+\end{bmatrix} ;
+& Rot_{y,\beta}
+&=
+\begin{bmatrix} 
+c_{\beta} & 0 & s_{\beta} & 0\\
+0 & 1 & 0 & 0\\
+-s_{\beta} & 0 & c_{\beta} & 0\\
+0 & 0 & 0 & 1\\
+\end{bmatrix} \\
+Trans_{z,c} 
+&=
+\begin{bmatrix} 
+1 & 0 & 0 & 0\\
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & c\\
+0 & 0 & 0 & 1\\
+\end{bmatrix} ;
+& Rot_{z,\gamma}
+&=
+\begin{bmatrix} 
+c_{\gamma} & -s_{\gamma} & 0 & 0\\
+s_{\gamma} & c_{\gamma} & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+\end{bmatrix} \\
+\end{aligned} 
+$$
+
+> Note
+> > The result of homogeneous is diffrent according to the order of sequence.
+
+- The most general homogeneous transformation
+
+$$
+\begin{aligned}
+H^0_1
+&=
+\begin{bmatrix} 
+n_x & s_x & a_x & d_x\\
+n_y & s_y & a_y & d_y\\
+n_z & s_z & a_z & d_z\\
+0 & 0 & 0 & 1\\
+\end{bmatrix} =
+&=
+\begin{bmatrix} 
+n & s & a & d\\
+0 & 0 & 0 & 1\\
+\end{bmatrix}
+\end{aligned} 
+$$
+
+- $$n = (n_x, n_y, n_z)^T$$ : direction of $$x_1$$ in the $$o_0 x_0 y_0 z_0$$.
+- $$s = (s_x, s_y, s_z)^T$$ : direction of $$y_1$$ in the $$o_0 x_0 y_0 z_0$$.
+- $$a = (a_x, a_y, a_z)^T$$ : direction of $$z_1$$ in the $$o_0 x_0 y_0 z_0$$.
+- $$d = (d_x, d_y, d_z)^T$$ : vector from $$o_0$$ to the origin $$o_1$$ in the $$o_0 x_0 y_0 z_0$$.
 
 ------------
 
