@@ -550,9 +550,18 @@ $$
 - if $$\theta = \pm \frac{\pi}{2}$$, no there exist a unique solution.
 - Generally, we assume that $$-\frac{\pi}{2 } < \theta < \frac{\pi}{2}$$.
 
+-----------
 
+### Homogeneous Transformations
 
+- In this section, we __combine position(translation) and orientation__ to define homogeneous transformations.
+- If frame $$o_1 x_1 y_1 z_1$$ is obtained from frame $$o_0 x_0 y_0 z_0$$ by first applying a rotation specified by $$R^0_1$$ followed by a translation given (with respect to $$o_0 x_0 y_0 z_0$$) by __$$d^0_1$$__ , then the coordinates $$p^0$$ are given by 
 
+$$
+\begin{aligned} 
+p^0 = R^0_1 p^1 + d^0_1
+\end{aligned} 
+$$
 
 
 
