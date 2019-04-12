@@ -178,7 +178,7 @@ p \cdot z_0  \\
 $$
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec2/2.png" class="lead"   style="width:640px; height=:480px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec2/2.png" class="lead"   style="width:320px; height=:240px"/>
 </figure>
 
 -  Combining these two equations
@@ -323,7 +323,7 @@ s_{\phi}c_{\theta}c_{\psi}+c_{\phi}s_{\psi}  & -s_{\phi}c_{\theta}s_{\psi}+c_{\p
 \end{aligned} 
 $$
 
-- If not both $$r_{13}$$ and $$r_{23}$$ are not zero, $$s_{\theta} \neq 0 \rightarrow$$  hence, not both $$r_{31}$$ and $$r_{32}$$ are zero, $$r_{33} \neq \mp 1. \rightarrow$$  
+- If not both $$r_{13}$$ and $$r_{23}$$ are not zero, $$s_{\theta} \neq 0 \rightarrow$$  hence, not both $$r_{31}$$ and $$r_{32}$$ are zero, $$r_{33} \neq \pm 1. \rightarrow$$  
 
 $$
 \begin{aligned} 
