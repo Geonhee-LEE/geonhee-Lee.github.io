@@ -93,7 +93,7 @@ $$
     - That is, a positive rotation of degrees about the z-axis would advance a right-hand threaded screw along the positive z-axis.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec2/1.png" class="lead"   style="width:640px; height=:480px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec2/1.png" class="lead"   style="width:320px; height=:240px"/>
 </figure>
 
 $$
