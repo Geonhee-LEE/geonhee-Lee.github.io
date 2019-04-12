@@ -249,6 +249,108 @@ $$
 
 
 
+------
+
+### Parameterization of Rotations
+
+-  Three ways in which an arbitrary rotation can be represented using only three independent quantities:
+   -  __Euler Angle representation__
+   -  __Roll-Pitch-Yaw representation__
+   -  Axis/angle representation
+
+#### Euler Angles
+
+- A common method of specifying a rotation matrix.
+- We can specify the orientation of the frame  $$o_1 x_1 y_1 z_1$$ relative to the frame  $$o_0 x_0 y_0 z_0$$ by three angles  __$$(\phi, \theta, \psi )$$__ , known as __Euler Angles__.
+- Procedure
+  - Rotation about the __z-axis__ by the angle $$\phi$$ 
+  - Rotation about the current __y-axis__ by the angle $$\theta$$
+  - Rotation about the current __z-axis__ by the angle $$\psi$$.
+
+> Note
+> > Actually, the order of sequence can be defined according to diverse type, but z-y-z is the common order of sequence.
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec2/3.png" class="lead"   style="width:640px; height=:480px"/>
+</figure>
+
+$$
+\begin{aligned} R^0_1
+&=
+R_{z, \phi} R_{y, \theta} R_{z, \psi} \\
+&= 
+\begin{bmatrix} 
+c_{\phi} & -s_{\phi} & 0\\
+s_{\phi} & c_{\phi} & 0\\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix} 
+c_{\theta} & 0 & s_{\theta}\\
+0 & 1 & 0\\
+-s_{\theta} & 0 & c_{\theta}\\
+\end{bmatrix}
+\begin{bmatrix} 
+c_{\psi} & -s_{\psi} & 0\\
+s_{\psi} & c_{\psi} & 0\\
+0 & 0 & 1
+\end{bmatrix}\\
+&= 
+\begin{bmatrix} 
+c_{\phi}c_{\theta}c_{\psi}-s_{\phi}s_{\psi} & -c_{\phi}c_{\theta}s_{\psi}-s_{\phi}c_{\psi} & c_{\phi}s_{\theta}\\
+s_{\phi}c_{\theta}c_{\psi}+c_{\phi}s_{\psi}  & -s_{\phi}c_{\theta}s_{\psi}+c_{\phi}c_{\psi} & s_{\phi}s_{\theta}\\
+-s_{\theta}c_{\psi} & s_{\theta}s_{\psi} & c_{\theta}
+\end{bmatrix}
+
+\end{aligned} 
+$$
+
+- Consider the problem of determining the Euler Angles, $$(\phi, \theta, \psi )$$, given the rotation matrix: 
+
+$$
+\begin{aligned} R
+&=
+\begin{bmatrix} 
+r_{11} & r_{12} & r_{13}\\
+r_{21} & r_{22} & r_{23}\\
+r_{31} & r_{32} & r_{33}
+\end{bmatrix} \\
+&= 
+\begin{bmatrix} 
+c_{\phi}c_{\theta}c_{\psi}-s_{\phi}s_{\psi} & -c_{\phi}c_{\theta}s_{\psi}-s_{\phi}c_{\psi} & c_{\phi}s_{\theta}\\
+s_{\phi}c_{\theta}c_{\psi}+c_{\phi}s_{\psi}  & -s_{\phi}c_{\theta}s_{\psi}+c_{\phi}c_{\psi} & s_{\phi}s_{\theta}\\
+-s_{\theta}c_{\psi} & s_{\theta}s_{\psi} & c_{\theta}
+\end{bmatrix}
+\end{aligned} 
+$$
+
+- If not both $$r_{13}$$ and $$r_{23}$$ are not zero, $$s_{\theta} \neq 0 \rightarrow$$  hence, not both $$r_{31}$$ and $$r_{32}$$ are zero, $$r_{33} \neq \mp 1. \rightarrow$$  
+
+$$
+\begin{aligned} 
+\theta = arctan(\pm \sqrt{1-r^2_{33}}, r_{33})
+\end{aligned} 
+$$
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec2/4.png" class="lead"   style="width:320px; height=:240px"/>
+</figure>
+
+- If $$\theta > 0$$ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
