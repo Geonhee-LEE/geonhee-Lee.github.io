@@ -395,8 +395,8 @@ s_{\phi}c_{\psi}+c_{\phi}s_{\psi}  & -s_{\phi}s_{\psi}+c_{\phi}c_{\psi} & 0\\
 \end{bmatrix}\\
 &=
 \begin{bmatrix} 
-- c_{\phi-\psi}  & -s_{\phi - \psi} & 0\\
-- s_{\phi-\psi}  & c_{\phi - \psi} & 0\\
+ c_{\phi+\psi}  & -s_{\phi + \psi} & 0\\
+ s_{\phi+\psi}  & c_{\phi + \psi} & 0\\
 0 & 0 & 1
 \end{bmatrix}
 =
@@ -418,20 +418,54 @@ $$
 $$
 \begin{aligned} 
 \phi + \psi 
-&= arctan(r_{21}, r_{11})
+&= arctan(r_{21}, r_{11}) \\
 &= arctan(-r_{12}, r_{11})
 \end{aligned} 
 $$
 
+-
+  - There are infinitely many solutions.  
+
+
+- If $$r_{33} = -1$$ , then $$c_{\theta} = -1, s_{\theta} = 0 \rightarrow \theta = \pi$$.
+
+$$
+\begin{aligned} 
+\begin{bmatrix} 
+- c_{\phi-\psi}  & -s_{\phi - \psi} & 0\\
+- s_{\phi-\psi}  & c_{\phi - \psi} & 0\\
+0 & 0 & -1
+\end{bmatrix}
+=
+\begin{bmatrix} 
+r_{11} & r_{12} & 0\\
+r_{21} & r_{22} & 0\\
+0 & 0 & -1
+\end{bmatrix} \\
+\\
+\because 
+& sin(\alpha \pm \beta) = sin\alpha cos\beta \pm cos\alpha sin\beta  \\
+& cos(\alpha \pm \beta) = cos\alpha cos\beta \mp sin\alpha sin\beta 
+\end{aligned} 
+$$
+
+
+- Thus, 
+
+$$
+\begin{aligned} 
+\phi - \psi 
+&= arctan(-r_{12}, -r_{11}) \\
+&= arctan(-r_{21}, r_{22})
+\end{aligned} 
+$$
+
+-
   - There are infinitely many solutions.  
 
 
 
-
-
-
-
-
+#### Roll, Pitch, Yaw Angles
 
 
 
