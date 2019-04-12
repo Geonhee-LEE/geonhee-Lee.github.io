@@ -104,7 +104,7 @@ $$
 \end{aligned} 
 $$
 
-Thus, 
+- Thus, 
 
 $$
 \begin{aligned} R^0_1
@@ -206,7 +206,7 @@ w\\
 \end{aligned} 
 $$
 
-Finally, 
+- Finally, 
 
 $$
 \begin{aligned} p^0
@@ -327,9 +327,10 @@ $$
 
 $$
 \begin{aligned} 
-\theta = arctan(\pm \sqrt{1-r^2_{33}}, r_{33})
-\theta = arctan(\pm \sqrt{1-c_{\theta}^2}, c_{\theta})
-\theta = arctan(\pm s_{\theta}, c_{\theta})
+\theta 
+&= arctan(\pm \sqrt{1-r^2_{33}}, r_{33}) \\
+&= arctan(\pm \sqrt{1-c_{\theta}^2}, c_{\theta})\\
+&= arctan(\pm s_{\theta}, c_{\theta})
 \end{aligned} 
 $$
 
@@ -423,7 +424,7 @@ $$
 \end{aligned} 
 $$
 
--
+
   - There are infinitely many solutions.  
 
 
@@ -460,25 +461,94 @@ $$
 \end{aligned} 
 $$
 
--
+
   - There are infinitely many solutions.  
 
-
+-----------
 
 #### Roll, Pitch, Yaw Angles
 
+- A rotation matrix R can also described as a product of successive rotations about the principal coordinate axes $$x_0, y_0, z_0$$.
+- These rotations define the roll, pitch, and yaw angles __$$(\phi, \theta, \psi)$$__.
+- Rotation order: 
+  - $$x_0 \rightarrow y_0 \rightarrow z_0$$ (current coordinate perspective).
+  - $$z \rightarrow y \rightarrow x$$ (global coordinate perspective).
 
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec2/5.png" class="lead"   style="width:320px; height=:240px"/>
+</figure>
 
+$$
+\begin{aligned} R^0_1
+&=
+R_{z, \phi} R_{y, \theta} R_{z, \psi} \\
+&= 
+\begin{bmatrix} 
+c_{\phi} & -s_{\phi} & 0\\
+s_{\phi} & c_{\phi} & 0\\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix} 
+c_{\theta} & 0 & s_{\theta}\\
+0 & 1 & 0\\
+-s_{\theta} & 0 & c_{\theta}\\
+\end{bmatrix}
+\begin{bmatrix} 
+1 &  0 & 0\\
+0 & c_{\psi} & -s_{\psi} \\
+0 & s_{\psi} & c_{\psi}
+\end{bmatrix}\\
+&= 
+\begin{bmatrix} 
+ c_{\phi}c_{\theta} & -s_{\phi}c_{\psi}+c_{\phi}s_{\theta}s_{\psi} & s_{\phi}s_{\psi} + c_{\phi}s_{\theta}c_{\psi}\\
+s_{\phi}c_{\theta}  & c_{\phi}c_{\psi}+s_{\phi}s_{\theta}s_{\psi} & -c_{\phi}s_{\psi} + s_{\phi}s_{\theta}c_{\psi}\\
+-s_{\theta} & c_{\theta}s_{\psi} &  c_{\theta}c_{\psi}
+\end{bmatrix}
+\end{aligned} 
+$$
 
+> Note
+> > Now, the order of sequence is z-y-x. But, x-y-z is also possible to define the order.
 
+- Consider the problem of determining the roll, pitch, yaw angles, $$\pi, \theta, \psi$$, given the rotation matrix:
 
+$$
+\begin{aligned} R
+&=
+\begin{bmatrix} 
+r_{11} & r_{12} & r_{13}\\
+r_{21} & r_{22} & r_{23}\\
+r_{31} & r_{32} & r_{33}
+\end{bmatrix} \\
+&= 
+\begin{bmatrix} 
+ c_{\phi}c_{\theta} & -s_{\phi}c_{\psi}+c_{\phi}s_{\theta}s_{\psi} & s_{\phi}s_{\psi} + c_{\phi}s_{\theta}c_{\psi}\\
+s_{\phi}c_{\theta}  & c_{\phi}c_{\psi}+s_{\phi}s_{\theta}s_{\psi} & -c_{\phi}s_{\psi} + s_{\phi}s_{\theta}c_{\psi}\\
+-s_{\theta} & c_{\theta}s_{\psi} &  c_{\theta}c_{\psi}
+\end{bmatrix}
+\end{aligned} 
+$$
 
+- Solution:
 
+$$
+\begin{aligned} 
+\phi 
+&= arctan(r_{21}, r_{11}) & if, -\frac{\pi}{2}< \theta < \frac{\pi}{2}\\
+&= arctan(- r_{21}, - r_{11}) & if, -\frac{\pi}{2} > \theta \quad or \quad \theta > \frac{\pi}{2}\\
+\\
+\theta 
+&= arctan(-r_{31}, c_{\phi}r_{11} + s_{\phi}r_{21}) \\
+&= arctan(s_{\theta}, c_{\theta} (c_{\phi}^2 + s_{\phi}^2)  \\
+\\
+\psi 
+&= arctan(s_{\phi} r_{13} - c_{\phi} r_{23}, -s_{\phi}r_{12}+ c_{\phi}r_{22}) \\
+&= arctan(s_{\psi}(s_{\phi}^2 + c_{\phi} ^2) +s_{\phi} c_{\phi} s_{\theta} c_{\psi} - c_{\phi} s_{\phi} s_{\theta} c_{\psi} , c_{\psi}(s_{\phi}^2 + c_{\phi} ^2) +s_{\phi} c_{\phi} s_{\theta} s_{\psi}  -c_{\phi} s_{\phi} s_{\theta} s_{\psi})
+\end{aligned} 
+$$
 
-
-
-
-
+- if $$\theta = \pm \frac{\pi}{2}$$, no there exist a unique solution.
+- Generally, we assume that $$-\frac{\pi}{2 } < \theta < \frac{\pi}{2}$$.
 
 
 
