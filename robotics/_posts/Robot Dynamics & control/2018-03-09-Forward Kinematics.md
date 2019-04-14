@@ -201,6 +201,25 @@ $$
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/4.png" class="lead"   style="width:480px; height=:360px"/>
 </figure>
 
+- Assigning the coordinate frames
+  - For a given robot manipulator, one can always choose the frame 0, 1, ..., n in such a way that __the DH1 and DH2 are satisfied__.
+  - It is important to keep in mind that the choices of the various coordinate frames are __not unique__, even when constrained by the DH1 and DH2.
+  - However, it is important to note that the __end result($$T^0_n$$) will be the same__, regardless of the assignment if untermediate link frames .
+
+- We assign $$z_i$$ to be the axis of actuation for joint i+1
+  - If joint i+1 is revolute, $$z_i$$ is the axis of revolution of joint i+1.
+  - If joint i+1 is prismatic, $$z_i$$ is the axis of translation of joint i+1.
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/5.png" class="lead"   style="width:480px; height=:360px"/>
+</figure>
+
+- In order to set up frame i it is necessary to consider 3 cases:
+  - $$z_{i-1}$$ and $$z_i$$ are not coplanar
+  - $$z_{i-1}$$ is parallel to $$z_i$$
+  - $$z_{i-1}$$ intersects $$z_i$$
+
+
 ------------
 
 > Reference:
