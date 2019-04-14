@@ -176,6 +176,7 @@ $$
 
 
 > DH1) The axis $$x_1$$  is perpendicular to the axis $$z_0$$.
+>
 > DH2) The axis $$x_1$$ intersects the axis $$z_0$$
 
 <figure>
