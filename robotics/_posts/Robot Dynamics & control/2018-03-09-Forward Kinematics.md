@@ -180,7 +180,7 @@ $$
 > DH2) The axis $$x_1$$ intersects the axis $$z_0$$
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/3.png" class="lead"   style="width:480px; height=:360px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/3.png" class="lead"   style="width:240px; height=:180px"/>
 </figure>
 
 - Under DH1 and DH2, we claim that there exist __unique numbers__ $$a, d, \theta , \alpha$$ such that.
@@ -191,7 +191,7 @@ $$
   - d: Distance between the origin $$o_0$$ and the intersection of the $$x_1$$ axis with $$z_0$$ measured along the $$z_0$$ axis.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/3.png" class="lead"   style="width:480px; height=:360px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/3.png" class="lead"  style="width:240px; height=:180px"/>
 </figure>
 
 - Physical interpretation of 4 quantities:
@@ -199,7 +199,7 @@ $$
   - $$\theta$$: Angle between $$x_0$$ and $$x_1$$ measured in a plane normal to $$z_0$$.
   
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/4.png" class="lead"   style="width:480px; height=:360px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/4.png" class="lead"  style="width:240px; height=:180px"/>
 </figure>
 
 - Assigning the coordinate frames
@@ -212,7 +212,7 @@ $$
   - If joint i+1 is prismatic, $$z_i$$ is the axis of translation of joint i+1.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/5.png" class="lead"   style="width:480px; height=:360px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/5.png" class="lead"  style="width:240px; height=:180px"/>
 </figure>
 
 - In order to set up frame i it is necessary to consider 3 cases:
