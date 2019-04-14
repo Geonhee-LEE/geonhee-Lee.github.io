@@ -34,6 +34,7 @@ $$
 
 - $$f$$: forward kinematics
 
+----------------
 
 ### Kinematic Chains
 
@@ -77,7 +78,7 @@ T^i_j = (T^j_i)^{-1} \qquad  if \quad i > j
 \end{aligned} 
 $$
 
-- The homogeneous transformation matrix denoted by the position($$$o^0_n$) and orientation ($$R^0_n$$) of the __end-effector with respect to the inertial or base frame__:
+- The homogeneous transformation matrix denoted by the position($$o^0_n$$) and orientation ($$R^0_n$$) of the __end-effector with respect to the inertial or base frame__:
   - This is __forward kinematics__!
   - But, it is possible to achieve a considerable amount of stream linking and simplication by introducing D-H representation.
 
@@ -92,7 +93,113 @@ R^0_n & o^0_n\\
 \end{aligned} 
 $$
 
+- Each homogeneous transformation matrix:
 
+$$
+\begin{aligned} A_i &= 
+\begin{bmatrix} 
+R^{i-1}_i & o^{i-1}_i\\  
+0 & 1 \\
+\end{bmatrix} 
+\end{aligned} 
+$$
+
+- Hence, 
+$$
+\begin{aligned} T^i_j &= A_{i+1} \cdots A_j &= 
+\begin{bmatrix} 
+R^{i}_j & o^{i}_j\\  
+0 & 1 \\
+\end{bmatrix} ,
+\\
+\\
+R^i_{j}  &= R^i_{i+1} \cdots R^{j-1}_j \\
+o^i_{j}  &= o^i_{j-1} + R^i_{j-1} o^{j-1}_j
+\end{aligned} 
+$$
+
+- It is possible to carry out all of the analysis using an arbitrary frame attached to each link.
+- However, it is helpful to be systematic in the choice of these frames by using the __Denavit-Hartenberg, or D-H convention__.
+- In D-H convention, each homogeneous tranformation matrix $$A_i$$ is represented as a product of __four basic transformations__.
+
+----------------
+
+### Denavit - Hartenberg Representation
+
+$$
+\begin{aligned} A 
+&= Rot_{z, \theta_i} Trans_{z, d_i} Trans_{x, a_i} Rot_{x, \alpha_i}  \\
+&=
+\begin{bmatrix} 
+c_{\theta_i} & -s_{\theta_i} & 0 & 0\\  
+s_{\theta_i} & c_{\theta_i} & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+\end{bmatrix} 
+\begin{bmatrix} 
+1 & 0 & 0 & 0\\  
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & d_i\\
+0 & 0 & 0 & 1\\
+\end{bmatrix} 
+\begin{bmatrix} 
+1 & 0 & 0 & a_i\\  
+0 & 1 & 0 & 0\\
+0 & 0 & 1 & 0\\
+0 & 0 & 0 & 1\\
+\end{bmatrix} 
+\begin{bmatrix} 
+1 & 0 & 0 & 0\\  
+0 & c_{\alpha_i} & - s_{\alpha_i}& 0\\
+0 & s_{\alpha_i} & c_{\alpha_i}& 0\\
+0 & 0 & 0 & 1\\
+\end{bmatrix} 
+\\
+&=
+\begin{bmatrix} 
+c_{\theta_i} & -s_{\theta_i}c_{\alpha_i} & s_{\theta_i}s_{\alpha_i} & \alpha_i c_{\theta_i}\\  
+s_{\theta_i} & c_{\theta_i}c_{\alpha_i} & -c_{\theta_i}s_{\alpha_i} & \alpha_i s_{\theta_i}\\
+0 & s_{\alpha_i} & c_{\alpha_i}& d_i\\
+0 & 0 & 0 & 1\\
+\end{bmatrix} 
+\end{aligned} 
+$$
+
+- Since the matrix A_i is a function of a single variable, the __3__ of the 4 quantities __are constant__ for a given link.
+  - $$d_i$$: Joint variable for a prismatic joint.
+  - $$\theta_i$$: Joint variable for a revolute joint.
+- By a clever choice of the origin and coordinate axes, it is possible to $$cut down the number of parameters$$ and needed from 6 to 4.
+
+- __Existence and uniqueness issues__:
+  - Clearly, it is not possible to represent any arbitrary homogeneous transformation using only four parameters
+  - But, is is possible to derive a unique homogeneous transformation matrix $$A$$ under the following two conditions.
+
+
+> DH1) The axis $$x_1$$  is perpendicular to the axis $$z_0$$.
+> DH2) The axis $$x_1$$ intersects the axis $$z_0$$
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/3.png" class="lead"   style="width:480px; height=:360px"/>
+</figure>
+
+- Under DH1 and DH2, we claim that there exist __unique numbers__ $$a, d, \theta , \alpha$$ such that.
+  - $$A = Rot_{z,\theta} Trans_{z,d} Trans_{x,a} Rot_{x, \alpha}$$
+
+- Physical interpretation of four quantities:
+  - a: Distance between the axes $$z_0$$ and $$z_1$$ measured along the axis $$x_1$$
+  - d: Distance between the origin $$o_0$$ and the intersection of the $$x_1$$ axis with $$z_0$$ measured along the $$z_0$$ axis.
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/3.png" class="lead"   style="width:480px; height=:360px"/>
+</figure>
+
+- Physical interpretation of 4 quantities:
+  - $$\alpha$$: Angle between the axes $$z_0$$ and $$z_1$$ measured in a plane normal to $$x_1$$.
+  - $$\theta$$: Angle between $$x_0$$ and $$x_1$$ measured in a plane normal to $$z_0$$.
+  
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/4.png" class="lead"   style="width:480px; height=:360px"/>
+</figure>
 
 ------------
 
