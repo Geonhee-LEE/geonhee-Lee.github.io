@@ -50,7 +50,7 @@ $$
 
 - With the i^{th} joint, we associate a joint variable, denoted by q_i.
   - $$\theta_i$$: joint $$i$$ revolute
-  - d_i: joint $$i$$ prismatic
+  - $$d_i$$: joint $$i$$ prismatic
 - __$$o_i x_i y_i z_i$$ is attached to link i__ $$\rightarrow$$ when joint i is actuated, link i and its attached frame $$o_i x_i y_i z_i$$ experience a resulting motion.
 - The frame $$o_0 x_0 y_0 z_0$$ which is attached to the robot base, is referred to as the __inertial frame__(=world coordinate).
 
@@ -168,7 +168,7 @@ $$
 - Since the matrix A_i is a function of a single variable, the __3__ of the 4 quantities __are constant__ for a given link.
   - $$d_i$$: Joint variable for a prismatic joint.
   - $$\theta_i$$: Joint variable for a revolute joint.
-- By a clever choice of the origin and coordinate axes, it is possible to $$cut down the number of parameters$$ and needed from 6 to 4.
+- By a clever choice of the origin and coordinate axes, it is possible __to cut down the number of parameters__ and needed from 6 to 4.
 
 - __Existence and uniqueness issues__:
   - Clearly, it is not possible to represent any arbitrary homogeneous transformation using only four parameters
