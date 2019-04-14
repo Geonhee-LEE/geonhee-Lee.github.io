@@ -67,17 +67,30 @@ A_i = A_i (q_i)
 \end{aligned} 
 $$
 
-- Homogeneous transformation matrix $$T^i_j$$ that expresses the position and orientation of $$o_j x_j y_j z_j $$ with respect to $$o_i x_i y_i z_i$$ .
+- Homogeneous transformation matrix $$T^i_j$$ that expresses the __position and orientation__ of $$o_j x_j y_j z_j $$ with respect to $$o_i x_i y_i z_i$$ .
 
 $$
 \begin{aligned}
-T^i_j = A_{i+1} A_{i+2} \cdot A_{j-1} A_{j} & \qqaud if i < j \\
-T^i_j = I & \qqaud  if i = j \\
-T^i_j = (T^j_i)^{-1} & \qqaud  if i > j
+T^i_j = A_{i+1} A_{i+2} \cdot A_{j-1} A_{j} \qquad if \quad i < j \\
+T^i_j = I \qquad  if \quad i = j \\
+T^i_j = (T^j_i)^{-1} \qquad  if \quad i > j
 \end{aligned} 
 $$
 
+- The homogeneous transformation matrix denoted by the position($$$o^0_n$) and orientation ($$R^0_n$$) of the __end-effector with respect to the inertial or base frame__:
+  - This is __forward kinematics__!
+  - But, it is possible to achieve a considerable amount of stream linking and simplication by introducing D-H representation.
 
+$$
+\begin{aligned} H &= 
+\begin{bmatrix} 
+R^0_n & o^0_n\\  
+0 & 1 \\
+\end{bmatrix} \\
+&= T^0_n \\
+&= A_1(q_i) \cdot A_n(q_n)
+\end{aligned} 
+$$
 
 
 
