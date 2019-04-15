@@ -287,7 +287,7 @@ Consider the elbow manipulator shown in Fig. 4.2, with the components of denoted
 We project $$o_c$$ onto the $$x_0 - y_0$$ plane.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/4.png" class="lead"   style="width:240px; height=:480px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/4.png" class="lead"   style="width:320px; height=:240px"/>
 </figure>
 
 From this projection
@@ -311,8 +311,32 @@ This second solution leads to different solutions for $$\theta_2$$ and $$\theta_
 The above solution is valid unless $$x_c = y_c = 0$$. In this case, the manipulator is in a singular configuration shown in Fig. 4.5, and there are thus __infinitely many solutions__ for $$\theta_1$$.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/5.png" class="lead"   style="width:240px; height=:480px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/5.png" class="lead"   style="width:320px; height=:240px"/>
 </figure>
+
+
+If there is an offset d, then the wrist center cannot intersect $$z_0$$. 
+In this case, there will be only 2 solution for $$\theta_1 \rightarrow$$ __These correspond to the so-called left arm and right arm configuration__.
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/6.png" class="lead"   style="width:320px; height=:240px"/>
+</figure>
+
+####  Case 1) Left arm configuration:
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/7.png" class="lead"   style="width:320px; height=:240px"/>
+</figure>
+
+Geometrically, 
+
+$$
+\begin{aligned} 
+& \theta_1 = \phi = \alpha \\
+& where, \phi = Atan2(y_c, x_c), \alpha = Atan2(d, \sqrt{r^2 - d^2}) = Atan2(d, \sqrt{x_c^2 + y^2_c -d^2}) 
+\end{aligned} 
+$$
+
 
 ------------
 
