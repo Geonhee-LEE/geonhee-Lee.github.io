@@ -107,32 +107,48 @@ where $$T_{ij}, h_{ij}$$ refer to the 12 nontrivial entries of $$T^0_n$$ and $$H
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/1.png" class="lead"   style="width:320px; height=:240px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/1.png" class="lead"   style="width:240px; height=:480px"/>
 </figure>
 
 - To find the corresponding variables $$\theta_1, ..., \theta_6$$, we must solve the following simultaneous set of nonlinear trigonometric eq.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/2.png" class="lead"   style="width:320px; height=:480px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/2.png" class="lead"   style="width:480px; height=:560px"/>
 </figure>
 
 > Note
 > > It is too difficult to solve directly in closed form. 
 > >
 > > Therefore, it is necessary to develop efficient and systematic techniques. 
+> >
+> > The inverse kinematics problem may or may not have a solution.
+> >
+> > Even if a solution exist, it may or may not be unique.
 
 
 - Inverse kinematics solution:
   
-1. __a closed form solution__
-2. __a numerical solution__
+1. __A closed form solution__
+2. __A numerical solution__
+
+- A closed form solution means following explicit relationship
+
+$$
+\begin{aligned} 
+q_k = f_k (h_{11}, ..., h_{34}), k=1,...,n
+\end{aligned} 
+$$
+
+- Advantages of closed form solution.
+
+1.  Closed form solution is more __accurate and faster__ than numerical solution.
+2.  Closed form solution allows one to develop rules for __choosing a particular solution__ among several multiple solutions.
+    - It means that you can get the desired pose by selecting the sign, numerical method is impossible.
 
 
+## Kinematic Decoupling
 
-
-
-
-
+- 
 
 
 ------------
