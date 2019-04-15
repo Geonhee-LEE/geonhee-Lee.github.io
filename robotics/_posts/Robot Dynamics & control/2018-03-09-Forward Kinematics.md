@@ -257,7 +257,41 @@ $$
   - If joint i is revolute, then $$d_i$$ is also a constant, while $$\theta_i$$ is the $$i^{th}$$ joint variable. 
 
 - __Summary__:
-  - 
+  
+1. Locate and label the joint axes $$z_0, ..., z_{n-1}$$.
+2. Establish the base frame. Set the origin anywhere on the $$z_0$$-axis. The $$x_0$$ and $$y_0$$ axed are chosen conveniently to form a right-hand frame. For i = 1, ..., n-1, perform step 3 to 5.
+3. If $$z_i$$ intersects $$z_{i-1}$$, locate $$o_i$$ at this intersection. If $$z_i$$ and $$z_{i-1}$$ are parallel, locate $$o_i$$ in any convenient position along $$z_i$$.
+4. Establish $$x_i$$ along the common normal between $$z_{i-1}$$ and $$z_i$$ through $$o_i$$, or in the direction normal to the $$z_{i-1} - z_i$$ plane if $$z_{i-1}$$ and $$z_i$$ intersect.
+5. Establish $$y_i$$ to complete a right-hand frame
+6. Establish the end-effector frame $$o_n x_n y_n z_n$$. Assuming the n-th joint is revolute, set $$z_n$$ = __a__ along the direction $$z_{n-1}$$. Establish the origin on conveniently along $$z_n$$, preferably at the center of the gripper or at the tip of any tool. Set $$y_n$$ = __s__ in the direction of the gripper closure.
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/12.png" class="lead"  style="width:360px; height=:240px"/>
+</figure>
+
+7. Create a table of link parameters $$a_i, \alpha_i , d_i, \theta_i$$.
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/13.png" class="lead"  style="width:360px; height=:240px"/>
+</figure>
+
+8. From the homogeneous transformation matrices $$A_i$$ by substituting the above parameters into 
+
+$$
+\begin{aligned} A 
+&= Rot_{z, \theta_i} Trans_{z, d_i} Trans_{x, a_i} Rot_{x, \alpha_i}  \\
+&=
+\begin{bmatrix} 
+c_{\theta_i} & -s_{\theta_i}c_{\alpha_i} & s_{\theta_i}s_{\alpha_i} & \alpha_i c_{\theta_i}\\  
+s_{\theta_i} & c_{\theta_i}c_{\alpha_i} & -c_{\theta_i}s_{\alpha_i} & \alpha_i s_{\theta_i}\\
+0 & s_{\alpha_i} & c_{\alpha_i}& d_i\\
+0 & 0 & 0 & 1\\
+\end{bmatrix} 
+\end{aligned} 
+$$
+
+9. Form $$T^0_n = A_1 \cdots A_n$$. This then gives the position and orientation of the tool frame expressed in base coordinates.
+
 
 ------------
 
