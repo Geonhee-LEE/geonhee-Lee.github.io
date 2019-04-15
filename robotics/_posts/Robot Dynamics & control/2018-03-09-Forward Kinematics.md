@@ -240,7 +240,7 @@ $$
 </figure>
 
 
--  
+-  This constructive procedure
 
 ------------
 
