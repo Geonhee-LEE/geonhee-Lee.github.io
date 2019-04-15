@@ -105,14 +105,14 @@ R^{i-1}_i & o^{i-1}_i\\
 $$
 
 - Hence, 
+
+
 $$
 \begin{aligned} T^i_j &= A_{i+1} \cdots A_j &= 
 \begin{bmatrix} 
 R^{i}_j & o^{i}_j\\  
 0 & 1 \\
 \end{bmatrix} ,
-\\
-\\
 R^i_{j}  &= R^i_{i+1} \cdots R^{j-1}_j \\
 o^i_{j}  &= o^i_{j-1} + R^i_{j-1} o^{j-1}_j
 \end{aligned} 
@@ -217,9 +217,30 @@ $$
 
 - In order to set up frame i it is necessary to consider 3 cases:
   - $$z_{i-1}$$ and $$z_i$$ are not coplanar
-  - $$z_{i-1}$$ is parallel to $$z_i$$
-  - $$z_{i-1}$$ intersects $$z_i$$
 
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/6.png" class="lead"  style="width:360px; height=:240px"/>
+</figure> 
+
+  - $$z_{i-1}$$ is parallel to $$z_i$$
+    - $$d_i, \alpha_i$$ are 0 in this case
+
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/7.png" class="lead"  style="width:360px; height=:240px"/>
+</figure>
+
+
+  - $$z_{i-1}$$ intersects $$z_i$$
+    - $$a_i$$ are 0 in this case
+
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/8.png" class="lead"  style="width:360px; height=:240px"/>
+</figure>
+
+
+-  
 
 ------------
 
