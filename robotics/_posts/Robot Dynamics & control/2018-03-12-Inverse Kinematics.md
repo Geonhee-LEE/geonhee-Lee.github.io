@@ -148,7 +148,95 @@ $$
 
 ## Kinematic Decoupling
 
-- 
+- For manipulators having 6 joints with the last three joint intersecting at a point, it is possible to decouple the I.K. problem into two simper problems;
+  - __Inverse position kinematics__
+  - __Inverse orientation kinematics__
+- Let us suppose that there are exactly 6 degrees-of-freedom and that the last 3 joint axes intersect at a point $$o_c$$.
+
+$$
+\begin{aligned} 
+R^0_6 (q_1, ..., q_6) =R \\
+o^0_6 (q_1,..., q_6) = o
+\end{aligned} 
+$$
+
+> $$o$$ and $$R$$ are __desired position and orientation of the tool frame__ with respect to the world coordinate system.
+
+- Assumption: axes $$z_3, z_4$$, and $$z_5$$ intersect at $$o_c$$ and hence the origins $$o_3, o_4$$ and $$o_5$$ will be at the wrist center $$o_c$$.
+  - Motion of __final 3 links__ about these axes __will not change the position of $$o_c$$__
+  - Thus, the __position of the wrist__ center is thus __function of only the first 3 joint variables__ ($$\thata_1, \theta_2$$ and $$d_3$$).
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/3.png" class="lead"   style="width:240px; height=:480px"/>
+</figure>
+
+- The origin of the tool frame, $$o$$:
+
+$$
+\begin{aligned} 
+o &= o^0_c + R^0_5 
+\begin{bmatrix} 
+0\\
+0 \\
+d_6\\
+\end{bmatrix} \rightarrow
+o^0_c &= o - R^0_5 
+\begin{bmatrix} 
+0\\
+0 \\
+d_6\\
+\end{bmatrix} \rightarrow
+o^0_c &= o - R 
+\begin{bmatrix} 
+0\\
+0 \\
+d_6\\
+\end{bmatrix} \rightarrow
+\end{aligned} 
+$$
+
+> Third columns of $$R^0_6$$ and $$R^0_5$$ are the same!
+
+$$
+\begin{aligned} 
+\begin{bmatrix} 
+x_c\\
+y_c\\
+z_c\\
+\end{bmatrix} = 
+\begin{bmatrix} 
+o_x - d_6 r_{13}\\
+o_y - d_6 r_{23} \\
+o_z - d_6 r_{33} \\
+\end{bmatrix}
+\quad
+where \quad R = 
+\begin{bmatrix} 
+ r_{11} &  r_{12} &  r_{13}\\
+ r_{21} &  r_{22} &  r_{23}\\
+ r_{31} &  r_{32} &  r_{33}\\
+\end{bmatrix}
+\end{aligned} 
+$$
+
+> By using the above eq., we may __find the values of the first 3 joint variables__.
+> 
+> This determines the __orientation transformation $$R^0_3$$__ which depends only on these first 3 joint variables.
+
+- Orientation of the end-effector relative to the frame $$o_3 x_3 y_3 z_3$$
+
+$$
+\begin{aligned} 
+R = R^0_6 = R^0_3 R^3_6 \\
+R^3_6 = (R^0_3)^{-1} R = (R^0_3)^T R 
+\end{aligned} 
+$$
+
+- $$R$$: given
+- $$R^3_6$$: unknown
+- $$R^0_3$$: can be calculated once the first 3 joint variables are known.
+
+> Then, the final 3 joint variables can be found as a set of Euler angles corresponding to $$R^3_6$$.
 
 
 ------------
