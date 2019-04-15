@@ -191,7 +191,7 @@ o^0_c &= o - R
 0\\
 0 \\
 d_6\\
-\end{bmatrix} \rightarrow
+\end{bmatrix} 
 \end{aligned} 
 $$
 
@@ -227,17 +227,92 @@ $$
 
 $$
 \begin{aligned} 
-R = R^0_6 = R^0_3 R^3_6 \\
-R^3_6 = (R^0_3)^{-1} R = (R^0_3)^T R 
+& R = R^0_6 = R^0_3 R^3_6 \\ 
+\\
+& R^3_6 = (R^0_3)^{-1} R = (R^0_3)^T R 
 \end{aligned} 
 $$
 
 - $$R$$: given
-- $$R^3_6$$: unknown
 - $$R^0_3$$: can be calculated once the first 3 joint variables are known.
+- $$R^3_6$$: unknown
 
 > Then, the final 3 joint variables can be found as a set of Euler angles corresponding to $$R^3_6$$.
 
+
+- Summary
+  - For this class of manipulators the determination of the I.K. can be summarized by the following algorithm.
+
+__Step 1__: Find $$q_1, q_2, q_3$$ such that the wrist center $$o_c$$ has coordinates given by
+
+$$
+\begin{aligned} 
+o^0_c &= o - R^0_5 
+\begin{bmatrix} 
+0\\
+0 \\
+d_6\\
+\end{bmatrix} = o - R 
+\begin{bmatrix} 
+0\\
+0 \\
+d_6\\
+\end{bmatrix} 
+\end{aligned} 
+$$
+
+__Step 2__:  Using the joint variables determined in Step 1, evaluate $$R^0_3$$.
+
+__Step 3__: Find a set of Euler angles corresponding to the rotation matrix
+
+$$
+\begin{aligned} 
+& R^3_6 = (R^0_3)^{-1} R = (R^0_3)^T R .
+\end{aligned} 
+$$
+
+-----------
+
+## Inverse Position: A Geometric Approach
+
+- We can use a geometic approach to find the variables $$q_1, q_2, q_3$$ corresponding to $$o^0_c$$.
+- Two reasons for the __geometric approach__:
+  - Most manipulator designs are __kinematically simple__ (without joint offset), usually consisting of 1 of the 5 basic configurations with a spherical wrist.
+  - There are few techniques that can handle the general I.K. problem for arbitrary configurations.
+- The general idea of the geometric approach is to solve for joint variable $$q_i$$ __by projecting the manipulator onto the $$x_{i-1} - y_{i-1}$$ plane__ and solving a simple trigonometry problem.
+
+### Articulated Configuration
+
+Consider the elbow manipulator shown in Fig. 4.2, with the components of denoted $$o^0_c$$ by $$x_c, y_c, z_c$$.
+We project $$o_c$$ onto the $$x_0 - y_0$$ plane.
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/4.png" class="lead"   style="width:240px; height=:480px"/>
+</figure>
+
+From this projection
+
+$$
+\begin{aligned} 
+\theta_1 = Atan2 (y_c, x_c)
+\end{aligned} 
+$$
+
+Note that a second valid solution for $$\theta_1$$ is 
+
+$$
+\begin{aligned} 
+\theta_1 = \pi + Atan2 (y_c, x_c)
+\end{aligned} 
+$$
+
+This second solution leads to different solutions for $$\theta_2$$ and $$\theta_3$$.
+
+The above solution is valid unless $$x_c = y_c = 0$$. In this case, the manipulator is in a singular configuration shown in Fig. 4.5, and there are thus __infinitely many solutions__ for $$\theta_1$$.
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/5.png" class="lead"   style="width:240px; height=:480px"/>
+</figure>
 
 ------------
 
