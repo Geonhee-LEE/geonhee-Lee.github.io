@@ -94,17 +94,32 @@ $$\rightarrow$$ translation w.r.t inertial frame frame $$\rightarrow$$ roll/pitc
 
 $$
 \begin{aligned} 
-T _{ij} (q_1, \cdots, q_n) = h_{ij}, i=1,2,3, j=1,..,4 
+T_{ij} (q_1, \cdots, q_n) = h_{ij}, i=1,2,3, j=1,..,4 
 \end{aligned} 
 $$
 
 where $$T_{ij}, h_{ij}$$ refer to the 12 nontrivial entries of $$T^0_n$$ and $$H$$.
 
+### Example
+
+- Recall the Stanford manipualtor.
+- Suppose that the desired position and orientation of the final frame are given by
 
 
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/1.png" class="lead"   style="width:320px; height=:240px"/>
+</figure>
 
+- To find the corresponding variables $$\theta_1, ..., \theta_6$$, we must solve the following simultaneous set of nonlinear trigonometric eq.
 
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/2.png" class="lead"   style="width:320px; height=:480px"/>
+</figure>
 
+> Note
+> > It is too difficult to solve directly in closed form. 
+> >
+> > Therefore, it is necessary to develop efficient and systematic techniques. 
 
 
 
