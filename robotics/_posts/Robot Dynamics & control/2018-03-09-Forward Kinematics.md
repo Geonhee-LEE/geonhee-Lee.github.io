@@ -266,7 +266,7 @@ $$5.$$ Establish $$y_i$$ to complete a right-hand frame
 $$6.$$ Establish the end-effector frame $$o_n x_n y_n z_n$$. Assuming the n-th joint is revolute, set $$z_n$$ = __a__ along the direction $$z_{n-1}$$. Establish the origin on conveniently along $$z_n$$, preferably at the center of the gripper or at the tip of any tool. Set $$y_n$$ = __s__ in the direction of the gripper closure.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/11.png" class="lead"  style="width:360px; height=:240px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/11.png" class="lead"  style="width:480px; height=:240px"/>
 </figure>
 
 $$7.$$ Create a table of link parameters $$a_i, \alpha_i , d_i, \theta_i$$.
