@@ -8,12 +8,12 @@ comments: true
 
 # Robot Dynamics & control: Lecture 1 - Introduction
 
-### Table of Contents
+## Table of Contents
 {:.no_toc}
 0. this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
-### Components & Structure of Robots:
+## Components & Structure of Robots:
 - Robot manipulators are composed of links connected by __joints__ into a __kinematic chain__.
   -   __Revolute__ joint: allows relative rotation between two links.
   -   __Prismatic__ joint: allows a linear relative motion between two links.
@@ -24,21 +24,21 @@ comments: true
 </figure>
 
 
-#### Degrees of Freedom
+### Degrees of Freedom
   - The number of joints determines the DOF of the manipulator.
   - A typical manipulator should possess at least six independent DOF:
     - Three for positioning + Three for orientation.
   - With fewer than six DOF the arm cannot reach every point in its work encironment with arbitray orientation.
 
 
-#### Workspace
+### Workspace
 - The total volume swept out by the end-effector as the manipulator executes all possible motions.
 - __Reachable workspace__ : entire set of points reachable by the manipulator
 - __Dextrous workspace__: subset of the reachable workspace that the manipulator can reach with an arbitrary orientation of the end-effector. 
 
-#### Common Kinematic Arrangements
+### Common Kinematic Arrangements
 
-#####  Articulated configuration(RRR)
+####  Articulated configuration(RRR)
 - This configuration provides for relatively large freedom of movement in a compact space
 - The links and joints are analogous to human joint.
 
@@ -47,7 +47,7 @@ comments: true
 </figure>
 
 
-#####  Spherical Configuration(RRP)
+####  Spherical Configuration(RRP)
 - The third joint of the articulated robot is replaced by a prismatic joint.
 - The 'Stanford-arm' is an example of a spherical manupulator.
 
@@ -55,7 +55,7 @@ comments: true
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/3.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
-##### SCARA Configuration(RRP)
+#### SCARA Configuration(RRP)
 - The so-called SCARA(Selective Compliant Articulated Robot for Assembly) has $$z_0, z_1, z_2$$ prallel.
 - Ideal for table top assembly such as pick and place task. 
 
@@ -63,7 +63,7 @@ comments: true
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/4.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
-##### Cylindrical Configuration(RPP)
+#### Cylindrical Configuration(RPP)
 - The first joint is revolute, while the second and third joints are prismatic.
 - This is often used in materials transfer task.
 
@@ -71,7 +71,7 @@ comments: true
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/5.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
-##### Cartesian Configuration(PPP)
+#### Cartesian Configuration(PPP)
 - The configuration is useful for table-top assembly applications.
 - This is often used in pick and place operations.
 
@@ -79,7 +79,7 @@ comments: true
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/6.png" class="lead" data-width="240" data-height="180" />
 </figure>
 
-##### Parallel manupulator
+#### Parallel manupulator
 - The configuration forms a closed chain by using several independent kinematic chains connecting the vase to the end-effector.
 - The closed chain results in greater structural rigidity.
 - This robot generally have __much structural rigidity__ than serial link robots.
@@ -88,7 +88,7 @@ comments: true
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/8.png" class="lead" style="width:240px; height=:180px" />
 </figure>
 
-#### Wrists and End-Effectors 
+### Wrists and End-Effectors 
 - The wrist of a manipulator refers to the joints in the kinematic chain berween the arm and hand.
 - It is increasingly common to design manipulators with __spherical wrists__, by which we mean wrists whose three joint axes intersect at common point.
 - 6 DOF = __3 DOF for wrist + 3DOF for arm__
@@ -102,7 +102,7 @@ comments: true
 
 -------
 
-## Problem 1: Forward Kinematics
+# Problem 1: Forward Kinematics
 
 - The first problem is to describe __position and orientation of the tool__.
 - Determination of the position and orientation of the end-effector(or tool) in terms of joint variables(angle or displacement).
@@ -112,16 +112,17 @@ comments: true
 </figure>
 
 
-### Forward kinematic equations 
+## Forward kinematic equations 
 
-####  Tool(End-effector) position 
+###  Tool(End-effector) position 
 $$
 \begin{aligned}
 \qquad   x = a_1 cos \theta_1 + a_2 cos( \theta_1 + \theta_2) \\
 \qquad   y = a_1 sin \theta_1 + a_2 sin( \theta_1 + \theta_2)
 \end{aligned} 
  $$
-####  Tool(End-effector) Orientation
+
+###  Tool(End-effector) Orientation
 Rotation matrix:
 $$
 \begin{aligned}
@@ -144,7 +145,7 @@ $$
 -------
 
 
-## Problem 2: Inverse Kinematics
+# Problem 2: Inverse Kinematics
 
 - In order to command the robot to move to arbitrary position, we need the joint variables __in terms of x and y coordinates__.
   - we may need the forward kinematic equations in advance.
@@ -158,7 +159,7 @@ $$
 </figure>
 
 
-### Law of Cosines
+## Law of Cosines
 
 $$
 \begin{aligned} 
@@ -179,7 +180,7 @@ $$
 
 - __Signs determine__ the elbow up and down.
 
-### Inverse kinematic equations.
+## Inverse kinematic equations.
 
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/12.png" class="lead"   style="width:240px; height=:180px"/>
@@ -194,7 +195,7 @@ $$
 
 - For verification, we can check using the Forward Kinematics(__cross-check__)
 
-### Another way - Closed form
+## Another way - Closed form
 
 - __Closed form__: $$ \theta_1, \theta_2 $$ is expressed with x, y using forward kinematics.
 
@@ -257,7 +258,7 @@ $$
 \end{aligned} 
 $$
 
-### Another way - Numerical Solution
+## Another way - Numerical Solution
 -  In contrast to the closed form(geometry solution), it absolutely __needs a forward kinematics__.
 
 
@@ -269,7 +270,7 @@ $$
 
 -------
 
-## Problem 3: Velocity Kinematics
+# Problem 3: Velocity Kinematics
 
 - In order to __follow a contour__ at constant velocity, or at any prescribed velocity, we must know the __relationship between the velocity of the tool(end-effector) and the joint velocities__.
   - we can __differentiate the equations__ to obtain
@@ -334,17 +335,17 @@ $$
 
 -------
 
-## Problem 4: Path Planning and Trajectory Generation
+# Problem 4: Path Planning and Trajectory Generation
 
-### Path planning
+## Path planning
 - Determines a path in task space to mode  the robot to a goal position while avoiding collision with objects in its workspace, __without time considerations,__, that is, without considering velocities and accelerations.
 
-### Trajectory Generation:
+## Trajectory Generation:
 - Determine the __time history__ of the manipulator along a given path.
 
 -------
 
-## Problem 5: Dynamics
+# Problem 5: Dynamics
 
 - Relationship between __motion and forces(Equation of motion)__.
 - How much force is required to achieve the given motion?
@@ -366,7 +367,7 @@ $$
 - __Inverse dynamics__: Computes the __required joint torques or forces__ that lead to the given robot motion.
 - __Forward dynamics__: Computes the robot motion __from the joint torques or forces applied__.
 
-### Example 1: Three link-revolute arm
+## Example 1: Three link-revolute arm
 
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/14.png" class="lead"   style="width:480px; height=:320px"/>
@@ -377,7 +378,7 @@ $$
 
 -------
 
-## Problem 6: Position Control
+# Problem 6: Position Control
 
 - The control prolem for robot manipulator is the problem of determining the time history of __joint inputs (joint forces or torques or inputs to the actuators, for example, voltage)__ required to cause the end-effector to execute a desired motion.
 - There are many control techniques and methodologies.
@@ -388,7 +389,7 @@ $$
     - More complicated hardward, the more advanced control methods.
 
 
-### Example: Independent Joint Position Control
+## Example: Independent Joint Position Control
 
 - Features:
   - Simplest type of control strategy.
@@ -411,7 +412,7 @@ $$
 
 -------
 
-## Problem 7: Force Control
+# Problem 7: Force Control
 
 -  Why Force Control?:
    -  Pure position control is not adequate for task which involve extensive contact with the environment.

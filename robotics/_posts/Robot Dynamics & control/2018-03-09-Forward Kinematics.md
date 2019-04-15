@@ -8,12 +8,12 @@ comments: true
 
 # Robot Dynamics & control: Lecture 3 - Forward Kinematics: The Denavit-Hartenberg Convention
 
-### Table of Contents
+## Table of Contents
 {:.no_toc}
 0. this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
-### Introduction
+## Introduction
 - The forward kinematics problem is to determine the __position and orientation__ of the end-effector, given the values for the joint variables of the robot.
 - The joint variables: angle between the links for revolute or rotational joint link extension for the prismatic or sliding joint.
 
@@ -36,7 +36,7 @@ $$
 
 ----------------
 
-### Kinematic Chains
+## Kinematic Chains
 
 - A robot manupulator __n__ joints will have __n+1__ links including ground.
 - Joint number: __1 ~ n__, Link number: __0 ~ n__
@@ -124,7 +124,7 @@ $$
 
 ----------------
 
-### Denavit - Hartenberg Representation
+## Denavit - Hartenberg Representation
 
 $$
 \begin{aligned} A 

@@ -8,12 +8,12 @@ comments: true
 
 # Robot Dynamics & control: Lecture 2 - Rigid Motions and Homogeneous Transforms
 
-### Table of Contents
+## Table of Contents
 {:.no_toc}
 0. this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
-### Introduction
+## Introduction
 - Robot kinematocs is concerned with the establishment of various coordinate systems to represent the __positions and orientations__ of rigid objects and with __transformations__ among these coordinate frames.
 - __Homogeneous transformations__ combine the operations of rotation and translation into _single matrix multiplication_ and this is used to derive _the forward kinematic equation_.
   - i.e., Expression of the transformation about relationship of position and orientation.
@@ -21,7 +21,7 @@ comments: true
 
 ------
 
-### Representing Positions
+## Representing Positions
 - In robotics, it is necessary to specify a coordinate frame in order to assign coordinates of a __point__.
 - While a point correspond to a specific location in space, a __vector__ specifies a direction and a magnitude.
 
@@ -35,7 +35,7 @@ $$
 
 ------
 
-### Representing Rotations
+## Representing Rotations
 
 - Rotation in the plane
   - __Orientation matrix__ that specifies the coordinate vectors for the axes of frame $$o_1 x_1 y_1$$ wutg respect to coordinate frame $$o_0 x_0 y_0$$.
@@ -153,7 +153,7 @@ $$
 
 ------
 
-### Rotational Transformations
+## Rotational Transformations
 
 - We wish to determine the coordinates of p relative to a fixed reference frame $$o_0 x_0 y_0 z_0$$.
 
@@ -219,9 +219,9 @@ $$
 
 ------
 
-### Composition of Rotations
+## Composition of Rotations
 
-#### Rotation with respect to the __current coordinate frame__
+### Rotation with respect to the __current coordinate frame__
   
 - Suppose we now add a third coordinate frame $$o_2 x_2 y_2 z_2$$ related to the frames $$o_0 x_0 y_0 z_0$$ and  $$o_1 x_1 y_1 z_1$$ by rotational transformations.
 
@@ -243,7 +243,7 @@ $$
 > > It is important to remember that __the order__ in which a sequence of rotations are carried out __is crucial__.
 > > Rotation matix has difference results according to the order of sequence of roation.
 
-#### Rotation with respect to the __fixed coordinate frame__
+### Rotation with respect to the __fixed coordinate frame__
 
 - Many times it is desirable to perform __a sequence of rotations, each about a given fixed coordinate frame__, rather than about successive current frames. 
 
@@ -251,14 +251,14 @@ $$
 
 ------
 
-### Parameterization of Rotations
+## Parameterization of Rotations
 
 -  Three ways in which an arbitrary rotation can be represented using only three independent quantities:
    -  __Euler Angle representation__
    -  __Roll-Pitch-Yaw representation__
    -  Axis/angle representation
 
-#### Euler Angles
+### Euler Angles
 
 - A common method of specifying a rotation matrix.
 - We can specify the orientation of the frame  $$o_1 x_1 y_1 z_1$$ relative to the frame  $$o_0 x_0 y_0 z_0$$ by three angles  __$$(\phi, \theta, \psi )$$__ , known as __Euler Angles__.
@@ -466,7 +466,7 @@ $$
 
 -----------
 
-#### Roll, Pitch, Yaw Angles
+### Roll, Pitch, Yaw Angles
 
 - A rotation matrix R can also described as a product of successive rotations about the principal coordinate axes $$x_0, y_0, z_0$$.
 - These rotations define the roll, pitch, and yaw angles __$$(\phi, \theta, \psi)$$__.
@@ -552,7 +552,7 @@ $$
 
 -----------
 
-### Homogeneous Transformations
+## Homogeneous Transformations
 
 - In this section, we __combine position(translation) and orientation__ to define homogeneous transformations.
 - If frame $$o_1 x_1 y_1 z_1$$ is obtained from frame $$o_0 x_0 y_0 z_0$$ by first applying a rotation specified by $$R^0_1$$ followed by a translation given (with respect to $$o_0 x_0 y_0 z_0$$) by __$$d^0_1$$__ , then the coordinates $$p^0$$ are given by 
