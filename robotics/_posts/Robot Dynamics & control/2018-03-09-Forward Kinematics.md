@@ -240,7 +240,17 @@ $$
 </figure>
 
 
--  This constructive procedure
+-  This constructive procedure works frame 0, ..., n-1 in an n-link robot.
+-  The __final coordinate system__ $$o_n x_n y_n z_n$$ is commonly referred to as __the end-effctor(or tool frame)__
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/9.png" class="lead"  style="width:360px; height=:240px"/>
+</figure>
+
+- Terminology arises from the fact that the direction __a__ is the approach direction, the __s__ direction is the sliding direction, and __n__ is the direction normal to the plane formed by __a__ and __s__.
+
+
+
 
 ------------
 
