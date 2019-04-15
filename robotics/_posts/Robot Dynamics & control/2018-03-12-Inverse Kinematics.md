@@ -122,7 +122,10 @@ where $$T_{ij}, h_{ij}$$ refer to the 12 nontrivial entries of $$T^0_n$$ and $$H
 > > Therefore, it is necessary to develop efficient and systematic techniques. 
 
 
-
+- Inverse kinematics solution:
+  
+1. __a closed form solution__
+2. __a numerical solution__
 
 
 
