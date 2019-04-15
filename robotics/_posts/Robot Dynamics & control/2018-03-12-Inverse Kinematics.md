@@ -287,7 +287,7 @@ Consider the elbow manipulator shown in Fig. 4.2, with the components of denoted
 We project $$o_c$$ onto the $$x_0 - y_0$$ plane.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/4.png" class="lead"   style="width:320px; height=:240px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/4.png" class="lead"   style="width:480px; height=:360px"/>
 </figure>
 
 From this projection
@@ -311,7 +311,7 @@ This second solution leads to different solutions for $$\theta_2$$ and $$\theta_
 The above solution is valid unless $$x_c = y_c = 0$$. In this case, the manipulator is in a singular configuration shown in Fig. 4.5, and there are thus __infinitely many solutions__ for $$\theta_1$$.
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/5.png" class="lead"   style="width:320px; height=:240px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/5.png" class="lead"   style="width:240px; height=:180px"/>
 </figure>
 
 
@@ -348,7 +348,34 @@ Geometrically,
 $$
 \begin{aligned} 
 & \theta_1 = \alpha + \beta \\
-& where, \alpha = Atan2(y_c, x_c), \beta = \gamma + \pi = Atan2(d, \sqrt{r^2 - d^2}) + \pi = Atan2(- d, - \sqrt{r^2 +  -d^2}) 
+ where, \alpha &= Atan2(y_c, x_c), \beta = \gamma + \pi = Atan2(d, \sqrt{r^2 - d^2}) + \pi = Atan2(- d, - \sqrt{r^2 +  -d^2}) 
+\end{aligned} 
+$$
+
+#### To find the $$\theta_2, \theta_3$$:
+
+To find the angles $$\theta_2, \theta_3$$ for the elbow manipulator given $$\theta_1$$, we consider the plane formed by the second and third links
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/9.png" class="lead"   style="width:320px; height=:240px"/>
+</figure>
+
+Previously,
+
+$$
+\begin{aligned} 
+& \theta_3 = Atan2(\pm \sqrt{1-D^2}, D) \\
+where, D &= cos\theta_3 = \frac{r'^2 + s^2 -a ^2_2 -a^2_3}{2a_2 a_3} = \frac{(x^2_c + y^2_c -d^2) + (z_c -d_1)^2 -a ^2_2 -a^2_3}{2a_2 a_3}
+\end{aligned} 
+$$
+
+Similarly,
+
+$$
+\begin{aligned} 
+ \theta_2
+ &= Atan2(s, r') - Atan2(a_3s_3, a_2 +a_3c_3) \\
+ &= Atan2(z_c -d_1, \sqrt{x^2_c + y^2_c -d ^2})  - Atan2(a_3s_3, a_2 + a_3c_3)
 \end{aligned} 
 $$
 
