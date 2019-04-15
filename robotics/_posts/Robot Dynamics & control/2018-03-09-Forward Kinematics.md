@@ -216,13 +216,15 @@ $$
 </figure>
 
 - In order to set up frame i it is necessary to consider 3 cases:
-  - $$z_{i-1}$$ and $$z_i$$ are not coplanar
+- case 1:
+  - $$z_{i-1}$$ and $$z_i$$ are not coplanar:
 
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/6.png" class="lead"  style="width:360px; height=:240px"/>
 </figure> 
 
-  - $$z_{i-1}$$ is parallel to $$z_i$$
+- case 2:
+  - $$z_{i-1}$$ is parallel to $$z_i$$:
     - $$d_i, \alpha_i$$ are 0 in this case
 
 
@@ -230,8 +232,8 @@ $$
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec3/7.png" class="lead"  style="width:360px; height=:240px"/>
 </figure>
 
-
-  - $$z_{i-1}$$ intersects $$z_i$$
+- case 3:
+  - $$z_{i-1}$$ intersects $$z_i$$:
     - $$a_i$$ are 0 in this case
 
 
@@ -249,8 +251,13 @@ $$
 
 - Terminology arises from the fact that the direction __a__ is the approach direction, the __s__ direction is the sliding direction, and __n__ is the direction normal to the plane formed by __a__ and __s__.
 
+- __Note the following important fact__:
+  - The quantities $$a_i$$ and $$\alpha$$ are __always constant__ (characteristics of the manipulator)
+  - If joint i is prismatic, then $$\theta_i$$ is also a constant, while $$d_i$$ is the $$i^{th}$$ joint variable.
+  - If joint i is revolute, then $$d_i$$ is also a constant, while $$\theta_i$$ is the $$i^{th}$$ joint variable. 
 
-
+- __Summary__:
+  - 
 
 ------------
 
