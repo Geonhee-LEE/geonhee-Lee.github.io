@@ -332,8 +332,23 @@ Geometrically,
 
 $$
 \begin{aligned} 
-& \theta_1 = \phi = \alpha \\
+& \theta_1 = \phi - \alpha \\
 & where, \phi = Atan2(y_c, x_c), \alpha = Atan2(d, \sqrt{r^2 - d^2}) = Atan2(d, \sqrt{x_c^2 + y^2_c -d^2}) 
+\end{aligned} 
+$$
+
+####  Case 2) Right arm configuration:
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/8.png" class="lead"   style="width:320px; height=:240px"/>
+</figure>
+
+Geometrically, 
+
+$$
+\begin{aligned} 
+& \theta_1 = \alpha + \beta \\
+& where, \alpha = Atan2(y_c, x_c), \beta = \gamma + \pi = Atan2(d, \sqrt{r^2 - d^2}) + \pi = Atan2(- d, - \sqrt{r^2 +  -d^2}) 
 \end{aligned} 
 $$
 
