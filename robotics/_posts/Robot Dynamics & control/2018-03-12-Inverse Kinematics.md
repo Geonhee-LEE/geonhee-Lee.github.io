@@ -79,14 +79,14 @@ T_{41} & T_{42} & T_{43} & T_{44} \\
 &= 
 \begin{bmatrix} 
  c_{\phi}c_{\theta} & -s_{\phi}c_{\psi}+c_{\phi}s_{\theta}s_{\psi} & s_{\phi}s_{\psi} + c_{\phi}s_{\theta}c_{\psi} & x\\
-s_{\phi}c_{\theta}  & c_{\phi}c_{\psi}+s_{\phi}s_{\theta}s_{\psi} & -c_{\phi}s_{\psi} + s_{\phi}s_{\theta}c_{\psi} & z\\
+s_{\phi}c_{\theta}  & c_{\phi}c_{\psi}+s_{\phi}s_{\theta}s_{\psi} & -c_{\phi}s_{\psi} + s_{\phi}s_{\theta}c_{\psi} & y\\
 -s_{\theta} & c_{\theta}s_{\psi} &  c_{\theta}c_{\psi} & z \\
 0 & 0 &  0 & 1 \\
 \end{bmatrix}
 \end{aligned} 
 $$
 
-- Given matrix: H, roll/pitch/yaw rotation w.r.t inertial frame
+- Given matrix: __H__, roll/pitch/yaw rotation w.r.t inertial frame
 
 $$\rightarrow$$ translation w.r.t inertial frame frame $$\rightarrow$$ roll/pitch/yaw rotation w.r.t current frame.
 
@@ -322,7 +322,7 @@ In this case, there will be only 2 solution for $$\theta_1 \rightarrow$$ __These
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/6.png" class="lead"   style="width:320px; height=:240px"/>
 </figure>
 
-####  Case 1) Left arm configuration:
+-  Case 1) Left arm configuration:
 
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/7.png" class="lead"   style="width:320px; height=:240px"/>
@@ -337,7 +337,7 @@ $$
 \end{aligned} 
 $$
 
-####  Case 2) Right arm configuration:
+-  Case 2) Right arm configuration:
 
 <figure>
   <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/8.png" class="lead"   style="width:320px; height=:240px"/>
@@ -352,7 +352,7 @@ $$
 \end{aligned} 
 $$
 
-#### To find the $$\theta_2, \theta_3$$:
+- To find the $$\theta_2, \theta_3$$:
 
 To find the angles $$\theta_2, \theta_3$$ for the elbow manipulator given $$\theta_1$$, we consider the plane formed by the second and third links
 
@@ -379,6 +379,15 @@ $$
 \end{aligned} 
 $$
 
+> The two solution for $$\theta_3$$ correspond to the elbow-up position and elbow-down position, respectively.
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/10.png" class="lead"   style="width:320px; height=:240px"/>
+</figure>
+
+### Spherical Configuration
+
+we 
 
 ------------
 
