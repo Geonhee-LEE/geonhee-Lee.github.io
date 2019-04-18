@@ -491,10 +491,10 @@ $$
 
 > Even they have different forms, we can easily find the joint angles.
 
-### Example1) Articulated Manipulator with Spherical Wrist
+### Example1: Articulated Manipulator with Spherical Wrist
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/11.png" class="lead"   style="width:320px; height=:600px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/12.png" class="lead"   style="width:320px; height=:600px"/>
 </figure>
 
 Using DH parameters, we can derive the matrix $$R^0_3$$.
@@ -602,6 +602,60 @@ $$
 $$
 
 If $$s_5 = 0$$, then joint axes $$z_3$$ and $$z_5$$ are colinear, and this is a __singular configuration__, so there are infinitely many solution($$\theta_4 + \theta_6 can be determined)
+
+
+
+
+
+### Example2: Articulated Manipulator with Spherical Wrist
+
+One complete inverse kinematic solution of the 6 DOF elbow manipulator which has no joint offsets and a spherical wrist.
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/13.png" class="lead"   style="width:320px; height=:240px"/>
+</figure>
+
+Given, 
+- $$o$$: end-effector position
+- $$R$$: end-effector orientation
+
+
+$$
+\begin{aligned} 
+&o = 
+\begin{bmatrix} 
+o_x\\
+o_y\\
+o_z\\
+\end{bmatrix},
+R = 
+\begin{bmatrix} 
+r_{11} & r_{12} & r_{13} \\
+r_{21}  & r_{22} &  r_{23}\\
+r_{31} & r_{32} & r_{33} \\
+\end{bmatrix} \\
+\end{aligned} 
+$$
+
+then, __wrist center__: 
+
+$$
+\begin{aligned}  
+& x_c = o_x - d_6 r_{13}\\
+& y_c = o_y - d_6 r_{23}\\
+& z_c = o_z - d_6 r_{13}\\
+\\ 
+& \theta_1 = Atan2(y_c, x_c)\\
+& \theta_2 = Atan2(z_c -d_1, \sqrt{x^2_c +y^2_c}) - Atan2(a_3 s_3, a_2 + a_3c_3) \\
+& \theta_3 = Atan2(\pm \sqrt{1-D^2}, D) \\
+& \qquad where,\quad D  = \frac{x^2_c + y^2_c  + (z_c -d_1)^2 - a_2 ^2 - a^2 _3}{2 a_2 a_3} \\
+& \theta_4 = Atan2(\pm (-c_1s_{23}r_{13} -s_1s_{23}r_{23} + c_{23}r_{33}), \pm (c_1c_{23}r_{13} + s_1 c_{23} r_{23} + s_{23} r_{23}))\\
+& \theta_5 = Atan2(\pm \sqrt{1-(s_1 r_{13} - c_1 r_{23})^2}, s_1 r_{13} -c_1 r_{23})\\
+& \theta_6 = Atan2(\pm (s_1 r_{12 - c_1 r_{22}}), \pm (-s_1 r_{11} + c_1 r_{21}))\\
+
+\end{aligned} 
+$$
+
 
 
 
