@@ -431,6 +431,179 @@ $$
 > 
 > If there is an offset them there will be left and right arm configurations.
 
+-----------
+
+## Inverse Orientation
+
+- The __inverse position problem__ gives the values of the __first 3 joint variables__ corresponding to a given position of the wrist center.
+- The __inverse orientation problem__ is finding the values of __the final 3 joint variables__ corresponding to a given orientation with respect to the frame $$o_3x_3y3_z_3$$.
+- The __inverse orientation problem__ can be interpreted as the problem of finding a set of __Euler angles__ corresponding to a given rotation matrix R.
+- Recall that the rotation matrix obtained for the spherical wrist has the __same form as rotation matrix for the Euler transformation__:
+
+$$
+\begin{aligned} T^3_6 = A_4 A_5 A_6 
+&=
+\begin{bmatrix} 
+R^3_6 & o^3_6\\  
+0 & 1\\
+\end{bmatrix} &=
+
+\begin{bmatrix} 
+c_4 c_5 c_6 - s_4 s_6& -c_4 c_5 s_6 -s_4 c_6 & c_4 s_5 & c_4 s_5 d_6\\
+s_4 c_5 c_6 + c_4s_6  & -s_4 c_5 s_6 + c_4 c_6 & s_4 s_5 & s_4 s_5 d_6\\
+-s_5 c_6 & s_5 s_6 & c_5 & c_5 d_6 \\
+0 & 0 & 0 & 1 \\
+\end{bmatrix}
+
+\\
+R^0_1 = R_{z, \phi} R_{y, \theta} R_{z, \psi} 
+&= \begin{bmatrix} 
+c_{\phi} & -s_{\phi} & 0\\
+s_{\phi} & c_{\phi} & 0\\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix} 
+c_{\theta} & 0 & s_{\theta}\\
+0 & 1 & 0\\
+-s_{\theta} & 0 & c_{\theta}\\
+\end{bmatrix}
+\begin{bmatrix} 
+c_{\psi} & -s_{\psi} & 0\\
+s_{\psi} & c_{\psi} & 0\\
+0 & 0 & 1
+\end{bmatrix}
+&=
+\begin{bmatrix} 
+c_{\phi}c_{\theta}c_{\psi}-s_{\phi}s_{\psi} & -c_{\phi}c_{\theta}s_{\psi}-s_{\phi}c_{\psi} & c_{\phi}s_{\theta}\\
+s_{\phi}c_{\theta}c_{\psi}+c_{\phi}s_{\psi}  & -s_{\phi}c_{\theta}s_{\psi}+c_{\phi}c_{\psi} & s_{\phi}s_{\theta}\\
+-s_{\theta}c_{\psi} & s_{\theta}s_{\psi} & c_{\theta}
+\end{bmatrix}
+\end{aligned} 
+$$
+
+$$
+\begin{aligned} 
+\theta_4 &= \phi \\
+\theta_5 &= \theta \\
+\theta_6 &= \psi
+\end{aligned} 
+$$
+
+> Even they have different forms, we can easily find the joint angles.
+
+### Example1) Articulated Manipulator with Spherical Wrist
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/11.png" class="lead"   style="width:320px; height=:600px"/>
+</figure>
+
+Using DH parameters, we can derive the matrix $$R^0_3$$.
+
+$$
+\begin{aligned} R^0_3 =
+&=
+\begin{bmatrix} 
+R^3_6 & o^3_6\\  
+0 & 1\\
+\end{bmatrix} &=
+
+\begin{bmatrix} 
+c_1 c_{23}& - c_1 s_{23} & s_1 \\
+s_1 c_{23}  & -s_1 s_{23} &  -c_1\\
+s_{23} & c_{23} & 0 \\
+\end{bmatrix}
+
+\end{aligned} 
+$$
+
+The matrix $$R^3_6$$ is the upper left 3x3 submatrix of the matrix product $$A_4A_5A_6$$ given by
+
+
+$$
+\begin{aligned} R^3_6
+&=
+\begin{bmatrix} 
+c_4 c_5 c_6 - s_4 s_6& -c_4 c_5 s_6 -s_4 c_6 & c_4 s_5 \\
+s_4 c_5 c_6 + c_4s_6  & -s_4 c_5 s_6 + c_4 c_6 & s_4 s_5 \\
+-s_5 c_6 & s_5 s_6 & c_5 \\
+\end{bmatrix}
+
+\end{aligned} 
+$$
+
+The equation to be solved for the final 3 variables is therefore
+- $$R$$: given 
+
+$$
+\begin{aligned} 
+&R^3_6 = (R^0 _3)^T R \\
+&
+\therefore \begin{bmatrix} 
+c_4 c_5 c_6 - s_4 s_6& -c_4 c_5 s_6 -s_4 c_6 & c_4 s_5\\
+s_4 c_5 c_6 + c_4s_6  & -s_4 c_5 s_6 + c_4 c_6 & s_4 s_5\\
+-s_5 c_6 & s_5 s_6 & c_5  \\
+\end{bmatrix}
+&= 
+\begin{bmatrix} 
+c_1 c_{23}&s_1 c_{23}  & s_{23} \\
+- c_1 s_{23}  & -s_1 s_{23} &  c_{23}\\
+s_1 & -c_1 & 0 \\
+\end{bmatrix}
+\begin{bmatrix} 
+r_{11} & r_{12} & r_{13} \\
+r_{21}  & r_{22} &  r_{23}\\
+r_{31} & r_{32} & r_{33} \\
+\end{bmatrix} \\
+
+\end{aligned} 
+$$
+
+Third column comparison:
+
+$$
+\begin{aligned} 
+& c_4 s_5 = c_1 c_{23} r_{13} + s_1 c_{23} r_{23} + s_{23} r_{33} \\
+& s_4 s_5 = -c_1 s_{23} r_{13} -s_1 s_{23} r_{23} + c_{23} r_{33} \\
+& c_5 = s_1 r_{13} - c_1 r_{23}\\
+& \therefore \theta_5 = Atan2(\pm \sqrt{1-(s_1 r_{13} - c_1 r_{23})^2 , s_1 r_{13} - c_1 r_{23}})
+\end{aligned} 
+$$
+
+If the __positive square root__ is choosen, 
+
+$$
+\begin{aligned} 
+& \theta_4 = Atan2(s_4 s_5, c_4 s_5) \\
+& \theta_4 = Atan2((-c_1 s_{23} r_{13} -s_1 s_{23} r_{23} + c_{23} r_{33}) , (c_1 c_{23} r_{13} + s_1 c_{23} r_{23} + s_{23} r_{33}) ) \\
+\end{aligned} 
+$$
+
+Third row comparison:
+
+$$
+\begin{aligned} 
+& -s_5 c_6 = s_1 r_{11} - c_1 r_{21} \\
+& s_5 s_6 = s_1 r_{12} - c_1 r_{22} \\
+& \theta_6 = Atan2( s_5 s_6  , -(-s_5 c_6)\\
+& \therefore \theta_6 = Atan2(( s_1 r_{12} - c_1 r_{22}) , (-s_1 r_{11} + c_1 r_{21}))
+\end{aligned} 
+$$
+
+
+If the __negative square root__ is choosen, 
+
+$$
+\begin{aligned} 
+& \theta_4 = Atan2(-s_4 s_5, -c_4 s_5) \\
+& \theta_4 = Atan2((c_1 s_{23} r_{13} + s_1 s_{23} r_{23} - c_{23} r_{33}) , (-c_1 c_{23} r_{13} - s_1 c_{23} r_{23} - s_{23} r_{33}) ) \\
+& \theta_6 = Atan2( -s_5 s_6  , (-s_5 c_6)\\
+&  \theta_6 = Atan2(( -s_1 r_{12} + c_1 r_{22}) , (s_1 r_{11} - c_1 r_{21}))
+\end{aligned} 
+$$
+
+If $$s_5 = 0$$, then joint axes $$z_3$$ and $$z_5$$ are colinear, and this is a __singular configuration__, so there are infinitely many solution($$\theta_4 + \theta_6 can be determined)
+
+
 
 
 
