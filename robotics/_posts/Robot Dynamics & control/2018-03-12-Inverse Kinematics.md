@@ -389,6 +389,7 @@ $$
 
 we  solve the inverse position kinematics for a 3 D.O.F spherical manipulator.
 The first joint variable is the base rotation and solution is
+
 $$
 \begin{aligned} 
 \theta_1 = Atan2(y_c, x_c) \qquad x_c \neq 0 \quad and \quad  y_c \neq 0
@@ -427,7 +428,7 @@ d_3 = \sqrt{r^2 + s^2} = \sqrt{x^2_c + y^2_c + (z_c - d_1)^2}
 \end{aligned} 
 $$
 
-> There are __2 solutions__ to the inverse position kinematics as long as the wrist center does not intersect $$z_0(x_c, y_c \neq = 0)$$.
+> There are __2 solutions__ to the inverse position kinematics as long as the wrist center does not intersect $$z_0(x_c, y_c \neq 0)$$.
 > 
 > If there is an offset them there will be left and right arm configurations.
 
