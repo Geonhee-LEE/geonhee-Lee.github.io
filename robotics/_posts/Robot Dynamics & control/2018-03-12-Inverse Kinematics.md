@@ -723,17 +723,17 @@ $$
 - Basic flowchart:
   
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/16.png" class="lead"   style="width:320px; height=:480px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/16.png" class="lead"   style="width:480px; height=:600px"/>
 </figure>
 
 - Numerical derivation of J:
   
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/17.png" class="lead"   style="width:320px; height=:480px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/17.png" class="lead"   style="width:240px; height=:360px"/>
 </figure>
   
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/18.png" class="lead"   style="width:320px; height=:480px"/>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/18.png" class="lead"   style="width:480px; height=:600px"/>
 </figure>
 
 
