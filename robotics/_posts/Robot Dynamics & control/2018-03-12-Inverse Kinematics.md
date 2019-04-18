@@ -436,7 +436,7 @@ $$
 ## Inverse Orientation
 
 - The __inverse position problem__ gives the values of the __first 3 joint variables__ corresponding to a given position of the wrist center.
-- The __inverse orientation problem__ is finding the values of __the final 3 joint variables__ corresponding to a given orientation with respect to the frame $$o_3x_3y3_z_3$$.
+- The __inverse orientation problem__ is finding the values of __the final 3 joint variables__ corresponding to a given orientation with respect to the frame $$o_3 x_3 y_3 z_3$$.
 - The __inverse orientation problem__ can be interpreted as the problem of finding a set of __Euler angles__ corresponding to a given rotation matrix R.
 - Recall that the rotation matrix obtained for the spherical wrist has the __same form as rotation matrix for the Euler transformation__:
 
