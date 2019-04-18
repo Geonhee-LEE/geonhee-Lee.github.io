@@ -656,6 +656,86 @@ $$
 \end{aligned} 
 $$
 
+### Example3: SCARA Manipulator
+
+Forward kinematics defined by
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/13.png" class="lead"   style="width:480px; height=:360px"/>
+</figure>
+
+There is no solution of the above equation, unless R is of the form
+
+$$
+\begin{aligned} 
+R = 
+\begin{bmatrix} 
+c_\alpha & s_\alpha & 0 \\
+s_\alpha  & -c_\alpha &  0\\
+0 & 0 & -1 \\
+\end{bmatrix} \\
+\end{aligned} \\
+$$
+
+And if this is the case, the sum $$\theta_1 + \theta_2 - \theta_4 is determined by
+
+$$
+\begin{aligned} 
+\theta_1 + \theta_2  - \theta_2 = \alpha = Atan2(r_{12}, r_{11})
+\end{aligned} \\
+$$
+
+Projecting the manipulator configuration onto the $$x_0 - y_0$$ plane:
+
+$$
+\begin{aligned} 
+& \theta_2 = Atan2(\pm \sqrt{1-c^2_c}, c_2)\\
+&where \quad c_2 = \frac{x_c^2 +y^2_c -a_1^2 -a^2_2}{2a_1a_2}\\
+& \theta_1 = Atan2(y_c, x_c) - Atan2(a_2s_2, a_1 + a_2 c_2)
+\end{aligned} \\
+$$
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/15.png" class="lead"   style="width:320px; height=:240px"/>
+</figure>
+
+Then, 
+
+$$
+\begin{aligned} 
+\theta_2 &=  \theta_1 + \theta_2 - \alpha \\
+&= \theta_1 + \theta_2 -Atan2(r_{12}, r_{11})
+\end{aligned} \\
+$$
+
+Finally,
+
+$$
+\begin{aligned} 
+d_3 = - o_z - d_4
+\end{aligned} \\
+$$
+
+-------------
+
+## Inverse Kinematics: A Numerical Approach
+
+- Basic flowchart:
+  
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/16.png" class="lead"   style="width:320px; height=:480px"/>
+</figure>
+
+- Numerical derivation of J:
+  
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/17.png" class="lead"   style="width:320px; height=:480px"/>
+</figure>
+  
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/18.png" class="lead"   style="width:320px; height=:480px"/>
+</figure>
+
 
 
 
