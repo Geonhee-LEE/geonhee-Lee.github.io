@@ -387,7 +387,52 @@ $$
 
 ### Spherical Configuration
 
-we 
+we  solve the inverse position kinematics for a 3 D.O.F spherical manipulator.
+The first joint variable is the base rotation and solution is
+$$
+\begin{aligned} 
+\theta_1 = Atan2(y_c, x_c) \qquad x_c \neq 0 \quad and \quad  y_c \neq 0
+\end{aligned} 
+$$
+
+Second solution is 
+
+$$
+\begin{aligned} 
+\theta_2 = \pi + Atan2(y_c, x_c)
+\end{aligned} 
+$$
+
+if both $$x_c$$ and $$y_c$$ are zero, the configuration is singular and $$\theta_1$$ may take on any value.
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Robot_dynamics/lec4/11.png" class="lead"   style="width:320px; height=:240px"/>
+</figure>
+
+The angle $$\theta_2$$ is given by
+
+$$
+\begin{aligned} 
+\theta_2 = Atan2(s, r)
+\end{aligned} 
+$$
+
+where $$r^2 = x^2_c + y^2 _c, s = z_c - d_1$$
+
+The linear distance $$d_3$$ is found as
+
+$$
+\begin{aligned} 
+d_3 = \sqrt{r^2 + s^2} = \sqrt{x^2_c + y^2_c + (z_c - d_1)^2}
+\end{aligned} 
+$$
+
+> There are __2 solutions__ to the inverse position kinematics as long as the wrist center does not intersect $$z_0(x_c, y_c \neq = 0)$$.
+> 
+> If there is an offset them there will be left and right arm configurations.
+
+
+
 
 ------------
 
