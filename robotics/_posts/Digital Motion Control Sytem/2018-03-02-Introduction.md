@@ -6,7 +6,7 @@ tags: digital_motion_control
 comments: true
 ---
 
-# Digital Motion Control System - Lecture1: Review
+# Digital Motion Control System: Lecture1- Review
 
 ## Table of Contents
 {:.no_toc}
@@ -145,6 +145,13 @@ This means that a root of the characteristic equation(system modes) is 0 or pure
 
 #### Stability of the Zero-State Response: BIBO stability
 
+The output of a linear time invariant system with general input x(t) is given by the convolution integral
+
+$$
+\begin{aligned}
+Y(s) = \frac{IC(s)}{D(s)}
+\end{aligned} 
+ $$
 
 
 
