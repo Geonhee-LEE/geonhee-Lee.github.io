@@ -26,7 +26,7 @@ $$
 $$
 
 - __Jacobian__ matrix: one of the most important quantities in robotic manipulation
-  - In the planning and exectution of smooth trajectories, in the determination of __singular configurations__, in the execution of coordinated anthropomorphic motion, and in the __transformation of forces and torques__from the end-effector to the manipulator joints.
+  - In the planning and exectution of smooth trajectories, in the determination of __singular configurations__, in the execution of coordinated anthropomorphic motion, and in the __transformation of forces and torques__ from the end-effector to the manipulator joints.
 
 $$
 \begin{aligned}
@@ -316,7 +316,7 @@ $$
 
 - We are often interested in findingthe resultant angular velocity due to the __relative rotation of several coordinate frames__.
 - We now derive the expressions for the composition of angular velocities of two frames $$o_1 x_1 y_1 z_1$$ and $$o_2 x_2 y_2 z_2$$ relative to the fixed frame $$o_0 x_0 y_0 z_0$$.
-  - The 3 frames share __a common origin__. 
+  - The 3 frames share __a common origin__.  
 
 $$
 \begin{aligned}
