@@ -315,6 +315,15 @@ $$
 ## Addition of Angular Velocities
 
 - We are often interested in findingthe resultant angular velocity due to the __relative rotation of several coordinate frames__.
+- We now derive the expressions for the composition of angular velocities of two frames $$o_1 x_1 y_1 z_1$$ and $$o_2 x_2 y_2 z_2$$ relative to the fixed frame $$o_0 x_0 y_0 z_0$$.
+  - The 3 frames share __a common origin__. 
+
+$$
+\begin{aligned}
+R^0_2(t) = R^0_1(t) R^1_2(t)
+\end{aligned} 
+$$
+
 
 
 
