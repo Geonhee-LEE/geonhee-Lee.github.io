@@ -2,10 +2,10 @@
 layout: post
 title:  "Mathematics"
 categories: mathematics
-tags: optimiation
+tags: optimization
 comments: true
 ---
 
-# Optimiation 
+# optimization 
 
-Optimiation
+optimization

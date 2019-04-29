@@ -51,6 +51,8 @@ comments: true
         -   더욱 복잡한 상황에서 demonstration으로부터 학습의 적용가능성 재고려.
 
 
+--------
+
 
 ### Reinforcement Learning from Demonstration
 
@@ -60,14 +62,14 @@ comments: true
     -   두 task에서, learner는 one-step reward $$r$$이 주어지고, continuous state 및 action 문제로 formulation.
     -   각각의 목표는 __infinite horizon discounted reward를 최소화하는 policy를 찾는 것__
 
+여기서, 왼쪽 eqn: continous time formulation, 오른쪽 eqn: discrete time version. 
+x: n-차원 state vector, u: m차원 입력 vector.
+
 $$
 \begin{aligned}
 V(x(t)) = \int^{\infty}_t e^{-\frac{(s-t)}{\tau}} r(x(s),u(s)) ds \quad or \quad V(x(t)) = \sum^{\infty}_{i=t} \gamma ^{i-t} r(x(i), u(i))
 \end{aligned}
 $$
-
-여기서, 왼쪽 eqn: continous time formulation, 오른쪽 eqn: discrete time version. 
-x: n-차원 state vector, u: m차원 입력 vector.
 
 -   Swing-Up에 대해, teacher는 다른 initial condition에서 시작한 5 개의 성공적 시도를 제공한다고 가정.
     -   각각의 시도는 60Hz로 샘플링되는 data vector $$(\theta, \dot{\theta}, \tau)$$의 time series로 구성
@@ -95,3 +97,84 @@ $$
         -   Value function $$V(x)$$
         -   Policy $$\pi(x)$$
         -   Model $$f(x,u)$$
+
+
+
+##### V-Learning
+
+-   Swing-Up에 대해 demonstration의 benefit을 평가하기 위해서, _Doya's(1996)_ 에서 제안된 __continous TD(CDT) 학습으로 V-learning을 구현__.
+    -   V-function 및 dynamics model은 nonlinear function approximator(Receptive Field Weighted Regression-RFWR))에 의해 점차적으로 학습됨.
+        -   _NN의 발전이 크지않아 approximator를 다른 방법으로 사용한 것 같음_
+    -   _Doya's_ 방법과 다른 것은 policy $$\pi$$ (__"actor"__ as in _Barto_ Barto et al. (1983))의 __model를 학습하기 위해 CTD에서 제안된 optimal action을 사용__ (RFWR으로 표현됨).
+
+-   다음의 학습 condition들은 경험적으로 실험:
+    -   a) _Scratch_  : 처음부터 value function _V_, model _f_, actor $$\pi$$ 의 trial by trial learning.
+    -   b) _Primed Actor_ : demonstration에서의 $$\pi$$의 초기 training 이후, trial by trial learning.
+    -   c) _Primed Model_: demonstration에서 _f_ 의 초기 training 이후, trial by trial learning.
+    -   d) _Primed Actor & Model_ : b) 및 c)에서의 $$\pi$$ 와 _f_의 priming 이후, trial by trial learning.
+
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/1.png" class="lead"   style="width:320px; height=:600px"/>
+</figure>
+
+-   Fig. 2는 Swing-up 학습 결과
+    -   각 trial은 60초 지속
+    -    Time $$T_{up}$$은 각 trial 동안 $$\theta \in [-\pi/2, \pi/2] 에서 pole이 보내는 시간.
+-    a) 와 c)를 비교: Demonstration에서의 pole model 학습은 가속화되지 않음.
+     -    당연한 결과: V-function을 학습하는 것은 model을 학습하는 것보다 상당히 복잡하고, 이것은 학습 과정은 V-function learning에 의해 우선시(dominate)된다.
+     -    흥미롭게도, demonstration에서 action를 priming은 초기 performance(condition a vs. b)에서 상당한 효과를 가진다.
+-   시스템은 pendulum을 pump up 시키는 올바른 방법을 알고 있지만 __upright position에서 pendulum을 balancing하기 위해서는, 결국 처음부터 학습하는 것처럼 동일한 시간이 소요__.
+    -   이 행동은 이론적으로 __V-function이 전체 state-action space가 densely explore 되어지면 유일하게 정확하게 근사__ 되어질 수 있기 때문.
+    -   _전체 state-action space에 대한 정보를 알아야 최적의 해를 구할 수 있음_
+    -   만약 demonstration이 전체 state space의 많은 부분을 cover하는 경우에는, V-learning은 이익을 볼 수 있을것이라 예상.
+-   V-function만을 prime거나 다른 함수들을 가지고 조합하는 demonstration을 사용하는 것도 조사.
+    -   이 결과들은 정량적으로 Fig. 2와 동일:
+        -   만약 policy가 priming에 포함되어 있다면, learning traces는 b), d)와 같고 다른 경우는 a), c)
+    -   다시말하지만, 이것은 전체적으로 놀라운 결과는 아니다.
+        -   V-function을 근사시키는 것은 단순히 $$\pi, f$$에 관한 supervised learning이 아닌, (2)(consistency equation)의 validity(타당성)를 확인하기 위한 iterative 절차를 요구하고 복잡한 nonstationary funtion approximation 과정에 해당.
+        -   Demonstration으로부터 data가 제한되면, 일반적으로 좋은 value function을 근사는 불가능.
+
+
+##### Model-Based V-Learning
+
+-   __model _f_ 를 학습하는 것은, 이를 더욱 강력하게 사용가능__.
+    -   [certainty equivalence의 원리](https://en.wikipedia.org/wiki/Stochastic_control#cite_note-Chow-2)에 따르면, _f_ 는 real world를 대체할 수 있고 real world와 interaction대신에 "mental simulations"에서 planning이 동작될 수 있음.
+    -   RL에서, 이 idea는 원래 discrete state-action space에 대한 Sutton's(1990) DYNA 알고리즘에 의해 제안.
+    -   여기서 DYNA, DYNA-CTD의 continuous 버전이 얼마나 learning from demonstration에서 도움이 될 수 있는지를 탐구(explore)할 것.
+    -   Section 2.1.1(V-Learning)에서 CTD와 비교하여 얻은 유일한 차이점은 모든 real trial 이후에, DYNA-CTD는 __지금까지 획득한 dynamics 모델이 실제 pole dynamics를 대체하는 다섯 번의 "mental trials"을 수행.__
+    -   두 개의 learning conditions:
+        -   _Scratch_: 처음부터 _V_, model _f_, policy $$\pi$$의 trial by trial learning.
+        -   _Primed Model_: demonstraion으로부터 _f_의 초기 training 이후, trial by traial learning.
+    -   Fig. 3.는 이전 section에서 V-learning과 대조적.
+        -   __Learning from demonstraion은 상당한 차이를 보임__
+            -   Stable balancing을 가지는 좋은 swing-up을 성취하기 위해서는 단지 demonstration 이후 2-3 traial만 필요, $$T_{up}$$ > 45s.
+
+
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/2.png" class="lead"   style="width:320px; height=:600px"/>
+</figure>
+
+> Note that
+> > 처음부터 학습하는 것도 Fig. 2.보다 상당히 빠름.
+
+
+
+#### The Nonlinear task: CART-POLE BALANCING
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
