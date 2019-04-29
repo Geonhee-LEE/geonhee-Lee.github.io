@@ -163,11 +163,28 @@ $$
 
 #### The Nonlinear task: CART-POLE BALANCING
 
+-   Swing-Up task에 대한 demonstration으로부터 RL를 적용하는 것은 시기상조.
+    -   __Nonlinear function approximation을 가진 RL은 아직 적절한게 없음__(yet to obtain appropriate scientific understanding).
+    -   따라서, 이 section에서 좀 더 쉬운 task(cart-pole balancer)로 변경.
+    -   이 task는 pole이 upright position에 가까울 때, approximately linear.
+    -   이 문제는 LQR(_Dyer & McReynolds, 1970_)의 맥락에서 DP literature에서 잘 연구됨.
 
 
 
+#### Q-Learning
+
+-   V-learning과 대조적으로, Q-learning(_Watkins, 1989; Singh & Sutton, 1996_)은 value function보다 더욱 복잡, Q(x, u), state 및 command(input)에 의존.
+-   consistency equation (2)와 유사한 Q-learning:
 
 
+$$
+\begin{aligned}
+Q(x(t), u(t)) = r(x(t), u(t)) + \gamma argmin_{u(t+1)} (Q(x(t+1), u(t+1))  \qquad(3)
+\end{aligned}
+$$
+
+-   매 state __x__ 마다, reward function (1)하에서 optimal action이고 Q를 최소화하는 action __u__ 를 선택.
+    -   장점ㅇㄴㅇ
 
 
 
