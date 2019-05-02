@@ -283,8 +283,8 @@ $$
 
 -   __Delayed Visual Information__: 
     -   Delayed vaeiables를 다루는 두 가지 방법:
-        -   1. Sytem의 state에 7*1/60s = 120 delay time, $$x^T = (x, \dot{x}, \theta, \dot{\theta{, u_{t-1}, u_{t-2}, ..., u_{t-7}$$ , 와 일치하는  delayed commands을 augmentation
-        -   2. state predictive controller를 employ하는 방법.
+        -   $$1$$. Sytem의 state에 7*1/60s = 120 delay time, $$x^T = (x, \dot{x}, \theta, \dot{\theta{, u_{t-1}, u_{t-2}, ..., u_{t-7}$$ , 와 일치하는  delayed commands을 augmentation
+        -   $$2$$. state predictive controller를 employ하는 방법.
         -   첫 번째 방법은 policy의 complexity를 상당히 증가, 두번째 방법은 model _f_를 요구.
 
 
@@ -318,7 +318,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/7.png" class="lead"   style="width:480px; height=:640px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/7.png" class="lead"   style="width:480px; height=:480px"/>
 </figure>
 
 
