@@ -161,7 +161,7 @@ $$
 
 
 
-#### The Nonlinear task: CART-POLE BALANCING
+### The Nonlinear task: CART-POLE BALANCING
 
 -   Swing-Up task에 대한 demonstration으로부터 RL를 적용하는 것은 시기상조.
     -   __Nonlinear function approximation을 가진 RL은 아직 적절한게 없음__(yet to obtain appropriate scientific understanding).
@@ -184,12 +184,156 @@ Q(x(t), u(t)) = r(x(t), u(t)) + \gamma argmin_{u(t+1)} (Q(x(t+1), u(t+1))  \qqua
 $$
 
 -   매 state __x__ 마다, reward function (1)하에서 optimal action이고 Q를 최소화하는 action __u__ 를 선택.
-    -   장점ㅇㄴㅇ
+    - 장점: optimal policy를 찾기 위해 Q-function을 평가하는 것은 __제어할 대상의 dynamical system _f___ 를 요구하지 않음;
+       -  오직 one-step reward _r_의 값만 필요
+    - Demonstration에서 learning하기 위해서는, Q-function and/or policy를 priming하는 것은 learning을 가속화하는 두 개의 후보이다.
+
+
+-   LQR 문제는 Bradtke (1993)가 policy를 추출한 것을 기반으로하는 demonstration에서 이상적으로 학습에 적합한 Q-learning 방법을 제안.
+    -   LQR에 대해 Q-function이 state 및 commands(input)이 quadratic인 것을 관측.
+    -   Gain matrix __K__ 로 표현되는 (linear) policy는 _(4)_ 에서 _(5)_ 와 같은 추출 할 수 있다.
+
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/3.png" class="lead"   style="width:320px; height=:120px"/>
+</figure>
+
+
+$$
+\begin{aligned}
+u_{opt} = -K x = - H ^{-1} _{22} H _{21} x (5)
+\end{aligned}
+$$
+
+
+-   반대로, stabilizing initial policy $$K_{demo}$$ 가 주어지면, 현재 Q-function은 __recursive least squares procedure에 의해 근사__ 되고 수렴성이 보장되는 (Bradkte, 1993) policy iteration 과정에 의해 __최적화__. 
+
+-   corresponding obseved states _x_ 에 대한 observed command _u_ 를 __linearly regressing함으로서 초기 policy $$K_{demo}$$ 를 추출__ 하도록 demonstration이 허용하기에, pole balancing의 one-shot learning을 성취하는 것.
+
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/4.png" class="lead"   style="width:320px; height=:240px"/>
+</figure>
+
+-   Fig. 4.를 보면, 120초 정도 후(12 policy iteration step)에, policy는 기본적으로 optimal policy와 기본적으로 구별 불가
+    - 그러나, __Q-learning의 주의사항은 stabilizing initial policy없이 학습불가__
 
 
 
+#### Model-based V-Learning
+
+-   __V-function을 학습 하여 LQR task를 학습__ 하는 것: DP(Dyer&)의 classic form 중의 하나.
+    -   Stabilizing initial policy $$K_{demo}$$ 를 사용하여, 현재 V-function 은 Bradtke (1993)과 유사하게 recursive least square에 의해 근사.
+    -   $$K_{demo}$$ 와 유사하게, __cart-pole dynamics의 (linear) model $$f_{demo}$$__ 은 cart-pole state x(t)의 linear regression에 의해 demonstration에서 추출 vs. 이전 state 및 command vector (x(t-1), u(t-1)), model은 학습 중에 경험하는 매번 새로운 data point을 가지고 정제될 수 있음.
+    -   Policy update:
 
 
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/5.png" class="lead"   style="width:480px; height=:120px"/>
+</figure>
+
+
+-   따라서, Bradtke(1993)와 같이 유사한 과정은 optimal policy K를 찾기 위해 사용될 수 있고, system은 one shot learning을 성취하며, Fig. 4와같이 정량적으로 구별 불가.
+
+> V-learning, Q-learning과 다르게 model이 필요, $$f_demo$$ = [A B] 
+
+-   Section 2.1.2 (이전 Model-Based V-Learning)에서 지적했던 것처럼, mental simulation을 수행함으로써 __학습된 모델을 더욱 효율적으로 사용하도록 만듬__.
+    -   model $$f_{demo}$$이 주어지면, __policy K은 H의 초기 추정치로부터 off-line policy iteration에의해 계산__ 할 수 있고, e.g., identity matrix (Dyer & McReynolds, 1970)로 취해짐.
+    -  __따라서, initial (stabilizing) policy가 요구되지않고, task dynamics의 추정치를 요구.__
+    -  또한, 이 방법은 one shot learning을 성취.
+
+
+
+#### Pole balacing with an Actual Robot
+
+-   이전 section의 결과로서, LQR 문제들에 대해 model-based V-learning 및 V-learning, Q-learning간의 실제 성능 차이는 없는 것 같음
+    -   더욱 realistic framework에서 이러한 방법들의 유용성을 검증하기 위해서, anthropomorphic robot arm에서 pole balancing의 demonstration에서의 learning을 구현
+        -   Robot은 60Hz video-based stereo vision 장착.
+        -   Pole은 real-time으로 track할 수 있도록 두 color blob들로 표기.
+        -   두개의 전면 카메라를 세우고 human에 의해 pole balancing의 30초 long demonstration이 제공.
+
+
+- __Simulation과 비교하여 몇가지 중요한 차이점:__
+  - 1. demonstration이 vision-based이므로, kinematic 변수들만 demonstration에서 추출할 수 있다.
+  - 2. visual signal processing은 120ms의 시간지연을 가진다.
+  - 3. robot에 주어진 command는 로봇의 unknown nonlinearities때문에 높은 정확도를 가지는 execution은 아니다.
+  - 4. human은 pole balancing에 대해 internal state를 사용한다
+    - 즉, human policy는 부분적으로 non-observable variables을 부분적으로 기반한다.
+
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/6.png" class="lead"   style="width:180px; height=:480px"/>
+</figure>
+
+-   위와 같은 issue들은 다음과 같은 영향을 가진다:
+-   __Kinematic Variable__: 
+    -   구현은 robot arm은 Cart-Pole problem의 cart로 대체. 
+    -   Arm의 inverse dynamics, inverse kinematics의 추정치를 가지므로, Cartesian 공간에서 task에 command input으로 finger의 가속도 사용 가능.
+    -   Arm은 또한 pole보다 훨씬 무거워, pole이 arm에 발휘하는 interaction force를 무시함.
+    -   따라서, Fig. 1b의 pole balancing dynamics는 _(7)_와 같이 reformulation
+        -   Equation에서 모든 변수들은 demonstration에서 추출 가능.
+        -   이러한 방정식의 extension은 생략.
+
+$$
+\begin{aligned}
+uml cos \theta + \ddot{\theta} m l^2 - mgl sin \theta, \ddot{x} u  \quad (7)
+\end{aligned}
+$$
+
+
+-   __Delayed Visual Information__: 
+    -   Delayed vaeiables를 다루는 두 가지 방법:
+        -   1. Sytem의 state에 7*1/60s = 120 delay time, $$x^T = (x, \dot{x}, \theta, \dot{\theta{, u_{t-1}, u_{t-2}, ..., u_{t-7}$$, 와 일치하는  delayed commands을 augmentation
+        -   2. state predictive controller를 employ하는 방법.
+        -   첫 번째 방법은 policy의 complexity를 상당히 증가, 두번째 방법은 model _f_를 요구.
+
+
+-   __Inaccuracies of Command Execution__:
+    -   가속도 명령 _u_ 가 주어지면, 로봇은 _u_ 에 가깝게 실행하지만 정확한 _u_ 는 아님.
+    -   따라서, _u_ 를 포함한 function을 학습하는 것(e.g., dynamics model)은 위험할 수 있으며, 이유는 mapping $$(x, \dot{x}, \theta, \dot{\theta}, u) \rightarrow  (\ddot{x}, \ddot{\theta})$$ 이 robot arm의 nonlinear dynamics에 의해 contaminated(오염)되기 때문이다.
+    -   게다가, 이러한 model을 믿을만하게(reliably) 학습할 수 없다고 밝혀졌다.
+    -   이것은 command _u_ 를 "관측(observing"하여 개선(remedied)될 수 있다
+        -   즉, visual feedback으로부터 $$u = \ddot{x}$$을 추출.
+
+
+
+-   __Internal State__:
+    -   Human은 pole balancing에서 internal state 사용. 
+    -   따라서, policy는 Section 2.2(THE LINEAR TASK: CART-POLE BALANCING)에서 주장했듯이 더욱 쉽게 관측될 수 없다
+        -   Teacher의 policy를 추출하기 위한 regression analysis는 현재 state 및 과거 command(s)의 적절한 time-alignment를 찾아야만 한다.
+        -   Delayed commands에 기반한 policy를 regressing이 singular regression 행렬들에 의해 위험(endanger)해지게되면, 수치적으로 관련된 과정이 될 수 있다.
+    - 결과적으로, Section 2.2에서 설명했듯이 Q-learning, V-learning의 응용을 막아버리는, __demonstration에서 _nonstabilizing_ policy를 추출하는 것은 쉽게 일어__ 난다. 
+      - _policy를 추출할때 방해요소는 쉽게 발생_
+
+    -   이러한 고려사항의 결과는, __demonstration에서 추출하기 하는 가장 믿을만한 요소는 pole dynamics의  model__ .
+        
+    -   저자의 구현에서는, (6, Model-based V-learnign)와 같이 policy를 계산하기 위해서 사용되는 두가지 방법이 있고, visual information processing에서 delay를 극복하기 위해 Kalman filter를 가지고 state-predictive control을 사용.
+        -   model은 RFWR(Schaal & Atkeson 1996)의 구현으로 real-time으로 점진적으로 학습
+
+    - Fig. 6은 실제 로봇의 demonstration에서의 학습과 처음부터 학습의 결과를 보여줌.
+        -   Demonstration이 없다면, 1분이상 지속하는 학습은 10-20 traial이 소요.
+        -   __30초 long demonstarion을 가지면, 학습은 one single trial로 믿을만하게 성취__
+            -   다양한 사람의 demonstration들을 사용하고 다양한 pole을 사용.
+
+
+
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/7.png" class="lead"   style="width:480px; height=:640px"/>
+</figure>
+
+
+### Conclusion
+
+-  Q-learning, V-learning, model vased RL에 초점을 맞춘, RL 맥락에서 learning from demonstration을 다뤘다.
+-  World의 predictive model을 추출, Q/Value function을 prime하여 demonstration data를 사용, policy를 추출하여 demonstraion에서  Q-learning 및 value function learning은 이론적으로 이득을 봄.
+   -  그러나, __LQR 문제의 special case에서만__ demonstration으로부터 learner를 priming하는 상당한 이익을 찾음.
+   -  __대조적으로, model-based RL은 "mental simulations"에 대해 world의 predictive model을 사용하여 demonstration으로부터 많은 이득을 취할 수 있었다.__
+
+-   Anthropomorphic robot arm 구현에서, LQR 문제에서 구현
+    -    __MBRL은 Q-learning, value fucntion learning보다 실제 learning 시스템에서 complexity에 대해 더욱이 robust함을 제공__
+    -    Model based 방법을 사용하여 _single_ trial에서 demonstration에서 로봇이 pole-balancing을 매우 좋은 reliability을 가지고 학습
+
+-   이 논문에서 가장 중요한 것은 __모든 학습 접근방법이 동등하게 knowledge를 transfer and/or biases의 결합이 동등하게 적용되지 않는다는 것__
 
 
 

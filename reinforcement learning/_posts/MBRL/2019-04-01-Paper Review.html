@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>[PAPER-Review] Model-based Reinforcement learning</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <hr>
+<h2 id="layout-posttitle-%22rl%22categories-rltags-mbrlcomments-true">layout: post<br>
+title:  &quot;RL&quot;<br>
+categories: RL<br>
+tags: MBRL<br>
+comments: true</h2>
+<h1 id="paper-review-model-based-reinforcement-learning">[PAPER-Review] Model-based Reinforcement learning</h1>
+<h2 id="learning-from-demonstration-stefan-stefan-schaal-1997">Learning From Demonstration Stefan, Stefan Schaal, 1997</h2>
+<h3 id="abstract">Abstract</h3>
+<ul>
+<li>
+<p>1997년도에는 사전지식 없이 처음(scratch)부터 task를 학습하는 것은 어려운 일.</p>
+<ul>
+<li>그러나, 사람은 드물게 처음부터 학습을 시도.</li>
+</ul>
+</li>
+<li>
+<p>Control를 학습하기 위해, 이 논문은 <strong>RL의 맥락에서 demonstration으로부터 어떻게 학습을 적용되는 지를 조사</strong></p>
+<ul>
+<li>Demonstration들이 학습을 가속화하는 가능한 area인 task dynamics의 model, Q-function, Value-function, policy를 준비하는 것을 고려. (<strong>model, value function등을 사용하여 학습을 가속화</strong> 하겠다.)</li>
+</ul>
+</li>
+<li>
+<p>일반적인 nonlinear learning 문제에서 오직 MBRL만 demonstration이후에 상당한 속도향상을 보여주지만, LQR 문제의 경우(선형)에는 모든 method들은 demonstration으로부터 이익을 본다.</p>
+</li>
+<li>
+<p>이 논문에서 시연하는 복잡한 anthromorphic robot arm에서 pole balancing 구현에서는, <strong>실제 signal processing의 복잡함에 직면할때 MBRL은 LQR 문제에 대해 가장 큰 robustness 를 제공</strong>.</p>
+</li>
+</ul>
+<hr>
+<h3 id="introduction">Introduction</h3>
+<ul>
+<li>
+1.$$ Inductive supervised learning 방법은 정교함의 높은 수준에 도달.
+-   Nature에 대한 사전 지식들이나 data set이 주어지면, error criterion를 최소화하여 data로부터 structure를 추출하는 알고리즘의 host가 존재.
+
+<ul>
+<li>여기서, <strong>목표는 policy를 학습하는 것</strong>.</li>
+<li>i.e., task를 성취하기 위한 dynamical system으로 유도하는 거나 인지한 state에 반응하여 적절한 행동을 하는 것.</li>
+<li>Task는 일반적으로 임의의 performance index의 관점에서 묘사되기 때문에, 지도하는 방법으로 controller를 학습하는 <strong>data를 직접적 학습하는 것은 존재하지 않음</strong>
+<ul>
+<li>더욱 문제가 되는 것은, <strong>performance index는 task의 long term 행동에 걸쳐 정의</strong> 가 되며 현재 performance에 대해 과거의 행동이 얼마나 좋은지(credit) 안좋은지(blame)를 결정하는 temporal credit assignment 문제가 발생.</li>
+<li>위와같은 setting(RL에 대해서는 일반적)에서, 처음부터 task를 학습하는 것은  <strong>good policy를 찾기 위해서</strong> state-action space의 exploration의 time-consuming amount(소요시간)을 상당하게 요구.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+2.$$ 반대로 사전 지식 없이 학습하는 것은 인간이나 동물이 거의 취하는 않는 접근
+-   New task에 접근하는 방법에 대한 knowledge는 이전에 학습된 task에서 transfer 가능 ang/or teacher의 performance로 추출.
+-   New task를 빠르게 성취하기 위해 다양한 정보로 control을 하는 것은 아직 open questions.
+-   이 논문: __Demonstration에서 학습을 focus 할 것__
+
+
+<ul>
+<li>목표: 전문가에 의해 assembly task를 로봇하게 단독으로 보여주는 automatic programming process을 시간이 많이 소요되는 로봇의 manual programming을 대체하고자 함.</li>
+<li>이 논문: <strong>RL과 demonstration으로부터 learning이 어떻게 이익이 되는지에 집중</strong></li>
+<li>RL을 2개 카테고리로 분류
+<ul>
+<li>Section2) Nonlinear task에 대한 RL</li>
+<li>Section3) (Approximately) linear task에 대한 RL</li>
+</ul>
+</li>
+<li>Q-learning, value-function learning, model-based RL와 같은 method는 demonstration으로부터 data에서 이익을 볼 수 있는 방법을 조사.
+<ul>
+<li>Section 2.3, example task, pole balancing은 이를 학습하기 위해 실제 anthropomorphic을 사용.</li>
+<li>더욱 복잡한 상황에서 demonstration으로부터 학습의 적용가능성 재고려.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="reinforcement-learning-from-demonstration">Reinforcement Learning from Demonstration</h3>
+<ul>
+<li>두 개의 task는 demonstration에서의 학습을 살펴보는 basis.
+<ul>
+<li>Nonlinear task: pendulem swing-up with limited torque</li>
+<li>(Approximately) Linear task: cart-pole</li>
+<li>두 task에서, learner는 one-step reward $$r$$이 주어지고, continuous state 및 action 문제로 formulation.</li>
+<li>각각의 목표는 <strong>infinite horizon discounted reward를 최소화하는 policy를 찾는 것</strong></li>
+</ul>
+</li>
+</ul>
+<p>여기서, 왼쪽 eqn: continous time formulation, 오른쪽 eqn: discrete time version.<br>
+x: n-차원 state vector, u: m차원 입력 vector.</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>V</mi><mo>(</mo><mi>x</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>)</mo><mo>=</mo><msubsup><mo>∫</mo><mi>t</mi><mi mathvariant="normal">∞</mi></msubsup><msup><mi>e</mi><mrow><mo>−</mo><mfrac><mrow><mo>(</mo><mi>s</mi><mo>−</mo><mi>t</mi><mo>)</mo></mrow><mi>τ</mi></mfrac></mrow></msup><mi>r</mi><mo>(</mo><mi>x</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo separator="true">,</mo><mi>u</mi><mo>(</mo><mi>s</mi><mo>)</mo><mo>)</mo><mi>d</mi><mi>s</mi><mspace width="1em"/><mi>o</mi><mi>r</mi><mspace width="1em"/><mi>V</mi><mo>(</mo><mi>x</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mi>t</mi></mrow><mi mathvariant="normal">∞</mi></munderover><msup><mi>γ</mi><mrow><mi>i</mi><mo>−</mo><mi>t</mi></mrow></msup><mi>r</mi><mo>(</mo><mi>x</mi><mo>(</mo><mi>i</mi><mo>)</mo><mo separator="true">,</mo><mi>u</mi><mo>(</mo><mi>i</mi><mo>)</mo><mo>)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+V(x(t)) = \int^{\infty}_t e^{-\frac{(s-t)}{\tau}} r(x(s),u(s)) ds \quad or \quad V(x(t)) = \sum^{\infty}_{i=t} \gamma ^{i-t} r(x(i), u(i))
+\end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.2290660000000004em;vertical-align:-1.364533em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8645330000000004em;"><span style="top:-3.8645330000000007em;"><span class="pstrut" style="height:3.6513970000000002em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.414292em;"><span style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span><span style="top:-3.8129000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∞</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9119499999999999em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">e</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.13945em;"><span style="top:-3.4130000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight"><span class="mopen nulldelimiter sizing reset-size3 size6"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0377857142857143em;"><span style="top:-2.656em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.1132em;">τ</span></span></span></span><span style="top:-3.2255000000000003em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line mtight" style="border-bottom-width:0.049em;"></span></span><span style="top:-3.5020714285714285em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mopen mtight">(</span><span class="mord mathdefault mtight">s</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">t</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.344em;"><span></span></span></span></span></span><span class="mclose nulldelimiter sizing reset-size3 size6"></span></span></span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">u</span><span class="mopen">(</span><span class="mord mathdefault">s</span><span class="mclose">)</span><span class="mclose">)</span><span class="mord mathdefault">d</span><span class="mord mathdefault">s</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mspace" style="margin-right:1em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6513970000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mathdefault mtight">t</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">∞</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.874664em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mbin mtight">−</span><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">u</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.364533em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>Swing-Up에 대해, teacher는 다른 initial condition에서 시작한 5 개의 성공적 시도를 제공한다고 가정.
+<ul>
+<li>각각의 시도는 60Hz로 샘플링되는 data vector $$(\theta, \dot{\theta}, \tau)$$의 time series로 구성</li>
+</ul>
+</li>
+<li>Cart-Pole에 대해, 성공적인 balancing의 30초 demonstration을 가지며, data vector $$(x, \dot{x}, \theta, \dot{\theta}, F)$$</li>
+</ul>
+<blockquote>
+<p>어떻게 RL을 가속화하기 위해 demonstration이 사용되는 방법은?</p>
+</blockquote>
+<h4 id="the-nonlinear-task-swing-up">The Nonlinear task: Swing-up</h4>
+<ul>
+<li>Swing-up에 task에 대해서 Value fucntion(V-function) (<em>Dyer &amp; McReynolds, 1970</em>)을 학습하는 기반으로 하는 RL을 적용하고, 대안적인 방법으로 Q-learning(<em>Watkins, 1989</em>)은 continous state-action space에 대해 아직 limited research를 받음.
+<ul>
+<li>V-function은 scalar reward value $$V(x(t))$$  각 state에 대해 assign하고 다음 consistency equation을 만족:</li>
+</ul>
+</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>V</mi><mo>(</mo><mi>x</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>)</mo><mo>=</mo><mi>a</mi><mi>r</mi><mi>g</mi><mi>m</mi><mi>i</mi><msub><mi>n</mi><mrow><mi>u</mi><mo>(</mo><mi>t</mi><mo>)</mo></mrow></msub><mo>(</mo><mi>r</mi><mo>(</mo><mi>x</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo separator="true">,</mo><mi>u</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>)</mo><mo>+</mo><mi>γ</mi><mi>V</mi><mo>(</mo><mi>x</mi><mo>(</mo><mi>t</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>)</mo><mo>)</mo><mspace width="2em"/><mo>(</mo><mn>2</mn><mo>)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+V(x(t)) = argmin_{u(t)} (r(x(t), u(t)) + \gamma V(x(t+1))) \qquad(2)
+\end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5000000000000002em;vertical-align:-0.5000000000000002em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1em;"><span style="top:-3.16em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">u</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">t</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">u</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mord mathdefault" style="margin-right:0.22222em;">V</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:2em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5000000000000002em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>이 방정식은 discrete state-action system; continuous formulation은 (Doya(1996))참조
+<ul>
+<li>Optimal policy: $$u = \pi(x)$$, (2)를 만족하는 state x에서 action u를 선택.</li>
+<li>이 계산은 subsequent state x(t+1)의 knowledge를 포함하는 optimization step를 포함.
+<ul>
+<li>따라서, <strong>controlled system 의 dynamics의 model($$x(t+1) = f(x(t), u(t))$$)</strong> 이 필요.</li>
+</ul>
+</li>
+<li>Demonstration에서의 학습하는 관점에서는, V-function 학습은 demonstration에서 준비(가공, primed)될 수 있는 3가지 후보를 제공.
+<ul>
+<li>Value function $$V(x)$$</li>
+<li>Policy $$\pi(x)$$</li>
+<li>Model $$f(x,u)$$</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="v-learning">V-Learning</h5>
+<ul>
+<li>
+<p>Swing-Up에 대해 demonstration의 benefit을 평가하기 위해서, <em>Doya's(1996)</em> 에서 제안된 <strong>continous TD(CDT) 학습으로 V-learning을 구현</strong>.</p>
+<ul>
+<li>V-function 및 dynamics model은 nonlinear function approximator(Receptive Field Weighted Regression-RFWR))에 의해 점차적으로 학습됨.
+<ul>
+<li><em>NN의 발전이 크지않아 approximator를 다른 방법으로 사용한 것 같음</em></li>
+</ul>
+</li>
+<li><em>Doya's</em> 방법과 다른 것은 policy $$\pi$$ (<strong>&quot;actor&quot;</strong> as in <em>Barto</em> Barto et al. (1983))의 <strong>model를 학습하기 위해 CTD에서 제안된 optimal action을 사용</strong> (RFWR으로 표현됨).</li>
+</ul>
+</li>
+<li>
+<p>다음의 학습 condition들은 경험적으로 실험:</p>
+<ul>
+<li>a) <em>Scratch</em>  : 처음부터 value function <em>V</em>, model <em>f</em>, actor $$\pi$$ 의 trial by trial learning.</li>
+<li>b) <em>Primed Actor</em> : demonstration에서의 $$\pi$$의 초기 training 이후, trial by trial learning.</li>
+<li>c) <em>Primed Model</em>: demonstration에서 <em>f</em> 의 초기 training 이후, trial by trial learning.</li>
+<li>d) <em>Primed Actor &amp; Model</em> : b) 및 c)에서의 $$\pi$$ 와 _f_의 priming 이후, trial by trial learning.</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/Paper/LearnFromDemo/1.png" class="lead"   style="width:320px; height=:600px"/>
+</figure>
+<ul>
+<li>Fig. 2는 Swing-up 학습 결과
+<ul>
+<li>각 trial은 60초 지속</li>
+<li>Time $$T_{up}$$은 각 trial 동안 $$\theta \in [-\pi/2, \pi/2] 에서 pole이 보내는 시간.</li>
+</ul>
+</li>
+<li>a) 와 c)를 비교: Demonstration에서의 pole model 학습은 가속화되지 않음.
+<ul>
+<li>당연한 결과: V-function을 학습하는 것은 model을 학습하는 것보다 상당히 복잡하고, 이것은 학습 과정은 V-function learning에 의해 우선시(dominate)된다.</li>
+<li>흥미롭게도, demonstration에서 action를 priming은 초기 performance(condition a vs. b)에서 상당한 효과를 가진다.</li>
+</ul>
+</li>
+<li>시스템은 pendulum을 pump up 시키는 올바른 방법을 알고 있지만 <strong>upright position에서 pendulum을 balancing하기 위해서는, 결국 처음부터 학습하는 것처럼 동일한 시간이 소요</strong>.
+<ul>
+<li>이 행동은 이론적으로 <strong>V-function이 전체 state-action space가 densely explore 되어지면 유일하게 정확하게 근사</strong> 되어질 수 있기 때문.</li>
+<li><em>전체 state-action space에 대한 정보를 알아야 최적의 해를 구할 수 있음</em></li>
+<li>만약 demonstration이 전체 state space의 많은 부분을 cover하는 경우에는, V-learning은 이익을 볼 수 있을것이라 예상.</li>
+</ul>
+</li>
+<li>V-function만을 prime거나 다른 함수들을 가지고 조합하는 demonstration을 사용하는 것도 조사.
+<ul>
+<li>이 결과들은 정량적으로 Fig. 2와 동일:
+<ul>
+<li>만약 policy가 priming에 포함되어 있다면, learning traces는 b), d)와 같고 다른 경우는 a), c)</li>
+</ul>
+</li>
+<li>다시말하지만, 이것은 전체적으로 놀라운 결과는 아니다.
+<ul>
+<li>V-function을 근사시키는 것은 단순히 $$\pi, f$$에 관한 supervised learning이 아닌, (2)(consistency equation)의 validity(타당성)를 확인하기 위한 iterative 절차를 요구하고 복잡한 nonstationary funtion approximation 과정에 해당.</li>
+<li>Demonstration으로부터 data가 제한되면, 일반적으로 좋은 value function을 근사는 불가능.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h5 id="model-based-v-learning">Model-Based V-Learning</h5>
+<ul>
+<li><strong>model <em>f</em> 를 학습하는 것은, 이를 더욱 강력하게 사용가능</strong>.
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Stochastic_control#cite_note-Chow-2">certainty equivalence의 원리</a>에 따르면, <em>f</em> 는 real world를 대체할 수 있고 real world와 interaction대신에 &quot;mental simulations&quot;에서 planning이 동작될 수 있음.</li>
+<li>RL에서, 이 idea는 원래 discrete state-action space에 대한 Sutton's(1990) DYNA 알고리즘에 의해 제안.</li>
+<li>여기서 DYNA, DYNA-CTD의 continuous 버전이 얼마나 learning from demonstration에서 도움이 될 수 있는지를 탐구(explore)할 것.</li>
+<li>Section 2.1.1(V-Learning)에서 CTD와 비교하여 얻은 유일한 차이점은 모든 real trial 이후에, DYNA-CTD는 <strong>지금까지 획득한 dynamics 모델이 실제 pole dynamics를 대체하는 다섯 번의 &quot;mental trials&quot;을 수행.</strong></li>
+<li>두 개의 learning conditions:
+<ul>
+<li><em>Scratch</em>: 처음부터 <em>V</em>, model <em>f</em>, policy $$\pi$$의 trial by trial learning.</li>
+<li><em>Primed Model</em>: demonstraion으로부터 _f_의 초기 training 이후, trial by traial learning.</li>
+</ul>
+</li>
+<li>Fig. 3.는 이전 section에서 V-learning과 대조적.
+<ul>
+<li><strong>Learning from demonstraion은 상당한 차이를 보임</strong>
+<ul>
+<li>Stable balancing을 가지는 좋은 swing-up을 성취하기 위해서는 단지 demonstration 이후 2-3 traial만 필요, $$T_{up}$$ &gt; 45s.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/Paper/LearnFromDemo/2.png" class="lead"   style="width:320px; height=:600px"/>
+</figure>
+<blockquote>
+<p>Note that</p>
+<blockquote>
+<p>처음부터 학습하는 것도 Fig. 2.보다 상당히 빠름.</p>
+</blockquote>
+</blockquote>
+<h3 id="the-nonlinear-task-cart-pole-balancing">The Nonlinear task: CART-POLE BALANCING</h3>
+<ul>
+<li>Swing-Up task에 대한 demonstration으로부터 RL를 적용하는 것은 시기상조.
+<ul>
+<li><strong>Nonlinear function approximation을 가진 RL은 아직 적절한게 없음</strong>(yet to obtain appropriate scientific understanding).</li>
+<li>따라서, 이 section에서 좀 더 쉬운 task(cart-pole balancer)로 변경.</li>
+<li>이 task는 pole이 upright position에 가까울 때, approximately linear.</li>
+<li>이 문제는 LQR(<em>Dyer &amp; McReynolds, 1970</em>)의 맥락에서 DP literature에서 잘 연구됨.</li>
+</ul>
+</li>
+</ul>
+<h4 id="q-learning">Q-Learning</h4>
+<ul>
+<li>V-learning과 대조적으로, Q-learning(<em>Watkins, 1989; Singh &amp; Sutton, 1996</em>)은 value function보다 더욱 복잡, Q(x, u), state 및 command(input)에 의존.</li>
+<li>consistency equation (2)와 유사한 Q-learning:</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>Q</mi><mo>(</mo><mi>x</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo separator="true">,</mo><mi>u</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>)</mo><mo>=</mo><mi>r</mi><mo>(</mo><mi>x</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo separator="true">,</mo><mi>u</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>)</mo><mo>+</mo><mi>γ</mi><mi>a</mi><mi>r</mi><mi>g</mi><mi>m</mi><mi>i</mi><msub><mi>n</mi><mrow><mi>u</mi><mo>(</mo><mi>t</mi><mo>+</mo><mn>1</mn><mo>)</mo></mrow></msub><mo>(</mo><mi>Q</mi><mo>(</mo><mi>x</mi><mo>(</mo><mi>t</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo separator="true">,</mo><mi>u</mi><mo>(</mo><mi>t</mi><mo>+</mo><mn>1</mn><mo>)</mo><mo>)</mo><mspace width="2em"/><mo>(</mo><mn>3</mn><mo>)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+Q(x(t), u(t)) = r(x(t), u(t)) + \gamma argmin_{u(t+1)} (Q(x(t+1), u(t+1))  \qquad(3)
+\end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5000000000000002em;vertical-align:-0.5000000000000002em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1em;"><span style="top:-3.16em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">Q</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">u</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">u</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mord mathdefault">a</span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">m</span><span class="mord mathdefault">i</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.34480000000000005em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">u</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight">t</span><span class="mbin mtight">+</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3551999999999999em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">Q</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">u</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:2em;"></span><span class="mopen">(</span><span class="mord">3</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.5000000000000002em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>
+<p>매 state <strong>x</strong> 마다, reward function (1)하에서 optimal action이고 Q를 최소화하는 action <strong>u</strong> 를 선택.</p>
+<ul>
+<li>장점: optimal policy를 찾기 위해 Q-function을 평가하는 것은 <strong>제어할 대상의 dynamical system <em>f</em></strong> 를 요구하지 않음;
+<ul>
+<li>오직 one-step reward _r_의 값만 필요</li>
+</ul>
+</li>
+<li>Demonstration에서 learning하기 위해서는, Q-function and/or policy를 priming하는 것은 learning을 가속화하는 두 개의 후보이다.</li>
+</ul>
+</li>
+<li>
+<p>LQR 문제는 Bradtke (1993)가 policy를 추출한 것을 기반으로하는 demonstration에서 이상적으로 학습에 적합한 Q-learning 방법을 제안.</p>
+<ul>
+<li>LQR에 대해 Q-function이 state 및 commands(input)이 quadratic인 것을 관측.</li>
+<li>Gain matrix <strong>K</strong> 로 표현되는 (linear) policy는 <em>(4)</em> 에서 <em>(5)</em> 와 같은 추출 할 수 있다.</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/Paper/LearnFromDemo/3.png" class="lead"   style="width:320px; height=:120px"/>
+</figure>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>u</mi><mrow><mi>o</mi><mi>p</mi><mi>t</mi></mrow></msub><mo>=</mo><mo>−</mo><mi>K</mi><mi>x</mi><mo>=</mo><mo>−</mo><msubsup><mi>H</mi><mn>22</mn><mrow><mo>−</mo><mn>1</mn></mrow></msubsup><msub><mi>H</mi><mn>21</mn></msub><mi>x</mi><mo>(</mo><mn>5</mn><mo>)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+u_{opt} = -K x = - H ^{-1} _{22} H _{21} x (5)
+\end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.524108em;vertical-align:-0.512054em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.012054em;"><span style="top:-3.147946em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault">u</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.28055599999999997em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">o</span><span class="mord mathdefault mtight">p</span><span class="mord mathdefault mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">−</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord">−</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4435610000000003em;margin-left:-0.08125em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">2</span></span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.256439em;"><span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.08125em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathdefault">x</span><span class="mopen">(</span><span class="mord">5</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.512054em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>
+<p>반대로, stabilizing initial policy $$K_{demo}$$ 가 주어지면, 현재 Q-function은 <strong>recursive least squares procedure에 의해 근사</strong> 되고 수렴성이 보장되는 (Bradkte, 1993) policy iteration 과정에 의해 <strong>최적화</strong>.</p>
+</li>
+<li>
+<p>corresponding obseved states <em>x</em> 에 대한 observed command <em>u</em> 를 <em><em>linearly regressing함으로서 초기 policy $$K</em>{demo}$$ 를 추출</em>_ 하도록 demonstration이 허용하기에, pole balancing의 one-shot learning을 성취하는 것.</p>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/Paper/LearnFromDemo/4.png" class="lead"   style="width:320px; height=:240px"/>
+</figure>
+<ul>
+<li>Fig. 4.를 보면, 120초 정도 후(12 policy iteration step)에, policy는 기본적으로 optimal policy와 기본적으로 구별 불가
+<ul>
+<li>그러나, <strong>Q-learning의 주의사항은 stabilizing initial policy없이 학습불가</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="model-based-v-learning-1">Model-based V-Learning</h4>
+<ul>
+<li><strong>V-function을 학습 하여 LQR task를 학습</strong> 하는 것: DP(Dyer&amp;)의 classic form 중의 하나.
+<ul>
+<li>Stabilizing initial policy $$K_{demo}$$ 를 사용하여, 현재 V-function 은 Bradtke (1993)과 유사하게 recursive least square에 의해 근사.</li>
+<li>
+K_{demo}$$ 와 유사하게, __cart-pole dynamics의 (linear) model $$f_{demo}$$__ 은 cart-pole state x(t)의 linear regression에 의해 demonstration에서 추출 vs. 이전 state 및 command vector (x(t-1), u(t-1)), model은 학습 중에 경험하는 매번 새로운 data point을 가지고 정제될 수 있음.
+
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/Paper/LearnFromDemo/5.png" class="lead"   style="width:480px; height=:120px"/>
+</figure>
+<ul>
+<li>따라서, Bradtke(1993)와 같이 유사한 과정은 optimal policy K를 찾기 위해 사용될 수 있고, system은 one shot learning을 성취하며, Fig. 4와같이 정량적으로 구별 불가.</li>
+</ul>
+<blockquote>
+<p>V-learning, Q-learning과 다르게 model이 필요, $$f_demo$$ = [A B]</p>
+</blockquote>
+<ul>
+<li>Section 2.1.2 (이전 Model-Based V-Learning)에서 지적했던 것처럼, mental simulation을 수행함으로써 <strong>학습된 모델을 더욱 효율적으로 사용하도록 만듬</strong>.
+<ul>
+<li>model $$f_{demo}$$이 주어지면, <strong>policy K은 H의 초기 추정치로부터 off-line policy iteration에의해 계산</strong> 할 수 있고, e.g., identity matrix (Dyer &amp; McReynolds, 1970)로 취해짐.</li>
+<li><strong>따라서, initial (stabilizing) policy가 요구되지않고, task dynamics의 추정치를 요구.</strong></li>
+<li>또한, 이 방법은 one shot learning을 성취.</li>
+</ul>
+</li>
+</ul>
+<h4 id="pole-balacing-with-an-actual-robot">Pole balacing with an Actual Robot</h4>
+<ul>
+<li>
+<p>이전 section의 결과로서, LQR 문제들에 대해 model-based V-learning 및 V-learning, Q-learning간의 실제 성능 차이는 없는 것 같음</p>
+<ul>
+<li>더욱 realistic framework에서 이러한 방법들의 유용성을 검증하기 위해서, anthropomorphic robot arm에서 pole balancing의 demonstration에서의 learning을 구현
+<ul>
+<li>Robot은 60Hz video-based stereo vision 장착.</li>
+<li>Pole은 real-time으로 track할 수 있도록 두 color blob들로 표기.</li>
+<li>두개의 전면 카메라를 세우고 human에 의해 pole balancing의 30초 long demonstration이 제공.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Simulation과 비교하여 몇가지 중요한 차이점:</strong></p>
+<ul>
+<li>
+<ol>
+<li>demonstration이 vision-based이므로, kinematic 변수들만 demonstration에서 추출할 수 있다.</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>visual signal processing은 120ms의 시간지연을 가진다.</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>robot에 주어진 command는 로봇의 unknown nonlinearities때문에 높은 정확도를 가지는 execution은 아니다.</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>human은 pole balancing에 대해 internal state를 사용한다</li>
+</ol>
+<ul>
+<li>즉, human policy는 부분적으로 non-observable variables을 부분적으로 기반한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/Paper/LearnFromDemo/6.png" class="lead"   style="width:180px; height=:480px"/>
+</figure>
+<ul>
+<li>위와 같은 issue들은 다음과 같은 영향을 가진다:</li>
+<li><strong>Kinematic Variable</strong>:
+<ul>
+<li>구현은 robot arm은 Cart-Pole problem의 cart로 대체.</li>
+<li>Arm의 inverse dynamics, inverse kinematics의 추정치를 가지므로, Cartesian 공간에서 task에 command input으로 finger의 가속도 사용 가능.</li>
+<li>Arm은 또한 pole보다 훨씬 무거워, pole이 arm에 발휘하는 interaction force를 무시함.</li>
+<li>따라서, Fig. 1b의 pole balancing dynamics는 _(7)_와 같이 reformulation
+<ul>
+<li>Equation에서 모든 변수들은 demonstration에서 추출 가능.</li>
+<li>이러한 방정식의 extension은 생략.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>u</mi><mi>m</mi><mi>l</mi><mi>c</mi><mi>o</mi><mi>s</mi><mi>θ</mi><mo>+</mo><mover accent="true"><mi>θ</mi><mo>¨</mo></mover><mi>m</mi><msup><mi>l</mi><mn>2</mn></msup><mo>−</mo><mi>m</mi><mi>g</mi><mi>l</mi><mi>s</mi><mi>i</mi><mi>n</mi><mi>θ</mi><mo separator="true">,</mo><mover accent="true"><mi>x</mi><mo>¨</mo></mover><mi>u</mi><mspace width="1em"/><mo>(</mo><mn>7</mn><mo>)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+uml cos \theta + \ddot{\theta} m l^2 - mgl sin \theta, \ddot{x} u  \quad (7)
+\end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5913000000000002em;vertical-align:-0.54565em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0456500000000002em;"><span style="top:-3.11435em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9313em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;">¨</span></span></span></span></span></span><span class="mord mathdefault">m</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;">¨</span></span></span></span></span></span><span class="mord mathdefault">u</span><span class="mspace" style="margin-right:1em;"></span><span class="mopen">(</span><span class="mord">7</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.54565em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+<ul>
+<li>
+<p><strong>Delayed Visual Information</strong>:</p>
+<ul>
+<li>Delayed vaeiables를 다루는 두 가지 방법:
+<ul>
+<li>
+<ol>
+<li>Sytem의 state에 7*1/60s = 120 delay time, $$x^T = (x, \dot{x}, \theta, \dot{\theta{, u_{t-1}, u_{t-2}, ..., u_{t-7}$$, 와 일치하는  delayed commands을 augmentation</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>state predictive controller를 employ하는 방법.</li>
+</ol>
+</li>
+<li>첫 번째 방법은 policy의 complexity를 상당히 증가, 두번째 방법은 model _f_를 요구.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Inaccuracies of Command Execution</strong>:</p>
+<ul>
+<li>가속도 명령 <em>u</em> 가 주어지면, 로봇은 <em>u</em> 에 가깝게 실행하지만 정확한 <em>u</em> 는 아님.</li>
+<li>따라서, <em>u</em> 를 포함한 function을 학습하는 것(e.g., dynamics model)은 위험할 수 있으며, 이유는 mapping $$(x, \dot{x}, \theta, \dot{\theta}, u) \rightarrow  (\ddot{x}, \ddot{\theta})$$ 이 robot arm의 nonlinear dynamics에 의해 contaminated(오염)되기 때문이다.</li>
+<li>게다가, 이러한 model을 믿을만하게(reliably) 학습할 수 없다고 밝혀졌다.</li>
+<li>이것은 command <em>u</em> 를 &quot;관측(observing&quot;하여 개선(remedied)될 수 있다
+<ul>
+<li>즉, visual feedback으로부터 $$u = \ddot{x}$$을 추출.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Internal State</strong>:</p>
+<ul>
+<li>
+<p>Human은 pole balancing에서 internal state 사용.</p>
+</li>
+<li>
+<p>따라서, policy는 Section 2.2(THE LINEAR TASK: CART-POLE BALANCING)에서 주장했듯이 더욱 쉽게 관측될 수 없다</p>
+<ul>
+<li>Teacher의 policy를 추출하기 위한 regression analysis는 현재 state 및 과거 command(s)의 적절한 time-alignment를 찾아야만 한다.</li>
+<li>Delayed commands에 기반한 policy를 regressing이 singular regression 행렬들에 의해 위험(endanger)해지게되면, 수치적으로 관련된 과정이 될 수 있다.</li>
+</ul>
+</li>
+<li>
+<p>결과적으로, Section 2.2에서 설명했듯이 Q-learning, V-learning의 응용을 막아버리는, <strong>demonstration에서 <em>nonstabilizing</em> policy를 추출하는 것은 쉽게 일어</strong> 난다.</p>
+<ul>
+<li><em>policy를 추출할때 방해요소는 쉽게 발생</em></li>
+</ul>
+</li>
+<li>
+<p>이러한 고려사항의 결과는, <strong>demonstration에서 추출하기 하는 가장 믿을만한 요소는 pole dynamics의  model</strong> .</p>
+</li>
+<li>
+<p>저자의 구현에서는, (6, Model-based V-learnign)와 같이 policy를 계산하기 위해서 사용되는 두가지 방법이 있고, visual information processing에서 delay를 극복하기 위해 Kalman filter를 가지고 state-predictive control을 사용.</p>
+<ul>
+<li>model은 RFWR(Schaal &amp; Atkeson 1996)의 구현으로 real-time으로 점진적으로 학습</li>
+</ul>
+</li>
+<li>
+<p>Fig. 6은 실제 로봇의 demonstration에서의 학습과 처음부터 학습의 결과를 보여줌.</p>
+<ul>
+<li>Demonstration이 없다면, 1분이상 지속하는 학습은 10-20 traial이 소요.</li>
+<li><strong>30초 long demonstarion을 가지면, 학습은 one single trial로 믿을만하게 성취</strong>
+<ul>
+<li>다양한 사람의 demonstration들을 사용하고 다양한 pole을 사용.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/Paper/LearnFromDemo/7.png" class="lead"   style="width:480px; height=:640px"/>
+</figure>
+<h3 id="conclusion">Conclusion</h3>
+<ul>
+<li>
+<p>Q-learning, V-learning, model vased RL에 초점을 맞춘, RL 맥락에서 learning from demonstration을 다뤘다.</p>
+</li>
+<li>
+<p>World의 predictive model을 추출, Q/Value function을 prime하여 demonstration data를 사용, policy를 추출하여 demonstraion에서  Q-learning 및 value function learning은 이론적으로 이득을 봄.</p>
+<ul>
+<li>그러나, <strong>LQR 문제의 special case에서만</strong> demonstration으로부터 learner를 priming하는 상당한 이익을 찾음.</li>
+<li><strong>대조적으로, model-based RL은 &quot;mental simulations&quot;에 대해 world의 predictive model을 사용하여 demonstration으로부터 많은 이득을 취할 수 있었다.</strong></li>
+</ul>
+</li>
+<li>
+<p>Anthropomorphic robot arm 구현에서, LQR 문제에서 구현</p>
+<ul>
+<li><strong>MBRL은 Q-learning, value fucntion learning보다 실제 learning 시스템에서 complexity에 대해 더욱이 robust함을 제공</strong></li>
+<li>Model based 방법을 사용하여 <em>single</em> trial에서 demonstration에서 로봇이 pole-balancing을 매우 좋은 reliability을 가지고 학습</li>
+</ul>
+</li>
+<li>
+<p>이 논문에서 가장 중요한 것은 <strong>모든 학습 접근방법이 동등하게 knowledge를 transfer and/or biases의 결합이 동등하게 적용되지 않는다는 것</strong></p>
+</li>
+</ul>
+
+    </body>
+    </html>
