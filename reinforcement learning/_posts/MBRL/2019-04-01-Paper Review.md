@@ -8,6 +8,13 @@ comments: true
 
 # [PAPER-Review] Model-based Reinforcement learning
 
+
+## Table of Contents
+{:.no_toc}
+1. this unordered seed list will be replaced by toc as unordered list
+{:toc}
+
+
 ## Learning From Demonstration Stefan, Stefan Schaal, 1997
 
 ### Abstract
