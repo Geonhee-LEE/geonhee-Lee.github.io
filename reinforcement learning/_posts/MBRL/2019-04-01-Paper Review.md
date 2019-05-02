@@ -23,7 +23,7 @@ comments: true
 ----
 
 
-### Introduction
+### 1. Introduction
 
 -   $$1.$$ Inductive supervised learning 방법은 정교함의 높은 수준에 도달.
     -   Nature에 대한 사전 지식들이나 data set이 주어지면, error criterion를 최소화하여 data로부터 structure를 추출하는 알고리즘의 host가 존재.
@@ -54,7 +54,7 @@ comments: true
 --------
 
 
-### Reinforcement Learning from Demonstration
+### 2. Reinforcement Learning from Demonstration
 
 -   두 개의 task는 demonstration에서의 학습을 살펴보는 basis.
     -   Nonlinear task: pendulem swing-up with limited torque
@@ -78,7 +78,7 @@ $$
 
 > 어떻게 RL을 가속화하기 위해 demonstration이 사용되는 방법은?
 
-#### The Nonlinear task: Swing-up
+#### 2.1 The Nonlinear task: Swing-up
 
 -   Swing-up에 task에 대해서 Value fucntion(V-function) (_Dyer & McReynolds, 1970_)을 학습하는 기반으로 하는 RL을 적용하고, 대안적인 방법으로 Q-learning(_Watkins, 1989_)은 continous state-action space에 대해 아직 limited research를 받음.
     -   V-function은 scalar reward value $$V(x(t))$$  각 state에 대해 assign하고 다음 consistency equation을 만족:
@@ -100,7 +100,7 @@ $$
 
 
 
-##### V-Learning
+##### 2.1.1 V-Learning
 
 -   Swing-Up에 대해 demonstration의 benefit을 평가하기 위해서, _Doya's(1996)_ 에서 제안된 __continous TD(CDT) 학습으로 V-learning을 구현__.
     -   V-function 및 dynamics model은 nonlinear function approximator(Receptive Field Weighted Regression-RFWR))에 의해 점차적으로 학습됨.
@@ -136,7 +136,7 @@ $$
         -   Demonstration으로부터 data가 제한되면, 일반적으로 좋은 value function을 근사는 불가능.
 
 
-##### Model-Based V-Learning
+##### 2.1.2 Model-Based V-Learning
 
 -   __model _f_ 를 학습하는 것은, 이를 더욱 강력하게 사용가능__.
     -   [certainty equivalence의 원리](https://en.wikipedia.org/wiki/Stochastic_control#cite_note-Chow-2)에 따르면, _f_ 는 real world를 대체할 수 있고 real world와 interaction대신에 "mental simulations"에서 planning이 동작될 수 있음.
@@ -161,7 +161,7 @@ $$
 
 
 
-### The Nonlinear task: CART-POLE BALANCING
+### 2.2 The Nonlinear task: CART-POLE BALANCING
 
 -   Swing-Up task에 대한 demonstration으로부터 RL를 적용하는 것은 시기상조.
     -   __Nonlinear function approximation을 가진 RL은 아직 적절한게 없음__(yet to obtain appropriate scientific understanding).
@@ -171,7 +171,7 @@ $$
 
 
 
-#### Q-Learning
+#### 2.2.1 Q-Learning
 
 -   V-learning과 대조적으로, Q-learning(_Watkins, 1989; Singh & Sutton, 1996_)은 value function보다 더욱 복잡, Q(x, u), state 및 command(input)에 의존.
 -   consistency equation (2)와 유사한 Q-learning:
@@ -220,7 +220,7 @@ $$
 
 
 
-#### Model-based V-Learning
+#### 2.2.2 Model-based V-Learning
 
 -   __V-function을 학습 하여 LQR task를 학습__ 하는 것: DP(Dyer&)의 classic form 중의 하나.
     -   Stabilizing initial policy $$K_{demo}$$ 를 사용하여, 현재 V-function 은 Bradtke (1993)과 유사하게 recursive least square에 의해 근사.
@@ -244,7 +244,7 @@ $$
 
 
 
-#### Pole balacing with an Actual Robot
+### 2.3 Pole balacing with an Actual Robot
 
 -   이전 section의 결과로서, LQR 문제들에 대해 model-based V-learning 및 V-learning, Q-learning간의 실제 성능 차이는 없는 것 같음
     -   더욱 realistic framework에서 이러한 방법들의 유용성을 검증하기 위해서, anthropomorphic robot arm에서 pole balancing의 demonstration에서의 learning을 구현
@@ -322,7 +322,7 @@ $$
 </figure>
 
 
-### Conclusion
+### 4. Conclusion
 
 -  Q-learning, V-learning, model vased RL에 초점을 맞춘, RL 맥락에서 learning from demonstration을 다뤘다.
 -  World의 predictive model을 추출, Q/Value function을 prime하여 demonstration data를 사용, policy를 추출하여 demonstraion에서  Q-learning 및 value function learning은 이론적으로 이득을 봄.
@@ -336,10 +336,38 @@ $$
 -   이 논문에서 가장 중요한 것은 __모든 학습 접근방법이 동등하게 knowledge를 transfer and/or biases의 결합이 동등하게 적용되지 않는다는 것__
 
 
--------------------
+--------------------------------------
 
 
 
 ## Exploiting Model Uncertainty Estimates for Safe Dynamic Control Learning, Jeff G. Schneider, 1997
 
 ### Abstract
+
+-   __DP와 결합한 model learning__ 은 continuous state dynamic system의 control을 학습하는데 __효과적__.
+    -   가장 단순한 방법은 학습된 model이 정확하다 가정하고 DP에 적용, 그러나 __많은 approximator들은 fitting하는데에 불확실한 추정치를 제공__.
+    -   어떻게 exploit될까?
+        -   이 논문은 __system이 학습하는 동안 재앙과 같은 실패를 가지는 것을 막기 위한 case에 대해 다룸__.
+        -   저자는 __dual control literature를 개조(adapt)하여 새로운 알고리즘을 제안하고 DP를 가지고 Bayesian locally weighted regression model을 사용__
+
+-   일반적인 RL 가정은 공격적인(aggressive) 탐험(exploration)이 되기를 장려한다.
+    -   이 논문은 __system이 exploration 해야하는 것의 반대(converse) 경우를 다룸__
+    -   알고리즘은 4차원 simulated 제어 문제에서 구현.
+
+
+
+### 1. Introduction
+
+-  RL 및 관련 grid-based DP 기술은 지속적으로 __continuous 값을 가지는 state space를 가지는 dynamic system에 점차 적용__ 이 되고 있음(_1997_ 년도).
+   -  _1997_ 년도까지의 연구 결과:
+      -  [_Gordon, 1995_] Value(or cost-to-go) 함수를 표현하기 위해 다양한 interpolation을 사용하여 continuous 값을 가지는 state spaces에 RL을 적용하여 완전한(sound) 이론적 근거를 가지는 DP 방법의 수렴성 증명.
+         -  이러한 방법(continous 문제의 수렴성 증명)들은 산업 학습 및 제어 문제에 응용을 향하기 위한 중요한 과정.
+
+      -   [_Sutton, 1990, Moore and Atkeson, 1993, Schaal and Atkeson, 1993, Davies, 1996_] system을 구동한 data가 __model을 build하기 위해 사용할 때, data 및 계산적 효율성에서 상단한 이익이 있다는 것이 보고됨__.
+          -   (Q-learning이 하는 것과 같이) 단일 value function update를 위해 한번 진행하고 버리는 방법 = 비효율적.
+          -   DP sweeps은 off-line 혹은 on-line으로 학습된 모델에서 수행될 수 있다.
+          
+      -   Vanilla 형식에서, 이 방법은 __model이 정학하다 가정하고 model을 사용하여 deterministric DP를 수행__.
+          -   이 가정이 종종 정확하지 않음, 특히 학습의 초반 구간.
+          -  시뮬레이션 혹은 software 시스템을 학습할 때, 이 가정이 성립하지 않는다는 사실(model 정확)은 아무런 해가 없을 수도 있으나, __실제에서 physical 시스템은 실제로 catastrophic state이고 학습하는 동안에는 이를 피해야만 함__.
+          -  더 나쁜 것은, 학습이 시스템의 정상 동작중에 발생해야만 하면 이는 학습 동안의 성능이 상당히 저하되지 않아야 한다.
