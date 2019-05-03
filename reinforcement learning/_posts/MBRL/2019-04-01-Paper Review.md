@@ -118,7 +118,7 @@ $$
     -   a) _Scratch_  : 처음부터 value function _V_, model _f_, actor $$\pi$$ 의 trial by trial learning.
     -   b) _Primed Actor_ : demonstration에서의 $$\pi$$의 초기 training 이후, trial by trial learning.
     -   c) _Primed Model_: demonstration에서 _f_ 의 초기 training 이후, trial by trial learning.
-    -   d) _Primed Actor & Model_ : b) 및 c)에서의 $$\pi$$ 와 _f_의 priming 이후, trial by trial learning.
+    -   d) _Primed Actor & Model_ : b) 및 c)에서의 $$\pi$$ 와 _f_ 의 priming 이후, trial by trial learning.
 
 
 <figure>
@@ -152,10 +152,10 @@ $$
     -   Section 2.1.1(V-Learning)에서 CTD와 비교하여 얻은 유일한 차이점은 모든 real trial 이후에, DYNA-CTD는 __지금까지 획득한 dynamics 모델이 실제 pole dynamics를 대체하는 다섯 번의 "mental trials"을 수행.__
     -   두 개의 learning conditions:
         -   _Scratch_: 처음부터 _V_, model _f_, policy $$\pi$$의 trial by trial learning.
-        -   _Primed Model_: demonstraion으로부터 _f_의 초기 training 이후, trial by traial learning.
+        -   _Primed Model_: demonstraion으로부터 _f_ 의 초기 training 이후, trial by trial learning.
     -   Fig. 3.는 이전 section에서 V-learning과 대조적.
         -   __Learning from demonstraion은 상당한 차이를 보임__
-            -   Stable balancing을 가지는 좋은 swing-up을 성취하기 위해서는 단지 demonstration 이후 2-3 traial만 필요, $$T_{up}$$ > 45s.
+            -   Stable balancing을 가지는 좋은 swing-up을 성취하기 위해서는 단지 demonstration 이후 2-3 trial만 필요, $$T_{up}$$ > 45s.
 
 
 
@@ -318,7 +318,7 @@ $$
         -   model은 RFWR(Schaal & Atkeson 1996)의 구현으로 real-time으로 점진적으로 학습
 
     - Fig. 6은 실제 로봇의 demonstration에서의 학습과 처음부터 학습의 결과를 보여줌.
-        -   Demonstration이 없다면, 1분이상 지속하는 학습은 10-20 traial이 소요.
+        -   Demonstration이 없다면, 1분이상 지속하는 학습은 10-20 trial이 소요.
         -   __30초 long demonstarion을 가지면, 학습은 one single trial로 믿을만하게 성취__
             -   다양한 사람의 demonstration들을 사용하고 다양한 pole을 사용.
 
