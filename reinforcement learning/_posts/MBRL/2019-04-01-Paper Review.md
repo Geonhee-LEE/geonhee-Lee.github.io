@@ -396,7 +396,7 @@ $$
 -   저자의 알고리즘은 산업 제어 응용을 염두에 두고 설계
     -   전형적인 시나리오는 생산 라인이 지속적으로 동작된다는 것.
     -   이러한 동작에서 이용가능한 data가 있지만, state space의 작은 영역만을 다룰 수 있기에 _전체 동작하는 potential range에 걸쳐 정확한 모델을 생성하기 위해 사용되어 질 수 없음_.
-    -   Management는 set point 혹은 외란(disturbance)의 변화에 반응하는 line의 성능향상에 관심있지만, learning process 중에는 생산손실*loss of production)이 크면 안된다.
+    -   Management는 set point 혹은 외란(disturbance)의 변화에 반응하는 line의 성능향상에 관심있지만, learning process 중에는 생산손실(loss of production)이 크면 안된다.
 
 
 ### The Algorithm
