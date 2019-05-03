@@ -30,7 +30,7 @@ comments: true
 ----
 
 
-### 1. Introduction
+### Introduction
 
 -   $$1.$$ Inductive supervised learning 방법은 정교함의 높은 수준에 도달.
     -   Nature에 대한 사전 지식들이나 data set이 주어지면, error criterion를 최소화하여 data로부터 structure를 추출하는 알고리즘의 host가 존재.
@@ -61,7 +61,7 @@ comments: true
 --------
 
 
-### 2. Reinforcement Learning from Demonstration
+### Reinforcement Learning from Demonstration
 
 -   두 개의 task는 demonstration에서의 학습을 살펴보는 basis.
     -   Nonlinear task: pendulem swing-up with limited torque
@@ -85,7 +85,7 @@ $$
 
 > 어떻게 RL을 가속화하기 위해 demonstration이 사용되는 방법은?
 
-#### 2.1 The Nonlinear task: Swing-up
+#### The Nonlinear task: Swing-up
 
 -   Swing-up에 task에 대해서 Value fucntion(V-function) (_Dyer & McReynolds, 1970_)을 학습하는 기반으로 하는 RL을 적용하고, 대안적인 방법으로 Q-learning(_Watkins, 1989_)은 continous state-action space에 대해 아직 limited research를 받음.
     -   V-function은 scalar reward value $$V(x(t))$$  각 state에 대해 assign하고 다음 consistency equation을 만족:
@@ -107,7 +107,7 @@ $$
 
 
 
-##### 2.1.1 V-Learning
+##### V-Learning
 
 -   Swing-Up에 대해 demonstration의 benefit을 평가하기 위해서, _Doya's(1996)_ 에서 제안된 __continous TD(CDT) 학습으로 V-learning을 구현__.
     -   V-function 및 dynamics model은 nonlinear function approximator(Receptive Field Weighted Regression-RFWR))에 의해 점차적으로 학습됨.
@@ -143,7 +143,7 @@ $$
         -   Demonstration으로부터 data가 제한되면, 일반적으로 좋은 value function을 근사는 불가능.
 
 
-##### 2.1.2 Model-Based V-Learning
+##### Model-Based V-Learning
 
 -   __model _f_ 를 학습하는 것은, 이를 더욱 강력하게 사용가능__.
     -   [certainty equivalence의 원리](https://en.wikipedia.org/wiki/Stochastic_control#cite_note-Chow-2)에 따르면, _f_ 는 real world를 대체할 수 있고 real world와 interaction대신에 "mental simulations"에서 planning이 동작될 수 있음.
@@ -168,7 +168,7 @@ $$
 
 
 
-### 2.2 The Nonlinear task: CART-POLE BALANCING
+### The Nonlinear task: CART-POLE BALANCING
 
 -   Swing-Up task에 대한 demonstration으로부터 RL를 적용하는 것은 시기상조.
     -   __Nonlinear function approximation을 가진 RL은 아직 적절한게 없음__(yet to obtain appropriate scientific understanding).
@@ -178,7 +178,7 @@ $$
 
 
 
-#### 2.2.1 Q-Learning
+#### Q-Learning
 
 -   V-learning과 대조적으로, Q-learning(_Watkins, 1989; Singh & Sutton, 1996_)은 value function보다 더욱 복잡, Q(x, u), state 및 command(input)에 의존.
 -   consistency equation (2)와 유사한 Q-learning:
@@ -227,7 +227,7 @@ $$
 
 
 
-#### 2.2.2 Model-based V-Learning
+#### Model-based V-Learning
 
 -   __V-function을 학습 하여 LQR task를 학습__ 하는 것: DP(Dyer&)의 classic form 중의 하나.
     -   Stabilizing initial policy $$K_{demo}$$ 를 사용하여, 현재 V-function 은 Bradtke (1993)과 유사하게 recursive least square에 의해 근사.
@@ -251,7 +251,7 @@ $$
 
 
 
-### 2.3 Pole balacing with an Actual Robot
+### Pole balacing with an Actual Robot
 
 -   이전 section의 결과로서, LQR 문제들에 대해 model-based V-learning 및 V-learning, Q-learning간의 실제 성능 차이는 없는 것 같음
     -   더욱 realistic framework에서 이러한 방법들의 유용성을 검증하기 위해서, anthropomorphic robot arm에서 pole balancing의 demonstration에서의 learning을 구현
@@ -329,7 +329,7 @@ $$
 </figure>
 
 
-### 4. Conclusion
+### Conclusion
 
 -  Q-learning, V-learning, model vased RL에 초점을 맞춘, RL 맥락에서 learning from demonstration을 다뤘다.
 -  World의 predictive model을 추출, Q/Value function을 prime하여 demonstration data를 사용, policy를 추출하여 demonstraion에서  Q-learning 및 value function learning은 이론적으로 이득을 봄.
@@ -363,7 +363,7 @@ $$
 
 
 
-### 1. Introduction
+### Introduction
 
 -  RL 및 관련 grid-based DP 기술은 지속적으로 __continuous 값을 가지는 state space를 가지는 dynamic system에 점차 적용__ 이 되고 있음(_1997_ 년도).
    -  _1997_ 년도까지의 연구 결과:
@@ -399,8 +399,32 @@ $$
     -   Management는 set point 혹은 외란(disturbance)의 변화에 반응하는 line의 성능향상에 관심있지만, learning process 중에는 생산손실*loss of production)이 크면 안된다.
 
 
-### 2. The Algorithm
+### The Algorithm
 
+-   Dynamics $$x^{k+1} = f(x^k, u^k)$$로 구어진 system을 고려.
+    -   state _x_, contron _u_, : real valued vectors.
+    -   _k_ : discrete time increments.
+    -   _f_ 의 model:  $$\hat{f}$$.
+    -   Task는 form $$J = \sum ^{N} _{k=0} L(x^k, u^k, k) subject to the system dynamics 의 cost functional 최소화.
+        -   N: 문제에 따라 fixed 일수 있고 아닐 수도 있음.
+        -   L은 주어지고, f은 학습해야함.
+        -   __목표:__ 학습 도중에 큰 손해 발생(incurring huge penalties)없이 _J_ 를 최소화하기 위해 _f_ 를 학습하기 위해 data를 얻는 것.
+    - Cost function이 catastrophic states를 정의한다는 implicit 가정 존재.
+      - 만약 피해야하는 disaster가 없다면, 단순하고 더욱 aggressive 알고리즘이 저자가 제안한 알고리즘보다 성능이 좋을 것. 
+
+
+-   Top level 알고리즘:
+    1.  기존 controller로부터 system을 구동하는 도중에 data 획득.
+    2.  Baysian locally weighted regression 사용하여 data로부터 model 구축
+    3.  Value function, policy를 계산하기위해 model를 가지고 DP 수행
+    4.  새로운 policy를 사용하여 system 구동하고 추가 data 확보.
+    5.  성능 향상하는 동안 step 2 반복
+
+
+Steps 2, 3 설명은 나머지 section에서 진행.
+
+
+#### Bayesian locally weighted regression
 
 
 
