@@ -378,3 +378,29 @@ $$
           -   이 가정이 종종 정확하지 않음, 특히 학습의 초반 구간.
           -  시뮬레이션 혹은 software 시스템을 학습할 때, 이 가정이 성립하지 않는다는 사실(model 정확)은 아무런 해가 없을 수도 있으나, __실제에서 physical 시스템은 실제로 catastrophic state이고 학습하는 동안에는 이를 피해야만 함__.
           -  더 나쁜 것은, 학습이 시스템의 정상 동작중에 발생해야만 하면 이는 학습 동안의 성능이 상당히 저하되지 않아야 한다.
+
+-   Adaptive, optimal linear control이론 자료는 이 문제는 상당히 stochastic, dual control이라는 이름으로 살펴보고 있다.
+    -   _[Kendrick, 1981, Bar-Shalon and Tse, 1976]에서 살펴볼 수 있음.
+    -   제어 의사 결정(control decision)은 _deterministic, cautionary, probing 용어_ 들에 기반
+        -   _Deterministic term_: 모델이 완벽하고 best performance에 대해 control한다 가정
+            -   모델이 부정확하면 망함
+        -  _Cautionary term_: model에 uncertainty를 고려하는 controller를 생성하고 최적이라 기대하는 성능(best expected performance)에 대해 control 선택.
+           -  시스템이 동작중에 system이 학습한다면, model에 대한 좋은 data를 얻기 위해 suboptimal and/or risky인 control들을 선택하는 것이 현명할 수도 있으며 궁극적으로 더 좋은 long-term 성능을 얻을 수 있음.
+        -  _Probing(exploration) term_: best long-term 성능을 생성하는 controller를 제공.
+
+-   [Dual Control](https://en.wikipedia.org/wiki/Dual_control_theory)의 장점: __strong 수학적 기반으로 system, model, noise, performance criterion에 대한 몇 가지 가정하에서 optimal learning controller를 제공__.
+    -   __RL와 같은 DP 방법__ 은  system이나 performance measure의 형태에 대한 강한(strong) __가정들을 만들지 않는 장점__.
+    -   _[Atkeson, 1995, Atkeson, 1993]_: _caution, probing_ 이 포함된 global linear control을 사용한 기술을 제안했으며, local case에서도 응용 가능.
+    -   __저자의 논문은 Bayesian locally weighted regrtession model의 사용을 통해 dual control으로부터 _cautionary_ 개념을 가지고 grid based dynamic programming을 결한한 알고리즘 제안__
+
+-   저자의 알고리즘은 산업 제어 응용을 염두에 두고 설계
+    -   전형적인 시나리오는 생산 라인이 지속적으로 동작된다는 것.
+    -   이러한 동작에서 이용가능한 data가 있지만, state space의 작은 영역만을 다룰 수 있기에 _전체 동작하는 potential range에 걸쳐 정확한 모델을 생성하기 위해 사용되어 질 수 없음_.
+    -   Management는 set point 혹은 외란(disturbance)의 변화에 반응하는 line의 성능향상에 관심있지만, learning process 중에는 생산손실*loss of production)이 크면 안된다.
+
+
+### 2. The Algorithm
+
+
+
+
