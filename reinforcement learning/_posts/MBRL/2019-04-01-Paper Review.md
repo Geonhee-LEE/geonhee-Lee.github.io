@@ -277,7 +277,7 @@ $$
     -   구현은 robot arm은 Cart-Pole problem의 cart로 대체. 
     -   Arm의 inverse dynamics, inverse kinematics의 추정치를 가지므로, Cartesian 공간에서 task에 command input으로 finger의 가속도 사용 가능.
     -   Arm은 또한 pole보다 훨씬 무거워, pole이 arm에 발휘하는 interaction force를 무시함.
-    -   따라서, Fig. 1b의 pole balancing dynamics는 _(7)_와 같이 reformulation
+    -   따라서, Fig. 1b의 pole balancing dynamics는 _(7)_ 와 같이 reformulation
         -   Equation에서 모든 변수들은 demonstration에서 추출 가능.
         -   이러한 방정식의 extension은 생략.
 
