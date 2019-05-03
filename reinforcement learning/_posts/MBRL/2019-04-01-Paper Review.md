@@ -15,7 +15,7 @@ comments: true
 {:toc}
 
 
-## Learning From Demonstration Stefan, Stefan Schaal, 1997
+## [Learning From Demonstration Stefan, Stefan Schaal, 1997]
 
 ### Abstract
 
@@ -347,7 +347,7 @@ $$
 
 
 
-## Exploiting Model Uncertainty Estimates for Safe Dynamic Control Learning, Jeff G. Schneider, 1997
+## [Exploiting Model Uncertainty Estimates for Safe Dynamic Control Learning, Jeff G. Schneider, 1997]
 
 ### Abstract
 
