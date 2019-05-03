@@ -261,15 +261,15 @@ $$
 
 
 - __Simulation과 비교하여 몇가지 중요한 차이점:__
-  - 1. demonstration이 vision-based이므로, kinematic 변수들만 demonstration에서 추출할 수 있다.
-  - 2. visual signal processing은 120ms의 시간지연을 가진다.
-  - 3. robot에 주어진 command는 로봇의 unknown nonlinearities때문에 높은 정확도를 가지는 execution은 아니다.
-  - 4. human은 pole balancing에 대해 internal state를 사용한다
+  1. demonstration이 vision-based이므로, kinematic 변수들만 demonstration에서 추출할 수 있다.
+  2. visual signal processing은 120ms의 시간지연을 가진다.
+  3. robot에 주어진 command는 로봇의 unknown nonlinearities때문에 높은 정확도를 가지는 execution은 아니다.
+  4. human은 pole balancing에 대해 internal state를 사용한다
     - 즉, human policy는 부분적으로 non-observable variables을 부분적으로 기반한다.
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/6.png" class="lead"   style="width:180px; height=:480px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/6.png" class="lead"   style="width=:180px; height=:480px"/>
 </figure>
 
 -   위와 같은 issue들은 다음과 같은 영향을 가진다:
