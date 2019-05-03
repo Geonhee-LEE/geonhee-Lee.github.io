@@ -30,7 +30,7 @@ comments: true
   - 표본 공간의 임의의 부분집합 : __사건(event) E__
     - 사건 E와 사건 F의 합사건(union), E 혹은 F가 발생할때: E $$\bigcup$$ F
     - 사건 E와 사건 F의 교사건(intersection), E와 F가 모두 발생할때: E $$\bigcap$$ F
-    - 영사건(null event): 어떠한 결과도 포함하지 않음, $$\\emptyset$$
+    - 영사건(null event): 어떠한 결과도 포함하지 않음, $$\emptyset$$
       - 만일 EF = $$\emptyset$$이면, E와 F는 _상호배반(mutually exclusive)
     - 임의의 사건 E에 대해 E에 속하지 않는 표본공간 S의 모든 결과로 구성된 새로운 사건: $$E^c$$, E의 여사건(complement)
 
@@ -38,19 +38,48 @@ comments: true
 
 ### 확률의 공리
 
-
+- 사건의 확률을 정의하는 한가지 방법: 그 사건의 __상대도수__ 에 의한 것
+  - 표본공간이 S인 어떤 실험이 정확히 동일한 조건하에서 반복적으로 실행된다고 가정. 표본공간 S의 각 사건 E에 대해 n(E)를 그 실험을 처음 n번 반복할 때 사건 E가 발생한 횟수로 정의.
+  - 사건 E의 확률 P(E)의 정의:
 
 $$
 \begin{aligned}
-P(|\hat{\theta} - \theta ^* \geq \epsilon|) \leq 2 e ^{-2N\epsilon^2}
+P(E) = lim _{n \rightarrow \infty} \frac{n(E)}{n}
 \end{aligned} 
 $$
 
-- Can you calculate the required number of trials, N?
-  - To obtain $$\epsilon$$ = 0.1 with 0.01% case
+- 즉, P(E)는 사건 E가 발생한 횟수의 (극한)비율로 정의. 
+  - 따라서, P(E)는 E의 극한 상대도수
+
 
 > Note
-> > This is  Probably Approximate Correct(PAC) learning
+> > 실제로는 극한비율을 얻지 못함
+> > 일정한 극한 값에 수렴한다는 가정을 하거나 __공리__ (axiom)를 언급하여 이러한 문제점 해결(확률론에서 자명한 해결방법, 명백한 공리를 가정하고 나서 일정한 극한 도수가 어떤 의미에서 존재함을 증명하는 것)
+
+- 확률의 세 가지 공리
+  - 공리 1: $$0 \geq P(E) \geq 1$$
+  - 공리 2: $$P(S) = 1$$
+  - 공리 3: 임의의 상호배반인 일련의 사건들 $$E_1, E_2, ...$$ 즉, $$i \neq j$$ 일 때 $$E_i E_j = \emptyset$$ 인 사건들)에 대해 아래의 식이 성립. 
+    - P(E)를 사건 E의 확률(probability)
+
+$$
+\begin{aligned}
+P( \bigcap_{i=1}^{\infty} E_i) = \sum ^{\infty} _{i=1} P(E_i)
+\end{aligned} 
+$$
+
+### 균등확률 결과를 갖는 표본공간
+
+- 많은 실험에서 표본 공간에 속하는 모든 결과가 균등하게 발생한다고 가정.
+
+$$
+\begin{aligned}
+P({i}) = \frac{1}{N} \qquad i =1,2,...,N
+\end{aligned} 
+$$
+
+
+
 
 
 
