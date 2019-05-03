@@ -122,12 +122,12 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/1.png" class="lead"   style="width:320px; height=:600px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/1.png" class="lead"   style="width=:320px; height=:600px"/>
 </figure>
 
 -   Fig. 2는 Swing-up 학습 결과
     -   각 trial은 60초 지속
-    -    Time $$T_{up}$$은 각 trial 동안 $$\theta \in [-\pi/2, \pi/2] 에서 pole이 보내는 시간.
+    -    Time $$T_{up}$$은 각 trial 동안 $$\theta \in [-\pi/2, \pi/2]$$ 에서 pole이 보내는 시간.
 -    a) 와 c)를 비교: Demonstration에서의 pole model 학습은 가속화되지 않음.
      -    당연한 결과: V-function을 학습하는 것은 model을 학습하는 것보다 상당히 복잡하고, 이것은 학습 과정은 V-function learning에 의해 우선시(dominate)된다.
      -    흥미롭게도, demonstration에서 action를 priming은 초기 performance(condition a vs. b)에서 상당한 효과를 가진다.
@@ -160,7 +160,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/2.png" class="lead"   style="width:320px; height=:600px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/2.png" class="lead"   style="width=:320px; height=:600px"/>
 </figure>
 
 > Note that
@@ -192,7 +192,7 @@ $$
 
 -   매 state __x__ 마다, reward function (1)하에서 optimal action이고 Q를 최소화하는 action __u__ 를 선택.
     - 장점: optimal policy를 찾기 위해 Q-function을 평가하는 것은 __제어할 대상의 dynamical system _f___ 를 요구하지 않음;
-       -  오직 one-step reward _r_의 값만 필요
+       -  오직 one-step reward _r_ 의 값만 필요
     - Demonstration에서 learning하기 위해서는, Q-function and/or policy를 priming하는 것은 learning을 가속화하는 두 개의 후보이다.
 
 
@@ -202,7 +202,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/3.png" class="lead"   style="width:320px; height=:120px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/3.png" class="lead"   style="width=:480px; height=:240px"/>
 </figure>
 
 
@@ -219,7 +219,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/4.png" class="lead"   style="width:320px; height=:240px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/4.png" class="lead"   style="width=:320px; height=:240px"/>
 </figure>
 
 -   Fig. 4.를 보면, 120초 정도 후(12 policy iteration step)에, policy는 기본적으로 optimal policy와 기본적으로 구별 불가
@@ -236,7 +236,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/5.png" class="lead"   style="width:480px; height=:120px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/5.png" class="lead"   style="width=:480px; height=:240px"/>
 </figure>
 
 
@@ -290,7 +290,7 @@ $$
 
 -   __Delayed Visual Information__: 
     -   Delayed vaeiables를 다루는 두 가지 방법:
-        -   $$1$$. Sytem의 state에 7*1/60s = 120 delay time, $$x^T = (x, \dot{x}, \theta, \dot{\theta{, u_{t-1}, u_{t-2}, ..., u_{t-7}$$ , 와 일치하는  delayed commands을 augmentation
+        -   $$1$$. Sytem의 state에 7*1/60s = 120 delay time, $$x^T = (x, \dot{x}, \theta, \dot{\theta}, u_{t-1}, u_{t-2}, ..., u_{t-7}$$, 와 일치하는 delayed commands을 augmentation
         -   $$2$$. state predictive controller를 employ하는 방법.
         -   첫 번째 방법은 policy의 complexity를 상당히 증가, 두번째 방법은 model _f_를 요구.
 
@@ -299,7 +299,7 @@ $$
     -   가속도 명령 _u_ 가 주어지면, 로봇은 _u_ 에 가깝게 실행하지만 정확한 _u_ 는 아님.
     -   따라서, _u_ 를 포함한 function을 학습하는 것(e.g., dynamics model)은 위험할 수 있으며, 이유는 mapping $$(x, \dot{x}, \theta, \dot{\theta}, u) \rightarrow  (\ddot{x}, \ddot{\theta})$$ 이 robot arm의 nonlinear dynamics에 의해 contaminated(오염)되기 때문이다.
     -   게다가, 이러한 model을 믿을만하게(reliably) 학습할 수 없다고 밝혀졌다.
-    -   이것은 command _u_ 를 "관측(observing"하여 개선(remedied)될 수 있다
+    -   이것은 command _u_ 를 "관측(observing)"하여 개선(remedied)될 수 있다
         -   즉, visual feedback으로부터 $$u = \ddot{x}$$을 추출.
 
 
@@ -325,7 +325,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/7.png" class="lead"   style="width:480px; height=:480px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/7.png" class="lead"   style="width=:480px; height=:360px"/>
 </figure>
 
 
