@@ -122,7 +122,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/1.png" class="lead"   style="width:320px; height:=600px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/1.png" class="lead"   style="width:320px; height=:600px"/>
 </figure>
 
 -   Fig. 2는 Swing-up 학습 결과
@@ -160,7 +160,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/2.png" class="lead"   style="width:320px; height:=600px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/2.png" class="lead"   style="width:320px; height=:600px"/>
 </figure>
 
 > Note that
@@ -202,7 +202,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/3.png" class="lead"   style="width:480px; height:=240px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/3.png" class="lead"   style="width:480px; height=:240px"/>
 </figure>
 
 
@@ -219,7 +219,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/4.png" class="lead"   style="width:320px; height:=240px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/4.png" class="lead"   style="width:320px; height=:240px"/>
 </figure>
 
 -   Fig. 4.를 보면, 120초 정도 후(12 policy iteration step)에, policy는 기본적으로 optimal policy와 기본적으로 구별 불가
@@ -236,7 +236,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/5.png" class="lead"   style="width:480px; height:=240px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/5.png" class="lead"   style="width:480px; height=:240px"/>
 </figure>
 
 
@@ -269,7 +269,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/6.png" class="lead"   style="width:180px; height:=480px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/6.png" class="lead"   style="width:180px; height=:480px"/>
 </figure>
 
 -   위와 같은 issue들은 다음과 같은 영향을 가진다:
@@ -325,7 +325,7 @@ $$
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/7.png" class="lead"   style="width:480px; height:=360px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/7.png" class="lead"   style="width:480px; height=:360px"/>
 </figure>
 
 
