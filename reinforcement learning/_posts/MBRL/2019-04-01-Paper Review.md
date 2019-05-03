@@ -380,7 +380,7 @@ $$
           -  더 나쁜 것은, 학습이 시스템의 정상 동작중에 발생해야만 하면 이는 학습 동안의 성능이 상당히 저하되지 않아야 한다.
 
 -   Adaptive, optimal linear control이론 자료는 이 문제는 상당히 stochastic, dual control이라는 이름으로 살펴보고 있다.
-    -   _[Kendrick, 1981, Bar-Shalon and Tse, 1976]에서 살펴볼 수 있음.
+    -   _[Kendrick, 1981, Bar-Shalon and Tse, 1976]_ 에서 살펴볼 수 있음.
     -   제어 의사 결정(control decision)은 _deterministic, cautionary, probing 용어_ 들에 기반
         -   _Deterministic term_: 모델이 완벽하고 best performance에 대해 control한다 가정
             -   모델이 부정확하면 망함
@@ -405,7 +405,7 @@ $$
     -   state _x_, contron _u_, : real valued vectors.
     -   _k_ : discrete time increments.
     -   _f_ 의 model:  $$\hat{f}$$.
-    -   Task는 form $$J = \sum ^{N} _{k=0} L(x^k, u^k, k) subject to the system dynamics 의 cost functional 최소화.
+    -   Task는 form $$J = \sum^N _{k=0} L(x^k, u^k, k)$$ subject to the system dynamics 의 cost functional 최소화.
         -   N: 문제에 따라 fixed 일수 있고 아닐 수도 있음.
         -   L은 주어지고, f은 학습해야함.
         -   __목표:__ 학습 도중에 큰 손해 발생(incurring huge penalties)없이 _J_ 를 최소화하기 위해 _f_ 를 학습하기 위해 data를 얻는 것.
