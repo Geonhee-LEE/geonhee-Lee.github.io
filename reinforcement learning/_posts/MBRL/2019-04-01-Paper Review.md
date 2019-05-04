@@ -426,5 +426,14 @@ Steps 2, 3 설명은 나머지 section에서 진행.
 
 #### Bayesian locally weighted regression
 
+-   저자는 data로부터 model을 build하기 위해서 Baysesian locally weighted regression[_Moore and Schneider, 1995_]이라 불리는 locally weighted regression _[Cleveland and Delvin, 1988, Atkeson, 1989, Moore, 1992]_ 의 형태를 사용.
+-   Query, $$x_q$$가 만들어 질 때, 저장된 data points의 각각은 weight $$w_i = exp( - ||x_i - x_q||^2 /K)$$ 을 수신
+    -   _K_ : regression에서 localness의 양을 제어하는 _kernel width_
+- Bayesian LWE에 대해 저자는 regression model의 계수 및 noise covariance에 대해 wide, weak normal gamma를 먼저 가정.
+- __prediciton의 결과는 output에 대한 distribution이고, output은 data의 없어도 잘 정의됨__ (see [Moore and Schneider, 1995] and [DeGroot, 1970] for details)
+
+-   Data가 없는 regions에서의 prediction의 distribution은 DP 알고리즘의 performance에 중요.
+    -   __Search 및 실험(experimentation)을 통해학습하는 경우가 많기 때문에, 얼마나 data가 많은 region에서 interpolate하는 것만큼이나 data가 없을 때 무지(own ignorance)를 fucntion approximator가 예상하는 것도 중요__.
 
 
+####  Grid based Dynamics programming
