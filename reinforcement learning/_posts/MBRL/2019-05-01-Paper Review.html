@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>[PAPER-Review] Model-based Reinforcement learning</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <hr>
+<h2 id="layout-posttitle-%22rl%22categories-rltags-mbrlcomments-true">layout: post<br>
+title:  &quot;RL&quot;<br>
+categories: RL<br>
+tags: MBRL<br>
+comments: true</h2>
+<h1 id="paper-review-model-based-reinforcement-learning">[PAPER-Review] Model-based Reinforcement learning</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<p>{:.no_toc}</p>
+<ol>
+<li>this unordered seed list will be replaced by toc as unordered list<br>
+{:toc}</li>
+</ol>
+<h2 id="end-to-end-training-of-deep-visuomotor-policies-sergey-finn-2016">[End-to-End Training of Deep Visuomotor Policies, Sergey, Finn, 2016]</h2>
+<h3 id="abstract">Abstract</h3>
+<ul>
+<li>Policy search 방법은 task의 넓은 범위에 대해 control policy들을 학습할 수 있도록하지만, <strong>policy search의 실질적인 응용은 인지(perception) 및 state estimate, low-level control에 대한 hand-engineered components들을 종종 요구</strong>.</li>
+<li>이 논문에서는 다음의 질문들에 대한 대답이 목표
+<ul>
+<li>Perrception, control 시스템을함께(jointly) end-to-end를 학습하는 것을 각 성분(component)을 별개로 학습하는 것보다 좋은 성능을 제공?</li>
+</ul>
+</li>
+<li>저자는 <strong>raw image observation을 직접 로봇 모터의 토크를 매핑하는 policy들을 학습</strong> 하기 위해 사용되는 방법을 develop.
+<ul>
+<li>Policy들은 92,000개 파라미터를 가지는 deep convolutional neural networks(CNNs)에 의해 representation되며, simple trajectory-centric RL 방법에서 제공된 supervision을 가지고 policy search를 supervised learning으로 transformation하는 guided policy search 방법을 사용하여 학습.</li>
+<li>뚜껑을 물병에 부착하는 것와 같은 vision 및 control간의 close coordination을 요구하는 실제 환경 manipulation task의 range를 저자의 방법으로 평가하고 이전 policy search 방법의 range와 현재 simulated와 비교</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>Keywords: RL, Optimal Control, Vision, NN</p>
+</blockquote>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/Paper/End-to-End_Training/1.png" class="lead"   style="width:480px; height=:360px"/>
+</figure>
+<h2 id="deep-spatial-autoencoders-for-visuomotor-learning-finn-2016">[Deep Spatial Autoencoders for Visuomotor Learning, Finn, 2016]</h2>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/Paper/Deep-Spartial-Autoencoders/1.png" class="lead"   style="width:480px; height=:360px"/>
+</figure>
+<h3 id="abstract-1">Abstract</h3>
+<ul>
+<li>RL은 robotic motion skill들의 자동적으로 획득하기 위한 powerful, flexible framework을 제공.
+<ul>
+<li>그러나, RL을 적용하는 것은 task-relevant objects의 configuration을 포함한 state의 detailed representation의 충분한 양을 요구.</li>
+</ul>
+</li>
+<li>저자는 <strong>카메라 이미지로부터 state representation을 직접 학습하여 state-space construction을 자동화하는 접근법을 제안</strong>
+<ul>
+<li>저자의 방법은 object들의 위치와 같은, 현재 task에 대한 environment를 묘사(describe)하는 <strong>feature point들의 집합을 얻기위해 deep spatial autoencoder</strong> 를 사용.</li>
+<li>최종 controller는 closed-loop control을 가지고 world의 object들을 동적으로 조작하도록(dynamically manipulate) 로봇이 이용되며 학습된 feature point들에 대해 지속적으로 반응.</li>
+<li>다양한 위치에서 hook에서 rope를 loop를 hanging하고 spatula를 사용하여 rice의 bag을 들어올리거나 자유롭게 쌓여있는 block을 pushing하는 task들에 대해 PR2 로봇에 적용한 것을 시연.</li>
+<li><strong>각각의 task에서, 저자의 방법은 자동적으로 task-relevant objects를 track하는 것을 학습하고 robot's arm을 가지고 configuration을 manupulate</strong></li>
+</ul>
+</li>
+</ul>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mtable><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi>u</mi><mi>m</mi><mi>l</mi><mi>c</mi><mi>o</mi><mi>s</mi><mi>θ</mi><mo>+</mo><mover accent="true"><mi>θ</mi><mo>¨</mo></mover><mi>m</mi><msup><mi>l</mi><mn>2</mn></msup><mo>−</mo><mi>m</mi><mi>g</mi><mi>l</mi><mi>s</mi><mi>i</mi><mi>n</mi><mi>θ</mi><mo separator="true">,</mo><mover accent="true"><mi>x</mi><mo>¨</mo></mover><mi>u</mi><mspace width="1em"/><mo>(</mo><mn>7</mn><mo>)</mo></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{aligned}
+uml cos \theta + \ddot{\theta} m l^2 - mgl sin \theta, \ddot{x} u  \quad (7)
+\end{aligned}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.5913000000000002em;vertical-align:-0.54565em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0456500000000002em;"><span style="top:-3.11435em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">u</span><span class="mord mathdefault">m</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">c</span><span class="mord mathdefault">o</span><span class="mord mathdefault">s</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9313em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span></span></span><span style="top:-3.26344em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.16666em;">¨</span></span></span></span></span></span><span class="mord mathdefault">m</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault">m</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">s</span><span class="mord mathdefault">i</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.02778em;">θ</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">x</span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.22222em;">¨</span></span></span></span></span></span><span class="mord mathdefault">u</span><span class="mspace" style="margin-right:1em;"></span><span class="mopen">(</span><span class="mord">7</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.54565em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+    </body>
+    </html>
