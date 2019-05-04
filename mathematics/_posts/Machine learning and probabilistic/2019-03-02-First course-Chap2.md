@@ -57,14 +57,14 @@ $$
 > > 일정한 극한 값에 수렴한다는 가정을 하거나 __공리__ (axiom)를 언급하여 이러한 문제점 해결(확률론에서 자명한 해결방법, 명백한 공리를 가정하고 나서 일정한 극한 도수가 어떤 의미에서 존재함을 증명하는 것)
 
 - 확률의 세 가지 공리
-  - 공리 1: $$0 \geq P(E) \geq 1$$
+  - 공리 1: $$0 \leq P(E) \leq 1$$
   - 공리 2: $$P(S) = 1$$
   - 공리 3: 임의의 상호배반인 일련의 사건들 $$E_1, E_2, ...$$ 즉, $$i \neq j$$ 일 때 $$E_i E_j = \emptyset$$ 인 사건들)에 대해 아래의 식이 성립. 
     - P(E)를 사건 E의 확률(probability)
 
 $$
 \begin{aligned}
-P( \bigcap_{i=1}^{\infty} E_i) = \sum ^{\infty} _{i=1} P(E_i)
+P( \bigcup_{i=1}^{\infty} E_i) = \sum ^{\infty} _{i=1} P(E_i)
 \end{aligned} 
 $$
 
