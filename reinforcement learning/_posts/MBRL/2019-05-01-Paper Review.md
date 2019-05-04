@@ -63,6 +63,7 @@ comments: true
 
 - 많은 skill 및 환경들에 대한 robot learning을 확대(scaling up)하는데 가장 중요한 것(key challenge)은 human supervision에 대한 요구를 제거하면, 로봇은 own data를 수집할 수 있고 human feedback의 비용에 대한 제한이 되는 것 없이 own performance를 향상시킬 수 있다.
 - MBRL은 detailed human supervision없이 task 및 environment의 넓은 range에 대해 flexible predictive model을 제공할 수 있는 action의 effect들을 예측하는 방법을 agent가 학습할 수 있다고 약속(promise)
+- 저자는 __labelled training data을 완전히 사용할 수 있는 model-predictive control을 가지고 deep action-conditioned video predition model을 개발__
 
 
 <figure>
