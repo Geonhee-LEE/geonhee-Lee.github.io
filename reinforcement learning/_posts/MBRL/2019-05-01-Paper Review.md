@@ -30,7 +30,7 @@ comments: true
 
 
 <figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/End-to-End_Training/1.png" class="lead"   style="width:480px; height=:360px"/>
+  <img alt="An image with a caption" src="/assets/img/Paper/End-to-End_Training/1.png" class="lead"   style="width:480px; height:640px"/>
 </figure>
 
 
