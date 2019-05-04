@@ -6,7 +6,7 @@ tags: MBRL
 comments: true
 ---
 
-# [PAPER-Review] Model-based Reinforcement learning
+# [PAPER-Review] Model-based Reinforcement learning2
 
 
 ## Table of Contents
@@ -39,9 +39,6 @@ comments: true
 ## [Deep Spatial Autoencoders for Visuomotor Learning, Finn, 2016]
 
 
-<figure>
-  <img alt="An image with a caption" src="/assets/img/Paper/Deep-Spartial-Autoencoders/1.png" class="lead"   style="width:480px; height=:360px"/>
-</figure>
 
 ### Abstract
 
@@ -53,9 +50,15 @@ comments: true
   - 다양한 위치에서 hook에서 rope를 loop를 hanging하고 spatula를 사용하여 rice의 bag을 들어올리거나 자유롭게 쌓여있는 block을 pushing하는 task들에 대해 PR2 로봇에 적용한 것을 시연. 
   - __각각의 task에서, 저자의 방법은 자동적으로 task-relevant objects를 track하는 것을 학습하고 robot's arm을 가지고 configuration을 manupulate__
 
+<figure>
+  <img alt="An image with a caption" src="/assets/img/Paper/Deep-Spartial-Autoencoders/1.png" class="lead"   style="width:480px; height=:360px"/>
+</figure>
+
+
 $$
 \begin{aligned}
-uml cos \theta + \ddot{\theta} m l^2 - mgl sin \theta, \ddot{x} u  \quad (7)
+
+
 \end{aligned}
 $$
 
