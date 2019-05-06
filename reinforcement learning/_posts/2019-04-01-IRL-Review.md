@@ -90,13 +90,30 @@ comments: true
   - $$A = {a_1, ..., a_k}$$: _k_ __actions__ 의 집합.
   - $$P_{sa}(\cdot)$$ : state _s_ 에서 action _a_ 를 취하는 state __transition probabilities__.
   - $$\gamma \in [0, 1)$$ : __discount factor__.
-  - _R_ : $$S x \mapsto x^2  \mathbb{R}$$ : __reinforcement function__, $$R_{max}$$에 의한 absolute 값으로 bounded.
+  - _R_ : $$S \mapsto \mathbb{R}$$ : __reinforcement function__, $$R_{max}$$에 의한 절대 값으로 bounded.
 
 - 설명(exposition)을 단순화 하기 위해서, R(s,a)을 R(s)로 reward 표기, extension은 trivial.
-- __Policy__: map $$\pi: S x \mapsto x^2  A$$ 으로 정의
-- __Value function__: 
+- __Policy__: map $$\pi: S \mapsto A$$ 으로 정의
+- __Value function__:  policy $$\pi$$ 에 대해 $$s_1$$에서 평가 될 때 다음과 같다.
+  
+$$
+\begin{aligned}
+V ^{\pi} (s_1) = E[R(s_1) + \gamma R(s_2) + \gamma ^2 R(s_3) + \cdots | \pi]
+\end{aligned}
+$$
+
+where expection is over the distribution of the state sequence $$(s_1, s_2, ...)$$ we pass through when we execute the policy $$\pi$$ strating from $$s_1$$. 
 
 
+- __Q-function__: 
+
+$$
+\begin{aligned}
+Q ^{\pi} (s,a) = R(s) + \gamma E_{s' ~ P_{sa}(\cdot)} [V ^{\pi} (s')]
+\end{aligned}
+$$
+
+(where the notation s' ~ P_{sa}(\cdot) means the expectation is with respect to s' distributed according to P_{sa} (\cdot)). 
 
 ----------
 
