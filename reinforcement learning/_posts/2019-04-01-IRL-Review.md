@@ -138,7 +138,7 @@ Discrete, finite space 경우에는, 모든 이러한 함수들은 __boldface no
 
 - __Theorem 1 (Bellan Equations)__ 
   - _Let an MDP M = $$(S, A, {P_{sa}}, \gamma, R)$$ and policy $$\pi$$ : S $$\mapsto$$ A be given.
-  - _Then, for all s $$\in S, a \in Am V ^\pi Q ^\pi$$_ 는 다음을 만족.
+  - _Then, for all s $$\in S, a \in A, V ^\pi Q ^\pi$$_ 는 다음을 만족.
 
 $$
 \begin{aligned}
@@ -147,9 +147,9 @@ Q^\pi (s, a) = R(s) + \gamma \sum _{s'} P _{sa} (s') V ^\pi (s') \qquad (2)
 \end{aligned}
 $$
 
-  - __Theorem 2 (Bellan Optimality)__ 
-    - _Let an MDP M = $$(S, A, {P_{sa}}, \gamma, R)$$ and policy $$\pi$$ : S $$\mapsto$$ A be given.
-    - _Then $$\pi$$ is an optimal policy for M if and only if, for all $$s \in S$$,_
+- __Theorem 2 (Bellan Optimality)__ 
+  - _Let an MDP M = $$(S, A, {P_{sa}}, \gamma, R)$$ and policy $$\pi$$ : S $$\mapsto$$ A be given._
+  - _Then $$\pi$$ is an optimal policy for M if and only if, for all $$s \in S$$,_
 
 $$
 \begin{aligned}
@@ -165,7 +165,7 @@ $$
 - State space가 finite, model이 알려져 있고, 완벽히 policy가 관측될 때의 간단한 경우부터 시작.
   - 구체적으로, finite state space _S_, k actions A =$${a_1, ..., a_k}$$의 집합, transition probabilities $${P_{sa}}$$, a discount factor $$\gamma$$, policy $$\pi$$ 가 주어짐.
   - 목표: MDP $$S, A, {P_{sa}, \gamma, R}$$에서 $$\pi$$가 optimal policy인 가능한 __reward function R의 set를 찾는 것__.
-  - (저자는 추가 기준(criteria)을 만족하는 집합내에 함수들을 식별(identify)하고자 한다). 필요하다면 action들을 rename하여, $$\pi(s) \equiv a_1$$인 loss of generality없이 가정.
+  - (저자는 추가 기준(criteria)을 만족하는 집합내에 함수들을 식별(identify)하고자 한다). 필요하다면 action들을 rename하여, $$\pi(s) \equiv a_1$$인 loss of generality 없이 가정.
     - 이것은 notation을 단순화하기 위한 기술.
 
 
