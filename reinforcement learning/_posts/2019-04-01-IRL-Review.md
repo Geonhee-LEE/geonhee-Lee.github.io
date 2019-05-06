@@ -129,7 +129,38 @@ Discrete, finite space 경우에는, 모든 이러한 함수들은 __boldface no
 
 
 - 일반적인 RL의 목표는 $$V ^\pi$$ 를 최대화하는 policy $$\pi$$를 찾는 것.
-  -  모든 $$s \in S by \pi = \pi ^*$$ 에 대해서 $$V^\pi$$ 가 동시에 최대화되는 조건을 만족하는 __optimal policy__ $$\pi ^*$$ 가 하나라도 존재하는 것을 보였다. _(e.g., Sutton&Barto, 1998; Bertsekas & Tsitsiklis, 1996)_
+  -  모든 $$s \in S$$ by $$\pi = \pi ^*$$ 에 대해서 $$V^\pi$$ 가 동시에 최대화되는 하는 __optimal policy__ $$\pi ^*$$ 가 하나라도 존재하는 것을 보였다. _(e.g., Sutton & Barto, 1998; Bertsekas & Tsitsiklis, 1996)_
+
+
+#### Basoc Properties of MDPs
+
+- IRL 문제에 대한 저자의 solution을 위해, MDPs _(Sutton & Bartp, 1998; Bertsekas & Tsitsiklis, 1996)_ 에 대해서 고전적인(classical) 두 개의 결과가 필요.
+
+  - __Theorem 1 (Bellan Equations)__ 
+    - _Let an MDP M = $$(S, A, {P_{sa}}, \gamma, R)$$ and policy $$\pi$$ : S $$_mapsto$$ A be given.
+    - _Then, for all s $$\in S, a \in Am V ^\pi Q ^\pi$$_ 는 다음을 만족.
+
+$$
+\begin{aligned}
+V^\pi (s) = R(s) + \gamma \sum _{s'} P _{s \pi(s)} (s') V ^\pi (s') \qquad (1)
+Q^\pi (s, a) = R(s) + \gamma \sum _{s'} P _{sa} (s') V ^\pi (s') \qquad (2)
+\end{aligned}
+$$
+
+  - __Theorem 2 (Bellan Optimality)__ 
+    - _Let an MDP M = $$(S, A, {P_{sa}}, \gamma, R)$$ and policy $$\pi$$ : S $$_mapsto$$ A be given.
+    - _Then $$\pi$$ is an optimal policy for M if and only if, for all $$s \in S$$,_
+
+$$
+\begin{aligned}
+\pi (s) \in argmax _{a\in A} Q ^\pi (s, a) \qquad (3)
+\end{aligned}
+$$
+
+
+
+#### Basoc Properties of MDPs
+
 
 
 
