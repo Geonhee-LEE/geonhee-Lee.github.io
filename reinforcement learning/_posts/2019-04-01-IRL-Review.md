@@ -14,6 +14,7 @@ comments: true
 1. this unordered seed list will be replaced by toc as unordered list
 {:toc}
 
+----------
 
 ## [Algorithms for Inverse Reinforcement learning, Andrew Y.Ng , Russell, 2000]
 
@@ -36,6 +37,10 @@ comments: true
 > > _(comment) degeneracy를 제거는 유일 해를 찾기 위한 과정처럼 보임. 몇 가지 constraints(여기서 말하는 휴리스틱 방법)를 추가하여 우리가 관측하는 policy(reward fucntion)가 유일한 optimal policy이기를 바람._
 
 - 저자는 단순한 discrete/finite(위에서 1번째 case) 및 continuous/infinite state(위에서 2번째 case) 문제에 대해 실험.
+
+
+----------
+
 
 ### Introduction
 
@@ -70,25 +75,23 @@ comments: true
     - __모든 경우에 observed behavior를 잘 "설명"할 수 있는 reward function을 복구__ 할 수 있다.
   - _Section 7._  요약 및 후속 연구 방향 소개
 
-
-
-{:message} message
-**NOTE**: You can add a message box.
-{:message}
+----------
 
 ### Notation and Problem Formulation
 
 - Notation, definition, basic theorems for MDPs에 대해 소개.
 - 우리가 앞으로 다룰 IRL 문제에 대해 정의.
 
+----------
 
 #### Markob Decision Processes
 
-- A (finite) MDP: tuple $$(S, A, {P_{sa}}, \gamma, R)$$, where
+- (finite) MDP: tuple $$(S, A, {P_{sa}}, \gamma, R)$$, where
   - _S_: N __states__ 의 finite set.
-  - $$A = {a_1, ..., a_k}$$: _k_ __actions__의 집합
-  - $$P_{sa}(\cdot)$$ : state _s_ 에서 action _a_ 를 취하는 state __transition probabilities__
-
+  - $$A = {a_1, ..., a_k}$$: _k_ __actions__의 집합.
+  - $$P_{sa}(\cdot)$$ : state _s_ 에서 action _a_ 를 취하는 state __transition probabilities__.
+  - $$\gamma \in [0, 1)$$ : __discount factor__.
+  - _R_ : $$S \rightarrow \R$$ : __reinforcement function__, $$R_max$$에 의한 absolute 값으로 bounded.
 
 
 
