@@ -113,10 +113,18 @@ Q ^{\pi} (s,a) = R(s) + \gamma E_{s' ~ P_{sa}(\cdot)} [V ^{\pi} (s')]
 \end{aligned}
 $$
 
-(where the notation s' ~ P_{sa}(\cdot) means the expectation is with respect to s' distributed according to P_{sa} (\cdot)). 
+(where the notation $$s' ~ P_{sa}(\cdot)$$ means the expectation is with respect to s' distributed according to $$P_{sa} (\cdot)).$$
+
 - __Optimal value function__: $$V^* (s) = sup _{\pi} V ^\pi (s)$$
 
 - __Optimal Q-function__: $$Q^* (s,a) = sup _\pi Q^\pi (s,a)$$
+
+
+Discrete, finite space 경우에는, 모든 이러한 함수들은 __boldface notation__ 으로 쓰였으며, state에 index된 vector들로 표현.
+더욱 정확하게 finite state space _S_ 의 1부터 N까지 열거하는 것.
+reward는 _i_ th 요소가 MDP의 _i_ th state 에서 reward를 가지는 N-차원 vector __R__ 로 정의.
+
+
 
 ----------
 
