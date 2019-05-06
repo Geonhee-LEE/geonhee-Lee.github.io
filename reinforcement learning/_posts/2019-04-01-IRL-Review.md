@@ -122,7 +122,14 @@ $$
 
 Discrete, finite space 경우에는, 모든 이러한 함수들은 __boldface notation__ 으로 쓰였으며, state에 index된 vector들로 표현.
 더욱 정확하게 finite state space _S_ 의 1부터 N까지 열거하는 것.
-reward는 _i_ th 요소가 MDP의 _i_ th state 에서 reward를 가지는 N-차원 vector __R__ 로 정의.
+
+- Reward: _i_ th 요소가 MDP의 _i_ th state 에서 reward를 가지는, N-차원 vector __R__ 로 정의.
+- $$V^\pi$$: state _i_ 에서 평가되는 $$\pi$$ 에 대한 _i_ th 요소를 가지는 vector.
+- $$P_a$$: 각 action _a_ 에 대해서, element _(i, j)_ 가 satet _i_ 에서 action _a_ 을 취해 state _j_ 로 transitioning의 probability를 주는 N-by-N matrix.
+
+
+- 일반적인 RL의 목표는 $$V ^\pi$$ 를 최대화하는 policy $$\pi$$를 찾는 것.
+  -  모든 $$s \in S by \pi = \pi ^*$$ 에 대해서 $$V^\pi$$ 가 동시에 최대화되는 조건을 만족하는 __optimal policy__ $$\pi ^*$$ 가 하나라도 존재하는 것을 보였다. _(e.g., Sutton&Barto, 1998; Bertsekas & Tsitsiklis, 1996)_
 
 
 
