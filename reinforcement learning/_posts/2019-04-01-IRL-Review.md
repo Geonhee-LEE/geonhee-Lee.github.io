@@ -47,12 +47,13 @@ comments: true
    - __Determine__:
      - 최적화되는 reward function.
 
+
 - 기존에는 "expert"의 _policy_ 를 학습.
   - __저자는 expert's reward function을 복구하고 desirable behavior를 생성을 제안__
   - RL은 policy보다 reward function이 더욱 _succinct, robust, transferable_ 하다는 전제에 기반.
 
-- 이 논문에서, 머신러닝관점에서 IRL 문제를 다룸(경제학, 제어에서도 IRL 문제를 풀려는 시도가 존재)
-  - 처음. finite MDPs
+
+- 이 논문에서는, 머신러닝관점에서 IRL 문제를 다룸(경제학, 제어에서도 IRL 문제를 풀려는 시도가 존재)
   - _Section 2_. MDP 및  IRL 정의
     - model 및 policy가 완전히 주어진 상태에 focus.
   - _Section 3_. 주어진 policy가 최적가 최적인 모든 reward function들의 집합에 대해 다룸
@@ -69,10 +70,12 @@ comments: true
     - __모든 경우에 observed behavior를 잘 "설명"할 수 있는 reward function을 복구__ 할 수 있다.
   - _Section 7._  요약 및 후속 연구 방향 소개
 
+**NOTE**: You can add a message box.
+{:.요약}
 
 ### Notation and Problem Formulation
 
-
+- 
 
 
 
