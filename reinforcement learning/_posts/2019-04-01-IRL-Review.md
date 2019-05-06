@@ -90,7 +90,7 @@ comments: true
   - $$A = {a_1, ..., a_k}$$: _k_ __actions__의 집합.
   - $$P_{sa}(\cdot)$$ : state _s_ 에서 action _a_ 를 취하는 state __transition probabilities__.
   - $$\gamma \in [0, 1)$$ : __discount factor__.
-  - _R_ : $$S \rightarrow \mathbb{R}$$ : __reinforcement function__, $$R_max$$에 의한 absolute 값으로 bounded.
+  - _R_ : $$S \rightarrow \mathbb{R}$$ : __reinforcement function__, $$R_{max}$$에 의한 absolute 값으로 bounded.
 
 설명(exposition)을 단순화 하기 위해서, 
 
