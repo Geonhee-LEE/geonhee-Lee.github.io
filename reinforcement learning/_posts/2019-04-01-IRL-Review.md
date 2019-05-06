@@ -93,7 +93,8 @@ comments: true
   - _R_ : $$S \rightarrow \mathbb{R}$$ : __reinforcement function__, $$R_{max}$$에 의한 absolute 값으로 bounded.
 
 - 설명(exposition)을 단순화 하기 위해서, R(s,a)을 R(s)로 reward 표기, extension은 trivial.
-- __Policy__ : $$\pi: S x \mapsto x^2  A$$
+- __Policy__: map $$\pi: S x \mapsto x^2  A$$ 으로 정의
+- __Value function__: 
 
 
 
