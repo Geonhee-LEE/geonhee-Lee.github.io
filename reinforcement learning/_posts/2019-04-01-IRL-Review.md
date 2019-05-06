@@ -73,9 +73,8 @@ comments: true
 
 
 {:message} message
-
 **NOTE**: You can add a message box.
-{:.message}
+{:message}
 
 ### Notation and Problem Formulation
 
