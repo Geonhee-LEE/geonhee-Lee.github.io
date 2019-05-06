@@ -78,7 +78,7 @@ comments: true
 
 ### Notation and Problem Formulation
 
-- 
+- Notation, definition, basic theorems for MDPs에 대해 소개.
 
 
 
