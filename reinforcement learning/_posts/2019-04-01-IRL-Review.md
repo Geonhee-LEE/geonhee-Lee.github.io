@@ -132,7 +132,7 @@ Discrete, finite space 경우에는, 모든 이러한 함수들은 __boldface no
   -  모든 $$s \in S$$ by $$\pi = \pi ^*$$ 에 대해서 $$V^\pi$$ 가 동시에 최대화되는 하는 __optimal policy__ $$\pi ^*$$ 가 하나라도 존재하는 것을 보였다. _(e.g., Sutton & Barto, 1998; Bertsekas & Tsitsiklis, 1996)_
 
 
-#### Basoc Properties of MDPs
+#### Basic Properties of MDPs
 
 - IRL 문제에 대한 저자의 solution을 위해, MDPs _(Sutton & Bartp, 1998; Bertsekas & Tsitsiklis, 1996)_ 에 대해서 고전적인(classical) 두 개의 결과가 필요.
 
@@ -159,7 +159,9 @@ $$
 
 
 
-#### Basoc Properties of MDPs
+#### Inverse Reinforcement Learning
+
+- IRL 문제는 
 
 
 
