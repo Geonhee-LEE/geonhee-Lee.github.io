@@ -59,10 +59,18 @@ comments: true
     - __Problem__: 많은 _degenerate solution_ (e.g., reward function = 0) 들을 포함한 집합에 대해 시연.
     - __Solution__: Sub-optimal policy들과 observed policy의 차이를 최대화하는 __reward function을 식별(identify)하는 heuristics__ 를 통해 문제 해결.
     - _LP(Linear Programming)_ 를 사용하여 discrete case에서 효과적으로 진행.
-  - _Section 4._  
+  - _Section 4._ large or infinite state space에 대해 다룸.
+    - Reward function의 tabular representation은 infeasible.
+    - 고정된 basis function 및 임의의 linear combination으로 fitting된 reward function을 표현한다면, IRL 문제는 LP로 분류하고 효율적으로 풀 수 있음.
+  - _Section 5._ 관측되는 trajectory들의 finite set을 통해서만 policy를 알 수 있는 현실적인 경우에 대해 다룸.
+    - 단순히 iterative 알고리즘으로 해결.
+  - _Section 6._ 위 세가지 알고리즘 적용.
+    - Discrete, continous stochastic navigation 문제. "mountain-car" 문제
+    - __모든 경우에 observed behavior를 잘 "설명"할 수 있는 reward function을 복구__ 할 수 있다.
+  - _Section 7._  요약 및 후속 연구 방향 소개
 
 
-
+### Notation and Problem Formulation
 
 
 
