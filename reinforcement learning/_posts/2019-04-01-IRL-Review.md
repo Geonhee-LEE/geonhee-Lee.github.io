@@ -70,8 +70,12 @@ comments: true
     - __모든 경우에 observed behavior를 잘 "설명"할 수 있는 reward function을 복구__ 할 수 있다.
   - _Section 7._  요약 및 후속 연구 방향 소개
 
+
+
+{:message}
+
 **NOTE**: You can add a message box.
-{:.요약}
+{:.message}
 
 ### Notation and Problem Formulation
 
