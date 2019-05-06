@@ -142,7 +142,7 @@ Discrete, finite space 경우에는, 모든 이러한 함수들은 __boldface no
 
 $$
 \begin{aligned}
-V^\pi (s) = R(s) + \gamma \sum _{s'} P _{s \pi(s)} (s') V ^\pi (s') \qquad (1)
+V^\pi (s) = R(s) + \gamma \sum _{s'} P _{s \pi(s)} (s') V ^\pi (s') \qquad (1) \\
 Q^\pi (s, a) = R(s) + \gamma \sum _{s'} P _{sa} (s') V ^\pi (s') \qquad (2)
 \end{aligned}
 $$
