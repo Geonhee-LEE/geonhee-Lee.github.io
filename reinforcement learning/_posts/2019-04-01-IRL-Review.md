@@ -79,10 +79,15 @@ comments: true
 ### Notation and Problem Formulation
 
 - Notation, definition, basic theorems for MDPs에 대해 소개.
+- 우리가 앞으로 다룰 IRL 문제에 대해 정의.
 
 
+#### Markob Decision Processes
 
-
+- A (finite) MDP: tuple $$(S, A, {P_{sa}}, \gamma, R)$$, where
+  - _S_: N __states__ 의 finite set.
+  - $$A = {a_1, ..., a_k}$$: _k_ __actions__의 집합
+  - $$P_{sa}(\cdot)$$ : state _s_ 에서 action _a_ 를 취하는 state __transition probabilities__
 
 
 
