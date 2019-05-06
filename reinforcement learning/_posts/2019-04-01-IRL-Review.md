@@ -39,13 +39,27 @@ comments: true
 
 ### Introduction
 
--  IRL문제는 _(Russell, 1998)_ 와 같이 비공식적으로 아래와 같이 특징되어(characterize)질 수 있다: 
+-  IRL 문제는 _(Russell, 1998)_ 와 같이 비공식적으로 아래와 같이 특징되어(characterize)질 수 있다: 
+   -  __Given__ :
+      1.  다양한 상황에서, time에 따른 _agent's behavior_ 측정 값.
+      2.  필요에 따라, agent에 대한 _sensory input_ 측정 값.
+      3.  가능하다면, 환경 모델.
+   - __Determine__:
+     - 최적화되는 reward function.
 
+- 기존에는 "expert"의 _policy_ 를 학습.
+  - __저자는 expert's reward function을 복구하고 desirable behavior를 생성을 제안__
+  - RL은 policy보다 reward function이 더욱 _succinct, robust, transferable_ 하다는 전제에 기반.
 
-
-
-
-
+- 이 논문에서, 머신러닝관점에서 IRL 문제를 다룸(경제학, 제어에서도 IRL 문제를 풀려는 시도가 존재)
+  - 처음. finite MDPs
+  - _Section 2_. MDP 및  IRL 정의
+    - model 및 policy가 완전히 주어진 상태에 focus.
+  - _Section 3_. 주어진 policy가 최적가 최적인 모든 reward function들의 집합에 대해 다룸
+    - __Problem__: 많은 _degenerate solution_ (e.g., reward function = 0) 들을 포함한 집합에 대해 시연.
+    - __Solution__: Sub-optimal policy들과 observed policy의 차이를 최대화하는 __reward function을 식별(identify)하는 heuristics__ 를 통해 문제 해결.
+    - _LP(Linear Programming)_ 를 사용하여 discrete case에서 효과적으로 진행.
+  - _Section 4._  
 
 
 
