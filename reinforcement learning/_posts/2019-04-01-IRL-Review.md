@@ -72,7 +72,7 @@ comments: true
 
 
 
-{:message}
+{:message} message
 
 **NOTE**: You can add a message box.
 {:.message}
