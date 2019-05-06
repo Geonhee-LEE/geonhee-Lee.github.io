@@ -86,11 +86,11 @@ comments: true
 #### Markov Decision Processes
 
 - (finite) MDP: tuple $$(S, A, {P_{sa}}, \gamma, R)$$, where
-  - _S_: N __states__ 의 finite set.
-  - $$A = {a_1, ..., a_k}$$: _k_ __actions__의 집합.
+  - _S_: N개 __states__ 의 finite set.
+  - $$A = {a_1, ..., a_k}$$: _k_ __actions__ 의 집합.
   - $$P_{sa}(\cdot)$$ : state _s_ 에서 action _a_ 를 취하는 state __transition probabilities__.
   - $$\gamma \in [0, 1)$$ : __discount factor__.
-  - _R_ : $$S \rightarrow \mathbb{R}$$ : __reinforcement function__, $$R_{max}$$에 의한 absolute 값으로 bounded.
+  - _R_ : $$S x \mapsto x^2  \mathbb{R}$$ : __reinforcement function__, $$R_{max}$$에 의한 absolute 값으로 bounded.
 
 - 설명(exposition)을 단순화 하기 위해서, R(s,a)을 R(s)로 reward 표기, extension은 trivial.
 - __Policy__: map $$\pi: S x \mapsto x^2  A$$ 으로 정의
