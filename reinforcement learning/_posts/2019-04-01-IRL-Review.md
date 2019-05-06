@@ -114,6 +114,9 @@ Q ^{\pi} (s,a) = R(s) + \gamma E_{s' ~ P_{sa}(\cdot)} [V ^{\pi} (s')]
 $$
 
 (where the notation s' ~ P_{sa}(\cdot) means the expectation is with respect to s' distributed according to P_{sa} (\cdot)). 
+- __Optimal value function__: $$V^* (s) = sup _{\pi} V ^\pi (s)$$
+
+- __Optimal Q-function__: $$Q^* (s,a) = sup _\pi Q^\pi (s,a)$$
 
 ----------
 
