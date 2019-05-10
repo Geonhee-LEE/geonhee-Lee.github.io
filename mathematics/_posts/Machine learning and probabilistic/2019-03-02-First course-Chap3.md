@@ -156,8 +156,8 @@ $$
 
 $$
 \begin{aligned}
-P(E_1 \mid E_2 F) = P(E_1 \mid F) \qquad (5.11)\\
-P(E_1 E_2 \mid F) = P(E_1 \mid F) P(E_2 \mid F) \qquad (5.12)
+&P(E_1 \mid E_2 F) = P(E_1 \mid F) \qquad (5.11)\\
+&P(E_1 E_2 \mid F) = P(E_1 \mid F) P(E_2 \mid F) \qquad (5.12)
 \end{aligned} 
 $$
 
