@@ -104,7 +104,7 @@ comments: true</h2>
 <li>
 \Tau$$  - trainsition operator라고 한다. 현재 state에서 특정한 state로 가는 확률(조건부 확률분포).
   * 왜 operator라고 불리나?
-      * Discrete space에서 $$\Tau$$ 는 행렬이고,  확률의 vector($$\mu$$)에 대해 operator처럼 행동.
+      * Discrete space에서 $$\Tau$$ 는 행렬이고, 확률의 vector($$\mu$$)에 대해 operator처럼 행동.
       * p는 state distribution이며, 0보다 큰 값을 가진다.
   * $$\Tau _{i,j}$$ matrix는 $$p(s_{t+1} \bar s_t)$$, $$s_t$$에서 $$s_{t+1}$$로 전이하며, 간단한 linear equation으로 Markov chain forward $$(\overrightarrow{\mu_{t+1}} = \Tau  \overrightarrow{\mu_t$$} ) 표현.
 
@@ -116,6 +116,33 @@ comments: true</h2>
 <figure>
   <img alt="An image with a caption" src="file:////assets/img/CS294/LEC4/2.png" class="lead"   style="width:480px; height:=360px"/>
 </figure>
+<ul>
+<li><strong>Markov decision process(MDP)</strong>
+<ul>
+<li>Reward, action 개념 도입.</li>
+<li>Action, state가 다음 state를 결정.</li>
+<li>Transition Operator는 tensor(3D) 형태를 가짐.</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC4/3.png" class="lead"   style="width:480px; height:=360px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC4/4.png" class="lead"   style="width:480px; height:=120px"/>
+</figure>
+<ul>
+<li><strong>Partially observed Markov decision process(POMDP)</strong>
+<ul>
+<li>MDP의 generalization model.</li>
+<li>Observation, emission probability 도입</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC4/5.png" class="lead"   style="width:480px; height:=360px"/>
+</figure>
+<hr>
 <hr>
 <h1 id="reference">Reference</h1>
 <p><a href="http://rail.eecs.berkeley.edu/deeprlcourse/static/slides/lec-4.pdf">CS294-112 Lecture1</a></p>
