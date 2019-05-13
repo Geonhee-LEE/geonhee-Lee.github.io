@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>[CS294 - 112 정리] Lecture4 - Supervised Learning and Imitation</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <hr>
+<h2 id="layout-posttitle-%22rl%22categories-rltags-mbrlcomments-true">layout: post<br>
+title:  &quot;RL&quot;<br>
+categories: RL<br>
+tags: MBRL<br>
+comments: true</h2>
+<h1 id="cs294---112-%EC%A0%95%EB%A6%AC-lecture4---supervised-learning-and-imitation">[CS294 - 112 정리] Lecture4 - Supervised Learning and Imitation</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<p>{:.no_toc}</p>
+<ol>
+<li>this unordered seed list will be replaced by toc as unordered list<br>
+{:toc}</li>
+</ol>
+<h2 id="todays-lecture">Today’s Lecture</h2>
+<ol>
+<li>Definition of a Markov decision process</li>
+<li>Definition of reinforcement learning</li>
+<li>Anatomy of a RL algorithm</li>
+<li>Brief overview of RL algorithm types</li>
+</ol>
+<ul>
+<li>Goals:
+<ul>
+<li>definitions &amp; notation 이해.</li>
+<li>중요한 RL 목적 이해.</li>
+<li>이용 가능한 알고리즘의 요약.</li>
+</ul>
+</li>
+</ul>
+<h2 id="review">Review</h2>
+<ul>
+<li>Terminology &amp; notation
+<ul>
+<li>Sequential decision making 문제는 observation. action. policy를 포함.
+<ul>
+<li><strong>Policy</strong> 는 조건부 확률 분포이며, 일반적으로 observation이 주어지고 action이 도출된다. 파라미터화되어 있으며, 이 파라미터를 학습시키는 것이 RL의 목적이다. 바로 파라미터를 학습시키는 PG가 있다.</li>
+<li>아래의 그래프에서 <strong>state</strong> 는 Markov property 의미를 만족, <strong>observation</strong> 은 Markov property를 만족하지 못함.</li>
+<li>POMDPs과 Fully MDPs가 있는데, 일반적으로 fully MDPs로 가정한다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC4/1.png" class="lead"   style="width:480px; height:=360px"/>
+</figure>
+<ul>
+<li>
+<p>Imitation Learning</p>
+<ul>
+<li>전문가의 데이터(observation, action)를 수집하고, supervised learning 알고리즘을 사용한다.
+<ul>
+<li>위와 같은 behavior cloning접근은 일반적으로 학습이 잘 되지않지만, Dagger를 사용하여 성능을 향상시켰다.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Reward functions</p>
+<ul>
+<li>전문가의 data가 없는 경우에, 어떻게 하면 효율적으로 policy를 학습할 수 있을까?</li>
+<li>Reward를 이용하여 action이 좋은지 나쁜지를 찾을 수 있다.
+<ul>
+<li>Reward는 s, a로 구성, r(s, a)</li>
+<li>Reward를 순간이 아닌 전체에 걸쳐 최대화 한다.</li>
+<li>State, action, reward(r(s, a)), transition probability(p(s’|s,a))은 Markov decision process이라 한다.
+<ul>
+<li>MDP는 기본적으로 RL의 world의 정의.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<hr>
+<h1 id="reference">Reference</h1>
+<p><a href="http://rail.eecs.berkeley.edu/deeprlcourse/static/slides/lec-4.pdf">CS294-112 Lecture1</a></p>
+
+    </body>
+    </html>
