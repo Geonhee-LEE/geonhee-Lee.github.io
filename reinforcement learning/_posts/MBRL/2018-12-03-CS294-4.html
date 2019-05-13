@@ -86,7 +86,7 @@ comments: true</h2>
 <ul>
 <li>Reward는 s, a로 구성, r(s, a)</li>
 <li>Reward를 순간이 아닌 전체에 걸쳐 최대화 한다.</li>
-<li>State, action, reward(r(s, a)), transition probability(p(s’|s,a))은 Markov decision process이라 한다.
+<li>State, action, reward(r(s, a)), transition probability(p(s’$$\bar$$s,a))은 Markov decision process이라 한다.
 <ul>
 <li>MDP는 기본적으로 RL의 world의 정의.</li>
 </ul>
@@ -102,11 +102,11 @@ comments: true</h2>
 <li><strong>Markov chain</strong>
 <ul>
 <li>
-\Tau$$  - trainsition operator라고 한다. 현재 state에서 특정한 state로 가는 확률(조건부 확률분포).
+T$$  - trainsition operator라고 한다. 현재 state에서 특정한 state로 가는 확률(조건부 확률분포).
   * 왜 operator라고 불리나?
-      * Discrete space에서 $$\Tau$$ 는 행렬이고, 확률의 vector($$\mu$$)에 대해 operator처럼 행동.
+      * Discrete space에서 $$T$$ 는 행렬이고, 확률의 vector($$\mu$$)에 대해 operator처럼 행동.
       * p는 state distribution이며, 0보다 큰 값을 가진다.
-  * $$\Tau _{i,j}$$ matrix는 $$p(s_{t+1} \bar s_t)$$, $$s_t$$에서 $$s_{t+1}$$로 전이하며, 간단한 linear equation으로 Markov chain forward $$(\overrightarrow{\mu_{t+1}} = \Tau  \overrightarrow{\mu_t$$} ) 표현.
+  * $$T _{i,j}$$ matrix는 $$p(s_{t+1} \bar s_t)$$, $$s_t$$에서 $$s_{t+1}$$로 전이하며, 간단한 linear equation으로 Markov chain forward $$(\overrightarrow{\mu_{t+1}} = T  \overrightarrow{\mu_t$$} ) 표현.
 
 </li>
 <li>Markov property로 인해 $$s_3$$는 $$s_1$$와 독립적.</li>
