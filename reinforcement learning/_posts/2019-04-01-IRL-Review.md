@@ -192,12 +192,6 @@ $$
   <img alt="An image with a caption" src="/assets/img/Paper/LearnFromDemo/6.png" class="lead"   style="width:180px; height:=480px"/>
 </figure>
 
-$$
-\begin{aligned}
-uml cos \theta + \ddot{\theta} m l^2 - mgl sin \theta, \ddot{x} u  \quad (7)
-\end{aligned}
-$$
-
 
 
 
