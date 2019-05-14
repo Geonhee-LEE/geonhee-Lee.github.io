@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>[CS294 - 112 정리] Lecture10 -   Optimal control and planning</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <hr>
+<h2 id="layout-posttitle-%22rl%22categories-rltags-cs294comments-true">layout: post<br>
+title:  &quot;RL&quot;<br>
+categories: RL<br>
+tags: CS294<br>
+comments: true</h2>
+<h1 id="cs294---112-%EC%A0%95%EB%A6%AC-lecture10---optimal-control-and-planning">[CS294 - 112 정리] Lecture10 -   Optimal control and planning</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<p>{:.no_toc}</p>
+<ol>
+<li>this unordered seed list will be replaced by toc as unordered list<br>
+{:toc}</li>
+</ol>
+<h2 id="todays-lecture">Today’s Lecture</h2>
+<ol>
+<li>The policy gradient algorithm</li>
+<li>What does the policy gradient do?</li>
+<li>Basic variance reduction: causality</li>
+<li>Basic variance reduction: baselines</li>
+<li>Policy gradient examples</li>
+</ol>
+<ul>
+<li>Goals:
+<ul>
+<li>Understand policy gradient reinforcement learning</li>
+<li>Understand practical considerations for policy gradients</li>
+</ul>
+</li>
+</ul>
+<h2 id="review">Review</h2>
+<ul>
+<li><strong>The goal of reinforcement learning</strong></li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/1.png" class="lead"   style="width:480px; height:=360px"/>
+</figure>
+<ul>
+<li><strong>$$\theta^*$$를 찾는 것은 두 가지 경우</strong>.
+<ul>
+<li>Infinite horizon</li>
+<li>Finite horizon</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/2.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<ul>
+<li><strong>Evaluating the objective</strong>
+<ul>
+<li>목적(objective function)을 최대화하는 것: trajectory의 총 보상의 합에 대한 기댓 값을 최대화.
+<ul>
+<li>실제 값을 구하기 힘들기 때문에, 몬테카를로 기법(=무수히 많은 샘플을 통해 평균값을 구하는 방법)을 이용하여 근사.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/3.png" class="lead"   style="width:480px; height:=320px"/>
+</figure>
+<h2 id="policy-gradient">Policy gradient</h2>
+<ul>
+<li><strong>Direct policy differentiation</strong>
+<ul>
+<li>Policy gradient로 직접 policy의 weight를 갱신.</li>
+<li>따라서, objective function을 바로 미분하여 gradient descent 방법을 이용하여 최적점(최소지점)을 찾는다.
+<ul>
+<li>Log 특성을 사용하여, 미분 및 덧셈 원리 이용하여 단순화 및 tractable하게 변형.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/4.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<ul>
+<li>p(s)는 $$\theta$$에 대한 값이 아니므로 미분하면 0.</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/5.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<ul>
+<li><strong>Evaluating the policy gradient</strong>
+<ul>
+<li><strong>REINFORCE 알고리즘:</strong>
+<ul>
+<li>
+1$$. policy에 따라 sample 저장 (generate samples)
+
+</li>
+<li>
+3$$. gradient descent 방법을 통해 weight 갱신(improve the policy)
+
+
+<ul>
+<li>Variance로 때문, variance reduction을 통해 향상 가능.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/6.png" class="lead"  style="width:640px; height:=480px"/>
+</figure>
+<ul>
+<li>
+Log \pi_\theta$$ 는 무엇을 의미?
+  * (Imitation learning에서 배웠던) _Maximum likelihood_ 와 상당히 유사
+  * 좋은 샘플을 확률 증가, 좋지 않은 샘플은 확률 감소
+
+
+<img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/7.png" class="lead"   style="width:640px; height:=480px"/>
+</li>
+</ul>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/8.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<hr>
+<h2 id="what-did-we-just-do">What did we just do?</h2>
+<p>(지금까지 진행사항)</p>
+<ul>
+<li>Gradient 계산
+<ul>
+<li>N개의 샘플링(몬테카를로 근사)을 통해 Trajectory 동안의 $$log \pi_\theta$$, reward들의 합의 곱으로 표현.</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/9.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<ul>
+<li>좋은 것을 더 자주하도록, 나쁜 것을 덜 하도록(maximum likelihood에 유사하기 때문에 $$log \pi_\theta$$가 의미하는 바를 이해할 수 있다) 유도.</li>
+<li>간단하게 “trial and error”의 개념을 공식화 한다!</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/10.png" class="lead"   style="width:360px; height:=240px"/>
+</figure>
+<ul>
+<li>Partial observability
+<ul>
+<li>Markov property를 실제로는 사용되지 못한다!</li>
+<li>수정없이 POMDPs에서 policy gradient를 사용할 수 있다
+<ul>
+<li>state를 observation으로만 변경.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/11.png" class="lead"   style="width:480px; height:=360px"/>
+</figure>
+<blockquote>
+<p>What is wrong with the policy gradient?</p>
+<blockquote>
+<p>Policy gradient의 문제는 high variance.</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>같은 sample을 이용하여도, 학습을 진행하여 추정되는 값의 차이가 크다 - (좋은 직선이 아닌)gradient로 인해 모든 공간에 대해 꿈틀거리게 된다.</li>
+<li>많은 이유가 있지만, 하나의 예제만을 설명:
+<ul>
+<li>파랑색은 정책에 의한 분포도, 초록색은 세 개의 샘플들(두 개는 작은 positive, 한 개는 큰 negative 값을 가짐)</li>
+<li>Policy gradient를 통해 policy가 변형.</li>
+<li>변경된 점선의 분포도는 다음과 같다.</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/12.png" class="lead"   style="width:480px; height:=360px"/>
+</figure>
+<ul>
+<li>이상적인 분포도(좋은 것에 대해서는 보상을 주고, 좋지 않은 경우는 피하도록 한다.</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/13.png" class="lead"   style="width:320px; height:=240px"/>
+</figure>
+<ul>
+<li>reward function에 상수를 추가하여 더한다면, solution은 이상적이지 않음.</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/14.png" class="lead"   style="width:320px; height:=240px"/>
+</figure>
+<hr>
+<p>Review</p>
+<ul>
+<li>RL 목적함수 평가
+<ul>
+<li>sample 생성</li>
+</ul>
+</li>
+<li>Policy gradient 평가
+<ul>
+<li>Log-gradient trick</li>
+<li>sample 생성</li>
+</ul>
+</li>
+<li>Policy gradient 이해
+<ul>
+<li>trial-and-error의 공식화</li>
+</ul>
+</li>
+<li>Partial observability
+<ul>
+<li>이 조건에서도 잘 동작</li>
+</ul>
+</li>
+<li>Policy gradient의 문제
+<ul>
+<li>Variance</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/15.png" class="lead"   style="width:480px; height:=640px"/>
+</figure>
+<hr>
+<h2 id="reducing-variance">Reducing variance</h2>
+<ul>
+<li>첫번째 trick.</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/16.png" class="lead"   style="width:480px; height:=120px"/>
+</figure>
+<ul>
+<li><strong>Causality</strong>: t &lt; t’ 일때, time t’에서의 policy는 time t에서 reward에 영향을 주지 못한다.</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/17.png" class="lead"   style="width:360px; height:=240px"/>
+</figure>
+<blockquote>
+<p>실제로는 stationary policy가 아니지만(optimal policy는 time varying policy), 제한적이고 간단하게 하기위해 사용하기도 한다.</p>
+</blockquote>
+<hr>
+<p><strong>Baselines</strong></p>
+<ul>
+<li>두번째 trick.</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/18.png" class="lead"   style="width:640px; height:=240px"/>
+</figure>
+<ul>
+<li>Baseline을 사용할 수 있을까? yes, 왜냐하면 <em>unbiased</em>. 아래는 증명.
+<ul>
+<li>Baseline을 빼는 것은 expectation에서 unbiased.</li>
+<li>평균 reward는 최고의 baseline은 아니지만, 꽤 괜찮다.</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/19.png" class="lead"   style="width:640px; height:=240px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/20.png" class="lead"   style="width:320px; height:=180px"/>
+</figure>
+<p><strong>Analyzing variance</strong></p>
+<ul>
+<li>Best baseline</li>
+<li>최소(0)이 되는 Variance를 증명(analyzing)할 수 있을까?
+<ul>
+<li>g = $$∇ \theta log \pi_\theta(\tau)$$,</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/21.png" class="lead"   style="width:640px; height:=560px"/>
+</figure>
+<hr>
+<p><strong>Review</strong></p>
+<ul>
+<li>Policy gradient의 문제: high variance</li>
+<li>해결책1: Causality 이용
+<ul>
+<li>미래는 과거에 영향을 끼치지 못함</li>
+</ul>
+</li>
+<li>해결책2 : Baselines
+<ul>
+<li>Unbiased!</li>
+</ul>
+</li>
+<li>Variance 분석
+<ul>
+<li>Optimal baseline을 유도</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="on-policy">On-policy</h2>
+<p><em>Policy gradient</em>: <strong>on-policy</strong></p>
+<ul>
+<li>Neural networks는 각 gradient step에서 약간의 변화만 생김</li>
+<li><strong>On-policy learning(policy가 변경되면, 새롭게 샘플 생성을 해야함)</strong> 은 극단적으로 비효율적일 수 있다.
+<ul>
+<li>Expectation은 policy에서 sample들을 요구</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/22.png" class="lead"   style="width:480px; height:=640px"/>
+</figure>
+<ul>
+<li>REINFORCE 알고리즘
+<ul>
+<li>1번(sampling)을 건너 뛸 수 없음.</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/23.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<p><strong>Off-policy learning &amp; importance sampling</strong></p>
+<ul>
+<li>다른 policy의 sample을 가져옴.</li>
+<li><strong>Importance sampling</strong>:
+<ul>
+<li>확률 분포의 기대값을 추정하는 기본적인 방법</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/24.png" class="lead"   style="width:780px; height:=560px"/>
+</figure>
+<ul>
+<li>Importance sampling으로 policy gradient 유도(<strong>off-policy policy gradient유도</strong>)
+<ul>
+<li>새로운 파라미터의 값을 추정할 수 있을까?
+<ul>
+<li>
+\theta’$$에 대해서만 미분, convenient identity를 사용하여 재정의
+
+</li>
+<li>그렇지 않으면, 틀린 분포로 샘플링.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/25.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/26.png" class="lead"   style="width:320px; height:=120px"/>
+</figure>
+<ul>
+<li><strong>Off-policy policy gradient</strong>:
+<ul>
+<li>
+\theta$$와 $$\theta’$$가 다를 경우는 다음과 같다
+  * 세 개의 term의 곱으로 표현
+
+
+</li>
+</ul>
+<img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/27.png" class="lead"   style="width:320px; height:=120px"/>
+</li>
+</ul>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/28.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<hr>
+<p><strong>Policy gradient with automatic differentiation</strong></p>
+<ul>
+<li>
+∇\theta log \pi_\theta(a \mid s)$$은 명시적으로 계산하기 위해서는 꽤 비효율적.
+
+<ul>
+<li>여기 gradient가 policy gradient를 만족하는 graph가 필요</li>
+<li>Weighted maximum likelihood와 같은 <em>“pseudo-loss”</em> 를 구현
+<ul>
+<li>Cross entropy(discrete)</li>
+<li>Squared error(Gaussian)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC5/29.png" class="lead"   style="width:640px; height:=560px"/>
+</figure>
+<p><strong>Policy gradient in practice</strong></p>
+<ul>
+<li>Gradient는 high variance를 가짐
+<ul>
+<li>지도학습과 같지는 않음!</li>
+<li>Gradient는 실제로 noisy할 것!</li>
+</ul>
+</li>
+<li>더 큰 batch 사용을 고려(일반적으로 64많이 사용, but PG는 64000을 사용해야할거임).</li>
+<li>Learning rate를 보정(tweaking)하는 것은 매우 어렵
+<ul>
+<li>ADAM은 괜찮음</li>
+<li>이후에 고려</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>Review</strong></p>
+<ul>
+<li>Policy gradient는 on-policy.</li>
+<li>Off-policy 변형체로 유도 가능.
+<ul>
+<li>Importance sampling 사용</li>
+<li>T만큼 지수승</li>
+<li>state 부분은 무시 할 수 있다(approximation)</li>
+</ul>
+</li>
+<li>자동적 미분으로 구현 가능
+<ul>
+<li>Backpropagate가 무엇인지 알아야 한다.</li>
+</ul>
+</li>
+<li>실전에서 고려
+<ul>
+<li>batch size, learning rates, optimizers</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="reference">Reference</h1>
+<p><a href="http://rail.eecs.berkeley.edu/deeprlcourse/static/slides/lec-5.pdf">CS294-112 Lecture5</a></p>
+
+    </body>
+    </html>
