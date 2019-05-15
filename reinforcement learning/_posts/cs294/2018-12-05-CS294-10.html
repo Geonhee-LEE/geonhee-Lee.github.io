@@ -298,6 +298,138 @@ s_t$$ 가 not fully expanded, 새로운 $$a_t$$ 를 선택하고
 <figure>
   <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/18.png" class="lead"   style="width:640px; height:=480px"/>
 </figure>
+<h3 id="shooting-methods-vs-collocation-method">Shooting methods vs Collocation method</h3>
+<p><strong>Shooting method</strong>: optimize over actions only, unconstrained optimization problem</p>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/19.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<p><strong>Collocation method</strong>: optimize over actions and states, with constraints, constrained optimization problem</p>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/20.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<blockquote>
+<p>자세한 내용: <a href="https://en.wikipedia.org/wiki/Trajectory_optimization">Trajectory optimization</a></p>
+</blockquote>
+<h3 id="linear-case-lqr">Linear case: LQR</h3>
+<ul>
+<li>Dynamics: linear</li>
+<li>Cost funtion: quadratic</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/21.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<p>Note:</p>
+<ul>
+<li>
+Q_T, q_T, Q(,)$$: terminal value를 포함한 cost function의 합
+
+</li>
+<li>입력은 state feedback controller.</li>
+</ul>
+<ul>
+<li>T인 경우.</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/22.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<ul>
+<li>T-1인 경우.</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/23.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/24.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<ul>
+<li>T부터 1까지의 process:</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/25.png" class="lead"   style="width:640px; height:=560px"/>
+</figure>
+<p><strong>Some useful definitions</strong>:</p>
+<ul>
+<li>T 에서부터 backward 방향으로 매 스텝마다 Q, q계산, u 찾기, K,k, 계산, V,v 계산</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/26.png" class="lead"   style="width:640px; height:=560px"/>
+</figure>
+<hr>
+<h2 id="stochastic-dynamicsgaussian-dynamics">Stochastic dynamics(Gaussian Dynamics)</h2>
+<ul>
+<li>Distribution에서 picking.</li>
+<li>Zero mean noise를 추가.</li>
+<li>Dynamics가 <strong>확률에 기반하여 sampling</strong>.
+<ul>
+<li>Gaussian distribution 모델을 주로 사용.</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/27.png" class="lead"   style="width:640px; height:=560px"/>
+</figure>
+<hr>
+<h2 id="nonlinear-case-ddpiterative-lqr">Nonlinear case: DDP/iterative LQR</h2>
+<ul>
+<li>Linear-quadratic assumptions:
+<ul>
+<li>Dynamics: linear</li>
+<li>Cost function: quadratic</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/28.png" class="lead"   style="width:320px; height:=240px"/>
+</figure>
+<ul>
+<li>Nonlinear system을 linear quadratic system으로 approximation 할 수 있을까?
+<ul>
+<li>Dynamics는 Tayler 1차 근사, cost function은 Tayler  2차 근사</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/29.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<h3 id="iterative-lqr"><strong>Iterative LQR</strong></h3>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/30.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<ul>
+<li>어떻게 동작?
+<ul>
+<li>min $$_x$$ g(x) 계산을 위한 Newton’s mothod와 상당히 유사.</li>
+<li>Iterative LQR(iLQR) idea: <strong>Taylor expansion</strong> 을 통해 complex nonlinear function을 locally approximation.</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/31.png" class="lead"   style="width:320px; height:=240px"/>
+</figure>
+<ul>
+<li>iLQR은 다음을 풀기위한 Newton’s method의 approximation(2차 근사)</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/32.png" class="lead"   style="width:240px; height:=120px"/>
+</figure>
+<h3 id="differential-dynamics-programmingddp">Differential dynamics programming(DDP)*</h3>
+<ul>
+<li>
+<p>Newton’s method는 2차 dynamics 근사를 필요로 한다(연산량 상당)</p>
+<ul>
+<li>2차 근사를 제거하여 사용: DDP</li>
+</ul>
+</li>
+<li>
+<p>지금까지의 단점: 모델 2차 근사(Newton’s method)</p>
+<ul>
+<li>모델은 2차가 아니므로 수렴이 잘 안될 수도 있다 -&gt; back tracking idea를 이용하여 사용(알파, step size도입)</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC10/33.png" class="lead"   style="width:240px; height:=120px"/>
+</figure>
 <hr>
 <h1 id="reference">Reference</h1>
 <p><a href="http://rail.eecs.berkeley.edu/deeprlcourse/static/slides/lec-10.pdf">CS294-112 Lecture10</a></p>
