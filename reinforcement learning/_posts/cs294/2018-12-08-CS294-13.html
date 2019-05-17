@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+        <title>[CS294 - 112 정리] Lecture13 - Learning Policies by Imitating Other Policies</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0/dist/katex.min.css" integrity="sha384-9eLZqc9ds8eNjO3TmqPeYcDj8n+Qfa4nuSiGYa6DjLNcv9BtN69ZIulL9+8CqC9Y" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body>
+        <hr>
+<h2 id="layout-posttitle-%22rl%22categories-rltags-cs294comments-true">layout: post<br>
+title:  &quot;RL&quot;<br>
+categories: RL<br>
+tags: CS294<br>
+comments: true</h2>
+<h1 id="cs294---112-%EC%A0%95%EB%A6%AC-lecture13---learning-policies-by-imitating-other-policies">[CS294 - 112 정리] Lecture13 - Learning Policies by Imitating Other Policies</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<p>{:.no_toc}</p>
+<ol>
+<li>this unordered seed list will be replaced by toc as unordered list<br>
+{:toc}</li>
+</ol>
+<h2 id="overview">Overview</h2>
+<ol>
+<li>지난 시간: system dynamics의 모델 학습 및 action을 선택하기 위해 optimal control사용
+<ul>
+<li>Global model 및 model-based RL</li>
+<li>Local model 및 model-based RL with constraints</li>
+<li>Uncertainty estimation</li>
+<li>Models for complex observation(e.g., image)</li>
+</ul>
+</li>
+<li>만약 policy를 원한다면?
+<ul>
+<li>planning이 아닌 distillation된 policy는 runtime에서 action을 더욱 빠르게 평가.</li>
+<li>Potentially better generalization</li>
+</ul>
+</li>
+<li>바로 policy로 backpropate 할 수 있을까?</li>
+</ol>
+<hr>
+<h2 id="todays-lecture">Today’s Lecture</h2>
+<ol>
+<li>학습된 model을 policy로 backpropagating</li>
+<li>Imitating optimal control과 동일한 이유
+<ul>
+<li>Constrainted optimization formulation</li>
+</ul>
+</li>
+<li>Guided policy search algorithm</li>
+<li>Imitating optimal control with DAgger</li>
+<li>Model-based vs. model-free RL tradeoffs</li>
+</ol>
+<ul>
+<li>Goals
+<ul>
+<li>Control/ planning으로 guide되는 policy를 학습하는 법 이해.</li>
+<li>다양한 방법들간의 tradeoff 이해</li>
+<li>Model-based RL으로 policy learning에서 최근 연구의 high-level overview</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="so-how-can-we-train-policies">So how can we train policies?</h2>
+<p><strong>지금까지 Policy 학습 방법?</strong></p>
+<ul>
+<li>
+<p>지금까지의 방법</p>
+<ul>
+<li>Global model 학습(e.g., Gaussian Process, Neural networks)</li>
+<li>Local model 학습 (e.g., linear models)</li>
+</ul>
+</li>
+<li>
+<p>But, policy를 사용한다면?</p>
+<ul>
+<li>Replan이 필요없다(faster)</li>
+<li>Potentially better generalization</li>
+<li>Closed loop control</li>
+</ul>
+</li>
+<li>
+<p>아래의 예제와 같은 경우에, prediction을 하지않고 heuristic하게 동작하기도 한다.</p>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/1.png" class="lead"   style="width:480px; height:=180px"/>
+</figure>
+<p><strong>Backpropagate directly into the policy</strong>?</p>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/2.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/3.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<ul>
+<li>
+<p>문제점:</p>
+<ol>
+<li><strong>Numerical unstable</strong></li>
+</ol>
+<pre><code>* Backpropagation하게 되면 gradient 값의 변화가 크다.
+</code></pre>
+<ol start="2">
+<li><strong>Shooting method</strong> 이기 때문에 parameter에 대해 high sensitive.
+<ul>
+<li>Policy parameter가 모든 time step과 결합되어 있어, 더이상 2차 LQR와 같은 편리한 방법을 사용하지 못한다(no dynamic programming)</li>
+</ul>
+</li>
+<li>BPTT(BackPropagation Through Training)으로 long RNNs <strong>학습이 힘든 문제</strong> 와 유사
+<ul>
+<li>Vanishing, exploding gradients</li>
+<li>LSTM와 달리 간단한 dynamics를 선택할 수 없다, dynamics는 nature에 의해 선택됨.</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>해결책</p>
+<ul>
+<li><strong>Collocation methods</strong>.
+<ul>
+<li>심지어 더 단순</li>
+<li>Generic trajectory optimization, 다양한 방법으로 풀 수 있음.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/4.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<ul>
+<li>어떻게 trajectory optimization에 constraint를 부과할 수 있을까?
+<ul>
+<li><strong>Augmented Lagrangian</strong></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><strong>Review: dual gradient descent</strong></p>
+<ul>
+<li>Objective function, contraint를 통해 <em>lagragian</em> 을 정의한 후, 이를 미분하여 <em>lagrange multiplier</em> 에 대해 gradient descent를 취해 최적값을 찾는다.</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/5.png" class="lead"   style="width:360px; height:=180px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/6.png" class="lead"   style="width:360px; height:=180px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/7.png" class="lead"   style="width:360px; height:=480px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/8.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<p><strong>A small tweak to DGD: augmented Lagrangian</strong></p>
+<ul>
+<li>Lagrangian term에 $$p\left | C \right |^2$$을 추가(augmented)하여, <strong>quadratic term으로 만들고 convexity를 제공하여 더욱 stable</strong> 하게 만든다.</li>
+<li>Correct solution으로 여전히 수렴</li>
+<li><strong>Solution과 떨어져 있을 때, quadratic term은 stability를 향상</strong> 시키는 경향이 있다.</li>
+<li>Alternating direction method of multipliers(ADMM)과 상당히 유사</li>
+</ul>
+<p><strong>Constraining trajectory optimization with dual gradient descent</strong></p>
+<ul>
+<li>Cost function과 $$u = \pi_\theta(x_t)을 constraint로 사용하는 lagrangian으로 정의하면, agmented lagrangian이 만들어지고, $$\lambda$$에 대해 gradient descent를 진행하면, 각각 trajectory(dynamics) 및 policy parameter들이 갱신된다.</li>
+<li><strong>Constrained trajectory optimization method</strong> 로 해석될 수 있다.</li>
+<li>Step 2는 supervised learning이므로, <strong>optimal control이 expert인 imitation으로 해석</strong> 될 수 있다.
+<ul>
+<li>Optimal control “teacher”가 learner를 조정하며 learner가 모방할 수 없는 action은 피한다.</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/9.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/10.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<hr>
+<h2 id="general-guided-policy-search-scheme">General guided policy search scheme</h2>
+<ul>
+<li>
+<p>Algorithm:</p>
+<ol>
+<li>(어떤)Surrogate cost function에 대해 $$p(\tau)$$(dynamics) 최적화</li>
+<li>(어떤)Supervised objective에 대해 $$\theta$$(policy) 최적화</li>
+<li>Dual variables $$\lambda$$ 증강 혹은 변경</li>
+</ol>
+</li>
+<li>
+<p>필요한 정보</p>
+<ul>
+<li>Trajectory form</li>
+<li>Trajectory optimization method</li>
+<li>Surrogate cost fucntion</li>
+<li>Policy에 대한 supervised objective</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/11.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<hr>
+<p><strong>Deterministic case</strong></p>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/12.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<p><strong>Learning with multiple trajectories</strong></p>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/13.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<p><strong>Stochastic (Gaussian) GPS</strong></p>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/14.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<p><strong>Stochastic (Gaussian) GPS with local models</strong></p>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/15.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<p><strong>Robotics Example</strong></p>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/16.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<p><strong>Input Remapping Trick</strong></p>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/17.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<hr>
+<p>##Imitating optimal control with DAgger##</p>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/18.png" class="lead"   style="width:360px; height:=720px"/>
+</figure>
+<ul>
+<li>iLQR(optimal control)이 아닌 MCTS로 대체하지만 step 3에 도입되는 것은 아니다.</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/19.png" class="lead"   style="width:420px; height:=360px"/>
+</figure>
+<p><strong>A problem with DAgger</strong></p>
+<ul>
+<li>3번 단계에서 human에게 묻는 것을 <strong>computer에게 묻도록 변경</strong> (MCTS 이용)</li>
+<li>그러나, 문제가 되는 것은 2번 단계.
+<ul>
+<li>조금 벗어나도 동작이 잘 안되는 문제 발생.</li>
+</ul>
+</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/20.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/21.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<p><strong>Imitating MPC: PLATO algorithm</strong></p>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/22.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/23.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/24.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/25.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/26.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/27.png" class="lead"   style="width:480px; height:=240px"/>
+</figure>
+<p><strong>DAgger vs GPS</strong></p>
+<ul>
+<li><em>Dagger</em> : adaptive expert를 요구하지 않음
+<ul>
+<li>학습된 policy에서의 state가 label 될 수 있는 한, 모든 expert가 수행할 것.</li>
+<li>가정: bounded loss까지 expert’s behavior에 매칭이 가능하다
+<ul>
+<li>항상 가능한 것은 아니다( e.g., partially observed domains)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><em>GPS</em> : “expert” behavior를 조정
+<ul>
+<li>초기 expert에서 bounded loss를 요구하지 않음(expert는 변할 것)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Why imitate?</strong></p>
+<ul>
+<li>상대적으로 stable하고 사용하기 쉽다.
+<ul>
+<li>Supervised learning은 잘 동작</li>
+<li>Control/planning은 (일반적으로) 잘 동작</li>
+<li>이 두 개의 조합은 (일반적으로) 잘 동작</li>
+</ul>
+</li>
+<li>Input remapping trick
+<ul>
+<li>raw observation에서 policy를 학습하는 시간에 추가적인 정보의 유용성을 이용할 수 있다</li>
+</ul>
+</li>
+<li>Policy로 바로 backpropagating 하는 최적화 어려움을 극복</li>
+<li>일반적으로 sample-efficient하고 실제 물리 시스템에 대해서 실행 가능.</li>
+</ul>
+<hr>
+<p><strong>Model-free optimization with a model</strong></p>
+<ul>
+<li>Model을 가지더라도 policy gradient(or 다른 model free RL 방법)을 사용</li>
+<li>Gradient를 사용하는 것보다 때때로 좋음</li>
+</ul>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/28.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<p><strong>General “Dyna-style” model-based RL recipe</strong></p>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/29.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<hr>
+<h2 id="model-based-rl-algorithms-summary">Model-based RL algorithms summary__</h2>
+<ul>
+<li><strong>Model 및 plan 학습(without policy)</strong>
+<ul>
+<li>반복적으로 distribution mismatch를 해결하기 위해 더 많은 data 수집</li>
+<li>약간의 model error를 이동하기 위해 매 time step마다 replan(MPC)</li>
+</ul>
+</li>
+<li>Policy 학습
+<ul>
+<li>Policy로 backpropagating(e.g., PILCO) - 간단하지만, 잠재적으로 unstable</li>
+<li>constrained optimization framework으로 imitate optimal control (e.g., GPS)</li>
+<li>Dagger-like process를 통한 imitate optimal control (e.g., PLATO)</li>
+<li>model를 가지고 model-free 알고리즘 사용 (Dyna, etc.)</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="limitations-of-model-based-rl">Limitations of model-based RL</h2>
+<ul>
+<li>Model의 some kind 요구
+<ul>
+<li>항상 이용가능하지 않음</li>
+<li>policy보다 학습하는 것이 어려울 수 있음</li>
+</ul>
+</li>
+<li>Model을 학습하는 것은 시간 및 data가 필요
+<ul>
+<li>때때로 expressive model classes(neural net)은 빠르지 않음</li>
+<li>때때로 빠른 모델은 (linear model) expressive 하지 않음</li>
+</ul>
+</li>
+<li>추가 가정의 종류
+<ul>
+<li>Linearizability/continuity</li>
+<li>Ability to reset the system (for local linear models)</li>
+<li>Smoothness (for GP-style global models)</li>
+<li>Etc.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="which-algorithm-do-i-use">which algorithm do I use?</h2>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/30.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<figure>
+  <img alt="An image with a caption" src="file:////assets/img/CS294/LEC13/31.png" class="lead"   style="width:640px; height:=480px"/>
+</figure>
+<hr>
+<h1 id="reference">Reference</h1>
+<p><a href="http://rail.eecs.berkeley.edu/deeprlcourse/static/slides/lec-12.pdf">CS294-112 Lecture12</a></p>
+
+    </body>
+    </html>
