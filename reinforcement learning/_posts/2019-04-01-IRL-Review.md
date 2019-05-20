@@ -255,6 +255,19 @@ $$
 \end{aligned}
 $$
 
+Finite-state MDPs에서, 결과는 IRL 문제에 대해 solution들인 모든 reinforcement function들의 집합으로 특성화(charateristize)한다.
+
+그러나, 바로 두 가지의 __문제__ 가 있다는 것을 알 수 있다.
+1.  R = 0(and constatnt vector)은 항상 solution이라는 것
+    - 만약 우리가 취하는 action에 대해 reward가 동일하면, $$\pi \equiv a_1$$을 포함한 어떤 policy들도 optimal 할 것.
+    - Unique optimal policy를 원하지만, 이것은 쉽지 않고 몇몇 0에 가까운 reward vector들은 일반적으로 solution이 될 수도 있다.
+2.  대부분의 MDPs에서, 기준 (4)(0보다 큰 경우에 policy가 최적이라는 조건)를 만족하는 R의 다양한 선택지가 있을 수 있다.
+
+> 어떻게 많은 reinforcement function중에서 하나를 선택해야 할까?
+>> 저자는 위 두개의 문제에 대한 solution을 제안하기 위해 natural criteria를 다음 section에서 설명할 것.
+
+
+### Remark
 
 
 ----------
