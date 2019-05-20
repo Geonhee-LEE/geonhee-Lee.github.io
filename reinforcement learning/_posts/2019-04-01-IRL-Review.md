@@ -225,17 +225,17 @@ $$
 
 
 > 여기서, $$I-\gamma P_{a1}$$는 항상 invertible(가역행렬)
-
-> $$P_{a1}은 transition matrix, complex plane의 unit circle에 모든 eigen value를 가진다.
+>
+> $$P_{a1}$$은 transition matrix, complex plane의 unit circle에 모든 eigen value를 가진다.
 > $$\gamma$$를 곱하면 unit circle 내부에 모든 eigen value가 위치되고, 이것은 $$I-\gamma P_{a1}$$가 zero eigenvalue를 가지지않고 singular가 아니라는 것을 의미.(= invertible)
 
 
-Eqn (2)(Bellman state-action iteration)을 Theorem2에서의 (3)(Bellman optimality equation)으로 대체하면, $$\pi \equiv a_1$$이 optimal인 것 optimal이고 다음과 필요 충분조건인 것을 알 수 있다:
+Eqn (2)(Bellman state-action iteration)을 Theorem 2에서의 (3)(Bellman optimality equation)으로 대체하면, $$\pi \equiv a_1$$이 optimal인 것 optimal이고 다음과 필요 충분조건인 것을 알 수 있다:
 
 
 $$
 \begin{aligned}
-& a_1 \equiv \pi(s) argmax_{a\inA} \sum_{s'} P_{sa} (s') V^\pi (s') \qquad \forall s \in S \\
+& a_1 \equiv \pi(s) argmax_{a\in A} \sum_{s'} P_{sa} (s') V^\pi (s') \qquad \forall s \in S \\
 & \Leftrightarrow  \sum_{s'} P_{sa_1}(s') V^{\pi} (s') \geq \sum_{s'}P_{sa} (s') V^\pi (s') \qquad \forall s \in S, a\in A \\
 & \Leftrightarrow P_{a1} V^\pi \succeq P_a V^\pi \qquad \forall a \in A  \setminus a_1 \\
 & \Leftrightarrow P_{a1} (I - \gamma P_{a1})^{-1}R \succeq P_a (I - \gamma P_{a1})^{-1}R \qquad \forall a \in A  \setminus a_1 
@@ -246,6 +246,14 @@ $$
 
 
 #### Remark
+
+매우 유사한 주장을 사용하여, stirct inequilities로 증명을 하면 다음과 같은 condition에서 __unique optimal policy__  $$\pi \equiv a_1$$를 얻을 수 있다.
+
+$$
+\begin{aligned}
+(P_{a1} -P_a) (I - \gamma P_{a1})^{-1}R \succ 0 
+\end{aligned}
+$$
 
 
 
