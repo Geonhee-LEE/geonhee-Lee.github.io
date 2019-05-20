@@ -6,7 +6,7 @@ tags: IRL
 comments: true
 ---
 
-# [PAPER-Review] Inverse Reinforcement learning
+# [PAPER-Review] Algorithms for Inverse Reinforcement learning, Andrew Y.Ng , Russell, 2000
 
 
 ## Table of Contents
@@ -16,9 +16,7 @@ comments: true
 
 ----------
 
-## [Algorithms for Inverse Reinforcement learning, Andrew Y.Ng , Russell, 2000]
-
-### Abstract
+## Abstract
 
 - 이 논문은 MDP에서의 _inverse reinforcement learning(IRL)_ 문제를 다룸.
   -  __Optimal behavior를 관측하여 제공된 reward function을 추출하는 문제__.
@@ -75,15 +73,18 @@ comments: true
     - __모든 경우에 observed behavior를 잘 "설명"할 수 있는 reward function을 복구__ 할 수 있다.
   - _Section 7._  요약 및 후속 연구 방향 소개
 
+
 ----------
 
-### Notation and Problem Formulation
+
+## Notation and Problem Formulation
 
 - Notation, definition, basic theorems for MDPs에 대해 소개.
 - 우리가 앞으로 다룰 IRL 문제에 대해 정의.
 
+---------
 
-#### Markov Decision Processes
+### Markov Decision Processes
 
 - (finite) MDP: tuple $$(S, A, {P_{sa}}, \gamma, R)$$, where
   - _S_: N개 __states__ 의 finite set.
@@ -132,7 +133,10 @@ Discrete, finite space 경우에는, 모든 이러한 함수들은 __boldface no
   -  모든 $$s \in S$$ by $$\pi = \pi ^*$$ 에 대해서 $$V^\pi$$ 가 동시에 최대화되는 하는 __optimal policy__ $$\pi ^*$$ 가 하나라도 존재하는 것을 보였다. _(e.g., Sutton & Barto, 1998; Bertsekas & Tsitsiklis, 1996)_
 
 
-#### Basic Properties of MDPs
+---------
+
+
+### Basic Properties of MDPs
 
 - IRL 문제에 대한 저자의 solution을 위해, MDPs _(Sutton & Bartp, 1998; Bertsekas & Tsitsiklis, 1996)_ 에 대해서 고전적인(classical) 두 개의 결과가 필요.
 
@@ -158,8 +162,9 @@ $$
 $$
 
 
+---------
 
-#### Inverse Reinforcement Learning
+### Inverse Reinforcement Learning
 
 - IRL 문제는 __obsercved behavior를 설명할 수 있는 reward funcion를 찾는 것__
 - State space가 finite, model이 알려져 있고, 완벽히 policy가 관측될 때의 간단한 경우부터 시작.
@@ -169,10 +174,79 @@ $$
     - 이것은 notation을 단순화하기 위한 기술.
 
 
+---------
 
-#### IRL in Finite State Spaces
+## IRL in Finite State Spaces
 
-- 저자는 주어진 policy가 optimal인 모든 reward function들의 집합의 단순한 특징(characterization)을 제공.
+- 저자는 주어진 policy가 optimal인 모든 reward function들의 집합의 단순한 특징(characterization)을 제공(주어지는 값들).
+  - 저자는 이 set이 많은 [degenerate solution](https://www.quora.com/What-is-a-degenerate-solution)을 포함하는 것을 보여주고, 이 degeneracy를 제거하기 위해 단순한 heuristic을 제안한다
+    - IRL문제에 대한 linear programming solution 도출.
+
+
+
+### Characterization of the Solution Set
+
+저자의 결론물인 solution의 집합을 특징화(characterizing)하는 것은 다음과 같다:
+
+
+#### Theorem 3
+
+
+Given:
+- Finite state space: _S_ 
+- Action set: _A = $${a_1, ..., a_k}$$_ 
+- Transition probability matrices: $${P_a}$$
+- Discount factor: $$\gamma \in (0, 1)$$
+
+Then,
+- $$\pi(s) \equiv a_1$$에 의해 주어진 policy($$\pi$$)는 최적.
+  - _if and only if_, for all $$a = a_2,..., a_k$$, reward R은 다음을 만족:
+  
+
+$$
+\begin{aligned}
+(P_{a1} - P_a)(I - \gamma P_{a1})^{-1} R \geq 0 \qquad (4)
+\end{aligned}
+$$
+
+
+#### Proof.
+
+$$\pi (S) \equiv a_1$$이므로, equation(1)(Bellman value iteration)은 $$V^{\pi} = R + \gamma P_{a1} V^{\pi}.
+
+Thus,
+
+
+$$
+\begin{aligned}
+V^{\pi} = (I - \gamma P_{a1})^{-1} R \qquad (5)
+\end{aligned}
+$$
+
+
+> 여기서, $$I-\gamma P_{a1}$$는 항상 invertible(가역행렬)
+
+> $$P_{a1}은 transition matrix, complex plane의 unit circle에 모든 eigen value를 가진다.
+> $$\gamma$$를 곱하면 unit circle 내부에 모든 eigen value가 위치되고, 이것은 $$I-\gamma P_{a1}$$가 zero eigenvalue를 가지지않고 singular가 아니라는 것을 의미.(= invertible)
+
+
+Eqn (2)(Bellman state-action iteration)을 Theorem2에서의 (3)(Bellman optimality equation)으로 대체하면, $$\pi \equiv a_1$$이 optimal인 것 optimal이고 다음과 필요 충분조건인 것을 알 수 있다:
+
+
+$$
+\begin{aligned}
+& a_1 \equiv \pi(s) argmax_{a\inA} \sum_{s'} P_{sa} (s') V^\pi (s') \qquad \forall s \in S \\
+& \Leftrightarrow  \sum_{s'} P_{sa_1}(s') V^{\pi} (s') \geq \sum_{s'}P_{sa} (s') V^\pi (s') \qquad \forall s \in S, a\in A \\
+& \Leftrightarrow P_{a1} V^\pi \succeq P_a V^\pi \qquad \forall a \in A  \setminus a_1 \\
+& \Leftrightarrow P_{a1} (I - \gamma P_{a1})^{-1}R \succeq P_a (I - \gamma P_{a1})^{-1}R \qquad \forall a \in A  \setminus a_1 
+\end{aligned}
+$$
+
+여기서, 유도했던 마지막 implication에서 Equation (5)가 사용되었다.
+
+
+#### Remark
+
 
 
 ----------
