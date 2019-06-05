@@ -230,7 +230,7 @@ $$
 > $$\gamma$$를 곱하면 unit circle 내부에 모든 eigen value가 위치되고, 이것은 $$I-\gamma P_{a1}$$가 zero eigenvalue를 가지지않고 singular가 아니라는 것을 의미.(= invertible)
 
 
-Eqn (2)(Bellman state-action iteration)을 Theorem 2에서의 (3)(Bellman optimality equation)으로 대체하면, $$\pi \equiv a_1$$이 optimal인 것 optimal이고 다음과 필요 충분조건인 것을 알 수 있다:
+Eqn (2)(Bellman state-action iteration)을 Theorem 2에서의 (3)(Bellman optimality equation)으로 대체하면, $$\pi \equiv a_1$$이 optimal이고 다음과 필요 충분조건인 것을 알 수 있다:
 
 
 $$
@@ -267,15 +267,115 @@ Finite-state MDPs에서, 결과는 IRL 문제에 대해 solution들인 모든 re
 >> 저자는 위 두개의 문제에 대한 solution을 제안하기 위해 natural criteria를 다음 section에서 설명할 것.
 
 
-### Remark
+### LP Formulation and Penalty Term
+
+LP는 constraint들을 고려하여 feasible point를 찾기 위한 방법.
+- 그러나 이 지점들의 일부를 "meaningful"하지 않고 우리는 __Equation (4)을 만족하는 solution들 중의 하나를 선택하는 방법을 찾아야한다__
+- LP로 병합할 수 있기 때문에, 이 제안은 크게 확장된 것이지만 그럼에도 꽤 자연스럽게 보여져야 한다.
+
+1. One natural way: 
+- $$\pi$$를 optimal로 만드는 것.
+  - $$\pi$$에서 가능한한 많이 차이(single-step deviation)나도록 하는 것이 좋은 solution이 될 것.
+  - 따라서, (4)를 만족(and $$\left | R(s) \right | \leq R_{max}$$ 하는 모든 function R에서, 다음을 최대화하는 $$\pi(a_1)$$를 선택.
+- 다시말하면, optimal action($$a_1$$)의 값과 nex-best action의 값을 뺀 차이의 합을 최대화하는 것
+
+
+
+$$
+\begin{aligned}
+\sum_{s \in S} (Q^\pi (s, a_1) - max _{a \in A \setminus a_1} Q^\pi (s, a)) \qquad (6)
+\end{aligned}
+$$
+
+- (Other criteria) $$\sum_{s \in S} \sum_{a \in A \setminus a_1} Q^\pi (s, a_1) - Q^\pi (s,a)$$
+- Weight decay-like penalty term($$-\lambda \left | R  \right | _1$$)를 objective function에 추가할 수도 있다.
+  - small reward를 가지는 solution이 더욱 쉽기에 선호.
+  - $$\lambda$$을 조정하여 small reinforcement를 가지거나 (6)을 최대화하는 두 개의 목표로 균형을잡을 수 있다.
+  - 부작용: $$\lambda$$가 충분히 크다면, R이 몇 개의 state에서 nonzero가 될 것("simple reward function). 
+  - 따라서, $$\gamma$$ 값을 자동적으로 선택하길 원하고, $$\gamma$$에 대해 binary search를 통해 찾는 것이 매력적인 선택.
+  - 이것이 __"simplest" R(largest penalty coefficient)__ 이고, R이 어디서든 zero가 아님을 만족한다.
+
+__최종적인 optimization problem:__
+- Optimal $$a_1$$ 과 다른 action들의 차이를 최소(6)로 하고, reward를 최대로 하는 식이며 $$\gamma$$를 통해 reward가 단순(작아지길)해지도록 한다.
+
+$$
+\begin{aligned}
+\textrm{maximize}
+&\sum _{i=0} ^N \textrm{min} _{a \in {a_2, ..., a_l}} \left \{P_{a_1} (i) -P_a (i)) (I -\gamma P_{a_1})^{-1} R \right \} - \gamma \left  \| R \right  \| _1 \\
+s.t. &(P_{a_1} - P_a)(I - \gamma P_{a_1})^{-1} R \succeq 0 \qquad \forall a \in A \setminus a_1 \\
+& \left | R_i  \right |  \leq R_{max}, i =1, ..., N \\
+\end{aligned}
+$$
+
+where $$P_a(i)$$는 $$P_a$$의 _i_ th row를 나타냄.
+이것은 쉽게 LP로 formulate되었고 효율적으로 풀 수 있다.
 
 
 ----------
 
 
+### Linear Function Approximation  in Large State Spaces
+
+- Infinte state space 고려.
+  - 어떤한 MDP에 대해서 $$S = \mathbb{R}$$ 경우로 한정하고, policy의 value($$V^\pi$$)들을 근사하는 방식(subroutine)의 유용성을 가정.
+  - Reward function R: function from $$S = \mathbb{R}$$.
+  - General solution to IRL: $$\mathbb{R}  \mapsto \mathbb{R}$$의 공간을 가지고 모든 함수가 동작.
+  - 변분학(calculus of variation)은 이러한 공간에서 최적화하는데 tool을 제공하지만 상당히 어려움.
+    - 따라서, __reward function에 대해 linear approximation__ 선택:
+
+$$
+\begin{aligned}
+R(s) = \alpha_1 \phi_1 (s) + \alpha_2 \phi_2 (s) + \cdots + \alpha_d \phi_d (s) \qquad (8)
+\end{aligned}
+$$
+
+> where
+>>  $$\phi_1, ..., \phi_d$$: fixed, known, bounded basis function mappping from S into $$\mathbb{R}$$,
+>>
+>> $$\alpha_i$$들: 우리가 "fit"하기를 원하는 unknown parameters.
+
+- R은 linear variable로 최적화 되기 때문에, linear programming(LP) 적용가능.
+  - $$V^\pi_i$$: reward function R = $$\pi_i$$일 때, MDP에서 policy $$\pi$$의 value function.
+  - Expectations의 linearity로 인해, reward function R이 Eqn (8)으로 주어질 때, value function은 다음과 같다: 
+
+$$
+\begin{aligned}
+V^\pi = \alpha_1 V^\pi_1 + \cdots + \alpha_d V^\pi_d \qquad (9)
+\end{aligned}
+$$
+
+논문참조. (reward를 value function으로 변경하여 유도)
 
 
 
+최종적인 linear programming formulation:
+
+$$
+\begin{aligned}
+& E_{s' \sim P_{sa_1}} \left [ V^\pi (s') \right ] \geq E_{s' \sim P_{sa}} \left [ V^\pi (s')  \right ] \qquad (9) \\ 
+\\
+\textrm{maximize}
+&\sum _{s \in S_0}  \textrm{min} _{a \in {a_2, ..., a_k}} \left \{p(E_{s' \sim P_{a_1}}\left [ V^\pi(s') \right ] - E_{s' \sim P_{a}}\left [ V^\pi(s') \right ] )    \right \}  \\
+s.t. & \left | \alpha_i \right | \leq 1, i =1, ..., d \\
+\end{aligned}
+$$
+
+where 
+- $$V^\pi$$: implicit function of the $$\alpha_i$$ as given by Eqn (9)
+- $$S_0$$: subsample of states.
+- $$p: p(x)=x$$ if $$x$$ $$\geq$$ 0, otherwise $$p(x) = 2x$$
+
+
+----------
+
+
+### IRL from Sampled Trajectories
+
+- 이번 섹션: 좀 더 현실적인 경우에 대해 IRL 문제를 다룸
+  - 여기서, state space에서 실제 trakectories의 집합을 통해서만 poliocy에 접근.
+  - __MDP의 explicit model을 요구하지는 않지만, 선호한 어떠한 reward하에서 optimal policy를 찾는 능력을 가정__.
+  - 초기 state distribution $$D$$를 고정하고, __(unknown) policy $$\pi$$에 대해 $$E_{s_0 \sim D}[V^\pi(s_0)]$$을 최대화하는 $$\pi$$를 만족하는 R를 찾는 것이 목표라 가정.__
+  - 
 
 
 
@@ -293,4 +393,6 @@ Finite-state MDPs에서, 결과는 IRL 문제에 대해 solution들인 모든 re
 
 ## Reference
 
-- [Algorithms]
+- [Paper](http://ai.stanford.edu/~ang/papers/icml00-irl.pdf)
+- [RL Korea](https://reinforcement-learning-kr.github.io/2019/01/28/1_linear-irl/)
+- [curt-pack](https://curt-park.github.io/2019-05-05/algorithms-for-irl/)
