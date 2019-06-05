@@ -212,7 +212,7 @@ $$
 
 #### Proof.
 
-$$\pi (S) \equiv a_1$$이므로, equation(1)(Bellman value iteration)은 $$V^{\pi} = R + \gamma P_{a1} V^{\pi}.
+$$\pi (S) \equiv a_1$$이므로, equation(1)(Bellman value iteration)은 $$V^{\pi} = R + \gamma P_{a1} V^{\pi}$$.
 
 Thus,
 
@@ -235,7 +235,7 @@ Eqn (2)(Bellman state-action iteration)을 Theorem 2에서의 (3)(Bellman optima
 
 $$
 \begin{aligned}
-& a_1 \equiv \pi(s) argmax_{a\in A} \sum_{s'} P_{sa} (s') V^\pi (s') \qquad \forall s \in S \\
+& a_1 \equiv \pi(s) \textrm{argmax} _{a\in A} \sum_{s'} P_{sa} (s') V^\pi (s') \qquad \forall s \in S \\
 & \Leftrightarrow  \sum_{s'} P_{sa_1}(s') V^{\pi} (s') \geq \sum_{s'}P_{sa} (s') V^\pi (s') \qquad \forall s \in S, a\in A \\
 & \Leftrightarrow P_{a1} V^\pi \succeq P_a V^\pi \qquad \forall a \in A  \setminus a_1 \\
 & \Leftrightarrow P_{a1} (I - \gamma P_{a1})^{-1}R \succeq P_a (I - \gamma P_{a1})^{-1}R \qquad \forall a \in A  \setminus a_1 
