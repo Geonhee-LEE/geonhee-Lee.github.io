@@ -6,7 +6,7 @@ menu: true
 submenu: true
 order: 6
 description: >
-  Open `_projects/projects.md` to edit this text.
+  Project, Research desription
 accent_color: rgb(38,139,210)
 accent_image:
   background: rgb(32,32,32)
