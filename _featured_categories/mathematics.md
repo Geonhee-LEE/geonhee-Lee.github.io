@@ -6,7 +6,7 @@ menu: true
 submenu: true
 order: 5
 description: >
-  Open `_featured_categories/mathematics.md` to edit this text.
+  mathematics, calculus, probability theory, convex optimization
 accent_color: rgb(38,139,210)
 accent_image:
   background: rgb(32,32,32)
