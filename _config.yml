@@ -24,7 +24,7 @@ title:                 Geonhee-Lee
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  "To progress myself, I have written on something here".
+  "Stand on the shoulders of giants".
 
 # A shorter description for the sidebar.
 tagline:               >
@@ -64,7 +64,7 @@ copyright:             >
 
     
 # Format of the permalinks
-permalink:             pretty
+permalink:             /:title.html
 
 # Pagination configuration (used by the `blog` layout)
 paginate:              10
