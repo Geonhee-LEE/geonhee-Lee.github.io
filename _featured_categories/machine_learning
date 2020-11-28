@@ -6,7 +6,7 @@ menu: true
 submenu: true
 order: 3
 description: >
-  Open `_featured_categories/machine_learning.md` to edit this text.
+  Machine Learning, Deep Learning, etc
 accent_color: rgb(38,139,210)
 accent_image:
   background: rgb(32,32,32)
