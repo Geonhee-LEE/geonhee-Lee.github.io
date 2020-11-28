@@ -64,7 +64,7 @@ copyright:             >
 
     
 # Format of the permalinks
-permalink:             /:categories/:year-:month-:day-:title/
+permalink:             pretty
 
 # Pagination configuration (used by the `blog` layout)
 paginate:              5
