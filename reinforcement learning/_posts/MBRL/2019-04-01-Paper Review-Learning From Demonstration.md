@@ -6,7 +6,7 @@ tags: MBRL
 comments: true
 ---
 
-# [PAPER-Review] Model-based Reinforcement learning
+# [PAPER-Review] Learning From Demonstration
 
 
 ## Table of Contents
@@ -15,7 +15,7 @@ comments: true
 {:toc}
 
 
-## [Learning From Demonstration Stefan, Stefan Schaal, 1997]
+## [Learning From Demonstration, Stefan Schaal, 1997]
 
 ### Abstract
 
