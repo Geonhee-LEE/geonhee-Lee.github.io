@@ -6,7 +6,7 @@ tags: MBRL
 comments: true
 ---
 
-# [PAPER-Review] Model-based Reinforcement learning2
+# [PAPER-Review] End-to-End Training of Deep Visuomotor Policies, Sergey, Finn, 2016
 
 
 ## Table of Contents
